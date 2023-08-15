@@ -1,0 +1,8016 @@
+//STRIVER 0623
+
+1:datatypes
+bool,char 1,int 4,float 4,double 8,void,wchar_t 2/4
+
+modifiers:signed,unsigned,short,long
+short int 2,long long int 8,long double 12
+
+INT_MIN,INT_MAX
+sizeof()
+
+string s;
+// cin>>s;//hello
+getline(cin,s);//hello kvk
+
+range 
+int : -10^9 to 10^9
+
+long long int: -10^18 to 10^18
+
+2:if else & switch
+
+3:array & strings
+int arr[5]={2,3,1,6,5};
+cout<<arr[2];
+
+int arr[]={2,3,411,1,2};
+cout<<sizeof(arr)/sizeof(arr[0]);
+
+//2d array 
+int arr[3][4];
+
+string s="kamal v kothari";
+cout<<s.size()<<s.length()<<endl;//1515
+cout<<s[2];
+// s[2]="k";//error it should be char ''
+s[2]='k';
+cout<<s<<endl;
+
+4:for while do while function
+void printName(string s){//&s pass by reference
+	cout<<"hi "<<s;
+}
+
+arrays bydefault pass by reference 
+
+5:tc
+O() theta() omega()
+10^8 operations = 1s on most server
+
+6:
+	cout<<(2==2)<<endl;//1
+
+7:char 
+	char num='A';
+	num++;
+	cout<<num;//B
+
+	int num='A';
+	num++;
+	cout<<num;//66
+	cout<<char(num);//B
+
+8:pattern 
+4444444
+4333334
+4322234
+4321234
+4322234
+4333334
+4444444
+
+	int n;
+	cin>>n;
+	int r=2*n-1,c=r;
+	// cout<<r<<c;
+	int t=0,d=0,l=0,ri=0,m=0;
+	for(int i=1;i<=r;i++)
+	{
+		for(int j=1;j<=c;j++)
+		{
+			t=i-1;
+			l=j-1;
+			ri=c-j;
+			d=r-i;
+			m=n-min(min(t,l),min(ri,d));//min distance
+			cout<<m;
+		}
+		cout<<endl;
+	}
+
+9:to flip 0/1
+start=1-start;
+or x^=1
+
+//STL STANDARD TEMPLATE LIBRARY
+10:
+	vector<pair<int,int>> v;
+	v.push_back({2,5});
+	v.emplace_back(3,4);//faster 
+	cout<<v[0].first;
+
+	vector<int> v(3);
+	v.push_back(2);
+	vector<int>::iterator it=v.begin();
+	it++;
+	cout<<*(it);
+
+	for(auto i=it;i<v.end();i++) cout<<*(i);
+	for(auto x:v) cout<<x;//for each
+
+	// v.erase(v.begin()+1);//delete given address
+	v.erase(v.begin()+1,v.begin()+3);//delete from start till end , start included end excluded [start,end) i.e delete index 1 and 2
+
+	v.insert(v.begin()+1,100);//add 100 at index 1
+	v.insert(v.begin()+1,2,30);//add 30 twice at idx 1
+
+	v.insert(v.begin()+3,v2.begin(),v2.end());//insert v2 at 3rd index
+
+	cout<<v.front()<<endl;
+	cout<<v.back()<<endl;
+	v.pop_back();
+	cout<<v.back()<<endl;
+	cout<<v.size()<<endl;
+	cout<<v.empty()<<endl;//1 if empty else 0
+
+	v.swap(v2);
+	v.clear();
+
+11:list
+	list<int> l;
+	l.push_back() .push_front() .pop_back() .pop_front() size() empty() front() back() clear()
+	//list functions in c++ on chatgpt
+	//deque
+
+12:stack
+	push pop  top empty size emplace swap
+		 last
+13:queue
+	push pop   front back empty size emplace swap
+		 first
+
+14:priority_queue heap
+	priority_queue<int> pq;//maxHeap max at top, less bydefault
+	priority_queue<int,vector<int>,greater<int> > pq;//minHeap min at top
+
+	push   pop    top size empty
+	log(n) log(n) O(1)
+
+15:set sorted&unique log(N)
+	insert erase(element) erase(iterator)
+	s.erase(s.find(2),s.find(7));//[2,7)
+	s.erase(s.begin(),s.end());
+	find return iterator if found else returns s.end()
+	size clear 
+	count 1 if present else 0
+
+	auto l=s.lower_bound(2);//first element not less than 2
+	cout<<*l;
+	upper // first element greater than 2
+
+16:multiset sorted but can contain duplicate
+	m.erase(1);//erase all 1's
+	m.erase(m.find(1));//delete 1st occurence only
+
+17:unordered_set
+18:map<int,int>
+unique key vs values
+
+	map<int,int> m;
+	m.insert({1,20});
+	m.insert({2,30});
+	m.insert({3,40});
+	m[4]=50;
+	m.erase(2);
+	cout<<(m.find(2)==m.end() ? 0:1)<<endl;
+	cout<<m.size()<<endl;
+	for(auto x:m) cout<<x.first<<" "<<x.second<<endl;
+
+//multimap duplicate keys allowed 
+unordered_map
+
+19:
+	int arr[5]={2,3,1,6,5};
+	sort(arr,arr+5);
+	sort(arr,arr+5,greater<int>());//descending
+
+	vector<int> v = {3,2,4,6,1};
+	sort(v.begin(),v.end());
+	sort(v.begin(),v.end(),greater<int>());
+
+20:comp
+#include <bits/stdc++.h> 
+using namespace std;
+
+//true means proper order
+bool comp(pair<int,int> p1,pair<int,int> p2)
+{
+	if(p1.second<p2.second) return true;
+	else if(p1.second>p2.second) return false;
+	else {
+		if(p1.first>=p2.first) return true;
+		else return false;
+	}
+}
+
+int main()
+{
+	pair<int,int> arr[] = {{1,2},{2,1},{4,1}};
+	for(auto x:arr) cout<<x.first<<" "<<x.second<<endl;
+	//sort on 2nd val increasing , if same then decreasing on 1st val
+	sort(arr,arr+3,comp);
+	for(auto x:arr) cout<<x.first<<" "<<x.second<<endl;
+
+	return 0;
+}
+
+21:comp2
+bool comp2(int a,int b)
+{
+	return a>b;//a<b ascending , a>b descending
+}
+
+int main()
+{
+	int arr[5]={2,3,1,6,5};
+	sort(arr,arr+5,comp2);
+	for(auto x:arr) cout<<x<<" ";
+
+22:
+	cout<<__builtin_popcount(10);//count set bits 
+	cout<<__builtin_popcountll(10);//for long long
+
+23:next_permutation //return true while next greater permutation exists else false
+	string s="423";
+	sort(s.begin(),s.end());
+	do{
+		cout<<s<<endl;
+	}while(next_permutation(s.begin(),s.end()));//234 243 324 342 423 432
+
+24:max min
+	int m=*max_element(arr,arr+5);
+	int n=*max_element(v.begin(), v.end());
+
+25:count no of digits 
+//1 divide by 10 and count ++ till num =0
+
+//2 to_string and return its size
+	int n =0032500;
+	string s = to_string(n);//5
+	cout<<s.size()<<endl;
+//3 log10(10)=1 log10(100)=2
+	cout<<floor(log10(n)+1)<<endl;
+
+26:reverse 
+	*10 + n%10
+
+27:armstrong sum of digit raise to no of digits = og
+	pow(base,index)
+	or d*d*d
+
+28:gcd
+	//1 num from min(a,b) to 1 which divides both
+	//2 gcd(a,b)=gcd(a-b,b)//a>=b;
+	=>  gcd(a,b)=gcd(b,a%b);
+
+29:all divisors 
+	//1 from 1 to n if %==0 
+	//2 from 1 to sqrt(n) if %==0 , other if n/i!=i
+	take in vector and sort if needed in ascending 
+	i*i<=N or i<=sqrt(N)
+
+30:recursion
+int c=0;
+void func(){
+	if(c==4) return;
+	cout<<c++;
+	func();
+}
+int main()
+{
+	func();
+	return 0;
+}
+
+31:whenever number of iterations are depending on division eg 
+n=n/10 then TC O(log10(N))
+
+33:SC of recursion is max how functions are waiting in call stack 
+	f(0,3)=>f(1,3)=>f(2,3)=>f(3,3) sc=O(n)
+
+34: 1 to n using recursion and backtracking
+void func(int i,int n)
+{
+	if(i>n) return;
+	cout<<i<<" ";//if this was below func then n to 1
+	func(i+1,n);
+}
+int main()
+{
+	int n;
+	cin>>n;
+	func(1,n);
+	return 0;
+}
+
+//backtrack
+void func(int i)
+{
+	if(i<1) return;
+	func(i-1);
+	cout<<i<<" ";
+}
+int main()
+{
+	int n;
+	cin>>n;
+	func(n);
+	return 0;
+}
+
+35:reverse array using recursion
+void f(int arr[],int i,int n)
+{
+	if(i>=n/2) return;
+	swap(arr[i],arr[n-1-i]);
+	f(arr,i+1,n);
+}
+int main()
+{
+	int arr[5]={1,2,3,4,5};
+	f(arr,0,5);
+	for(auto x:arr) cout<<x<<" ";
+	return 0;
+}
+
+36:hashing fast storage and retrieval
+	// int arr[5];// garbage if global all 0 bydefault
+	int farr[15]={0};// all 0	
+	// int arr[5]={2};// 2 and others 0
+
+	int n;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++) cin>>a[i];
+	for(auto x:a) farr[x]++;//pre computation
+	int q;
+	cin>>q;
+	while(q--){
+		int num;
+		cin>>num;
+		cout<<farr[num]<<endl;//fetch
+	}
+	return 0;
+
+37:array limits 
+		inside main  globally our system
+	int 10^6 		 10^7 	  10^5 10^8
+	bool10^7 		 10^8
+
+38:ASCII
+	int x='a';//97
+	'A';//65
+	'0';//48
+	256 total char
+
+	int f[256]={};
+	string s="kamal v kothari";
+	for(int i=0;i<s.size();i++){
+		f[s[i]]++;//s[i] ascii s[i]-'a' if only lower
+	}
+	for(auto x:f) cout<<x<<endl;
+
+39:map & unordered_map stores only required elements unlike array 
+	store retrieve update in map O(logN) in um O(1) in worst O(n) during collisions 
+
+40:selectionSort O(n^2)
+from 0 to n-2 get lowest 
+void selectionSort(std::vector<int>& arr) {
+    int n=arr.size(),minidx;
+    for(int i=0;i<n-1;i++){
+    	minidx=i;
+    	for(int j=i+1;j<n;j++){
+    		if(arr[j]<arr[minidx]) minidx=j;
+    	}
+    	swap(arr[i],arr[minidx]);
+    }
+}
+
+//void selectionSort(int (&arr)[5]) {
+
+41:bubble sort highest at end O(n^2) best O(n) when no swaps break
+
+void bubbleSort(int arr[], int n) {
+	bool flag;
+	int c=1;
+    cout<<endl;
+    for(int i=n-1;i>0;i--)
+    {
+    	cout<<c++<<" ";
+    	flag=true;
+    	for(int j=0;j<i;j++){
+    		if(arr[j]>arr[j+1]) {
+    			swap(arr[j],arr[j+1]);
+    			flag=false;
+    		}
+    	}
+    	if(flag) break;
+    }
+    cout<<endl;
+}
+
+42: insertionSort like ordering cards O(n^2) best O(n) already sorted
+void insertionSort(int arr[], int n) {
+    for(int i=1;i<n;i++){
+    	int key = arr[i];
+    	int j=i-1;
+    	while(j>=0 && arr[j]>key){
+    		arr[j+1]=arr[j];
+    		j--;
+    	}
+    	arr[j+1]=key;
+    }
+}
+
+//or
+void insertionSort(int arr[], int n) {
+    for(int i=1;i<n;i++){
+    	int j=i;
+    	while(j>0 && arr[j]<arr[j-1]){
+    		swap(arr[j],arr[j-1]);
+    		j--;
+    	}
+    }
+}
+
+43:merge sort tc O(NlogN) sc O(N)
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+void merge(int arr[], int left, int middle, int right) {
+    int n1 = middle - left + 1;    // Size of the left subarray
+    int n2 = right - middle;       // Size of the right subarray
+
+    int* leftArr = new int[n1];    // Temporary array for the left subarray
+    int* rightArr = new int[n2];   // Temporary array for the right subarray
+
+    // Copy the elements of the original array to the temporary arrays
+    for (int i = 0; i < n1; ++i) {
+        leftArr[i] = arr[left + i];
+    }
+    for (int j = 0; j < n2; ++j) {
+        rightArr[j] = arr[middle + 1 + j];
+    }
+
+    // Merge the temporary arrays back into the original array
+    int i = 0;     // Index of the left subarray
+    int j = 0;     // Index of the right subarray
+    int k = left;  // Index of the merged array
+
+    while (i < n1 && j < n2) {
+        if (leftArr[i] <= rightArr[j]) {
+            arr[k] = leftArr[i];
+            i++;
+        } else {
+            arr[k] = rightArr[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy the remaining elements of the left subarray
+    while (i < n1) {
+        arr[k] = leftArr[i];
+        i++;
+        k++;
+    }
+
+    // Copy the remaining elements of the right subarray
+    while (j < n2) {
+        arr[k] = rightArr[j];
+        j++;
+        k++;
+    }
+
+    // Free the memory allocated for the temporary arrays
+    delete[] leftArr;
+    delete[] rightArr;
+}
+
+void mergeSort(int arr[], int left, int right) {
+    if (left < right) {
+        int middle = left + (right - left) / 2;   // Calculate the middle index
+
+        // Recursively divide the array into two halves
+        mergeSort(arr, left, middle);
+        mergeSort(arr, middle + 1, right);
+
+        // Merge the sorted halves
+        merge(arr, left, middle, right);
+    }
+}
+
+int main() {
+    int arr[] = {5, 2, 8, 12, 3};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Original array: ";
+    for (int i = 0; i < size; ++i) {
+        cout << arr[i] << " ";
+    }
+
+    mergeSort(arr, 0, size - 1);
+
+    cout << "\nSorted array: ";
+    for (int i = 0; i < size; ++i) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
+
+//or
+void merge(int arr[], int left, int middle, int right) {
+    vector<int> temp;
+    int i=left,j=middle+1;
+    while(i<=middle && j<=right){
+    	if(arr[i]>arr[j]){
+    		temp.push_back(arr[j++]);
+    	}
+    	else{
+    		temp.push_back(arr[i++]);
+    	}
+    }
+    while(i<=middle){
+    	temp.push_back(arr[i++]);
+    }
+    while(j<=right){
+    	temp.push_back(arr[j++]);
+    }
+    // for(auto x:temp) cout<<x<<" ";
+    // cout<<endl;
+    for(i=left;i<=right;i++){
+    	arr[i]=temp[i-left];
+    }
+}
+
+//or
+    for(i=0;i<temp.size();i++){
+    	arr[i+left]=temp[i];
+    }
+//
+
+void mergeSort(int arr[], int left, int right) {
+    if(left>=right) return;
+
+    int mid=left+(right-left)/2;
+    mergeSort(arr,left,mid);
+    mergeSort(arr,mid+1,right);
+
+    merge(arr,left,mid,right);
+}
+
+//vector deleted automatically once out of scope , 
+array needs to be deleted     delete[] leftArr;
+
+44:quick sort tc: O(n^2) worst when pivot is smallest or largest , best when equal partition O(nlogn ), avg O(nlogn).
+sc: O(n) for call stack 
+
+#include <iostream>
+#include <vector>
+
+// Function to partition the array and return the index of the pivot
+int partition(std::vector<int>& arr, int low, int high) {
+    int pivot = arr[high]; // Choose the last element as the pivot
+    int i = low - 1; // Index of smaller element
+
+    for (int j = low; j < high; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+            std::swap(arr[i], arr[j]);
+        }
+    }
+
+    std::swap(arr[i + 1], arr[high]); // Move the pivot to its correct position
+    return i + 1;
+}
+
+//or
+int partition(std::vector<int>& arr, int low, int high) {
+    int pivot=arr[high];
+    int i=low;
+    for(int j=low;j<high;j++){
+    	if(arr[j]<=pivot){
+    		swap(arr[j],arr[i++]);
+    	}
+    }
+    swap(arr[i],arr[high]);
+    return i;
+}
+//
+
+//or
+int partition(vector<int> &arr, int low, int high) {
+    int pivot = arr[low];
+    int i = low;
+    int j = high;//everything to right of j is greater than pivot
+
+    while (i < j) {
+        while (arr[i] <= pivot && i <= high - 1) {
+            i++;
+        }
+
+        while (arr[j] > pivot && j >= low + 1) {
+            j--;
+        }
+        if (i < j) swap(arr[i++], arr[j--]);
+    }
+    swap(arr[low], arr[j]);
+    return j;
+}
+//
+
+// Recursive function to perform Quick Sort
+void quickSort(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pivotIndex = partition(arr, low, high); // Partition the array
+
+        // Recursively sort the sub-arrays before and after the pivot
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
+    }
+}
+
+int main() {
+    std::vector<int> arr = {7, 2, 1, 6, 8, 5, 3, 4};
+    
+    quickSort(arr, 0, arr.size() - 1);
+
+    // Print the sorted array
+    for (int num : arr) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+
+45:
+    int remove_duplicate(int arr[],int n){
+        // code here
+        int i=1;
+        for(int j=1;j<n;j++){
+            if(arr[j]!=arr[j-1]){
+                arr[i++]=arr[j];
+            }
+        }
+        return i;
+    }
+
+46:left rotate by k(tle)
+	void leftRotate(int arr[], int k, int n) 
+	{ 
+	    if(n==1) return;
+	   // Your code goes here
+	   k%=n;
+	   if(k==0) return;
+	   while(k--){
+	       int f=arr[0];
+	       for(int i=0;i<n-1;i++){
+	           arr[i]=arr[i+1];
+	       }
+	       arr[n-1]=f;
+	   }
+	} 
+	//a2 with extra space 
+	void leftRotate(int arr[], int k, int n) 
+	{ 
+	    if(n==1) return;
+	   // Your code goes here
+	   k%=n;
+	   int a[k];
+	   for(int i=0;i<k;i++) a[i]=arr[i];
+	   for(int i=k;i<n;i++) arr[i-k]=arr[i];
+	   for(int i=n-k;i<n;i++) arr[i]=a[i-(n-k)];
+	} 
+
+	//a3 inplace using reverse
+	void leftRotate(int arr[], int k, int n) 
+	{ 
+	    if(n==1) return;
+	   // Your code goes here
+	   k%=n;
+	   reverse(arr,arr+k);
+	   reverse(arr+k,arr+n);
+	   reverse(arr,arr+n);
+	} 
+
+47:ARRAYS EASY
+//1 largest element 
+	sort and return arr[n-1] OR
+
+	keep max variable
+//2 second largest
+	sort and start from arr[n-2] to 0 until element != arr[n-1] OR
+
+	l=arr[0],sl=-1
+	if(e>l) sl=l;l=e;
+	else if(e>sl && e!=l) sl=e;
+//3 check array sorted
+	for(i=1 to n-1) if(arr[i]<arr[i-1]) return false ;
+	return true
+//4 remove dups from sorted array in place
+	i=0;
+	for(j=1 to n-1) if(arr[i]!=arr[j]) i++;arr[i]=arr[j]
+//5 left rotate by 1
+	temp=arr[0];
+	for(i=1 to n-1) arr[i-1]=arr[i];
+//6 left rotate by k
+	k%=n;
+	int temp[k];for(i=0 to <k) temp[i]=arr[i];
+	for(i=k to <n) arr[i-k]=arr[i];
+	for(i=n-k;i<n) arr[i]=temp[i-(n-k)] OR
+
+	reverse(arr,arr+k);//last index not included
+	reverse(arr+k,arr+n)
+	reverse(arr,arr+n)
+//7 move zeros to end inplace
+	i=-1,j=0 while(j<n) if(arr[j]) i++; arr[i]=arr[j];j++ 
+	i++;while(i<n) arr[i]=0;
+	OR
+	swap(arr[i],arr[j])
+//8 linear search / binary search
+//9 union of 2 sorted arrays
+	set OR
+	two pointer
+//10 missing num
+	sum using n*(n+1)/2 OR
+	xor
+//11 max consecutive ones
+//12 num appear once other twice
+	map OR
+	xor
+//13 longest subarray with sum k(only positive)
+	//all subsets
+int getLongestSubarray(vector<int>& a, long long k) {
+    int l=0,n=a.size(),s=0;
+    for(int i=0;i<n;i++){
+    	s=0;
+    	for(int j=i;j<n;j++){
+    		s+=a[j];
+    		if(s==k){
+    			// cout<<j-i+1<<" "<<j<<" "<<i<<endl;
+    			l=max(l,j-i+1);
+    		}
+    		// if(s>k) break;
+    	}
+    }
+    return l;
+}
+		OR
+	//prefix sum and map (works in all cases +ve,-ve 0)
+int getLongestSubarray(vector<int>& a, long long k) {
+    map<int,int> m;//sum vs idx
+    int l=0,s=0,n=a.size(),r=0;
+    for(int i=0;i<n;i++){
+    	s+=a[i];
+    	if(s==k){
+    		l=max(l,i+1);
+    	}
+    	r=s-k;
+    	// cout<<s<<" "<<r;
+    	if(m.find(r)!=m.end()){
+    		l=max(l,i-m[r]);
+    		// cout<<" "<<m[r];
+    	}
+    	// cout<<endl;
+    	if(m.find(s)==m.end()){//to get longest we want left idx smallest so if already same sum present previous no need to update
+    		m[s]=i;
+    		// m.insert({s,i});
+    	}
+    	// cout<<l<<endl;
+
+    }
+    return l;
+}	
+		OR
+	//sliding window (only +ve)
+int getLongestSubarray(vector<int>& a, long long k) {
+    int n = a.size(),ans=0,l=0,r=0,s=0; // size of the array.
+    // return 5;
+    while(r<n){
+    	while(r<n && s<k){
+    		s+=a[r];
+    		r++;
+    		// cout<<s<<" ";
+    	}
+    	if(s==k){
+    		ans=max(ans,r-l);
+    		cout<<ans<<" "<<r<<" "<<l<<endl;
+    	}
+    	while(l<=r && s>=k){
+    		if(s==k){
+	    		ans=max(ans,r-l);
+	    		cout<<ans<<" "<<r<<" "<<l<<endl;
+	    	}
+    		s-=a[l];
+    		l++;
+    		// cout<<s<<" ";
+    	}
+    	// cout<<endl;
+    }
+    return ans;
+}
+
+
+48: two iterator
+	for(int i=0,j=3;i<4 && j<5;i++ ,j++){
+		cout<<i<<" "<<j<<endl;
+	}
+
+49:ARRAYS MEDIUM
+//1a two sum possible or not
+	//all pairs
+    for(int i=0;i<n-1;i++){
+    	for(int j=i+1;j<n;j++){
+    		if(arr[i]+arr[j]==target) return "Yes";
+    	}
+    }
+    return "No";
+    		OR
+    //unordered_set map
+string twoSum(int n, vector<int> &arr, int target) {
+    unordered_set<int> u;
+    int r=0;
+    for(int i=0;i<n;i++){
+    	r=target-arr[i];
+    	if(u.count(r)) return "yes";
+    	u.insert(arr[i]);
+    }
+    return "no";
+}
+			OR
+	//sort and 2 pointer
+string twoSum(int n, vector<int> &arr, int target) {
+    sort(arr.begin(),arr.end());
+    int l=0,r=n-1,s=0;
+    while(l<r){
+    	s=arr[l]+arr[r];
+    	if(s==target) return "y";
+    	else if(s>target) r--;
+    	else l++;
+    }
+    return "n";
+}
+
+//1b two sum idx if possible else {-1,-1}
+	//map
+//2 sort 0 1 2
+    int l=0,m=0,h=n-1;
+    while(m<=h){
+    	if(arr[m]==0){
+    		swap(arr[l++],arr[m++]);
+    	}
+    	else if(arr[m]==1) m++;
+    	else swap(arr[m],arr[h--]);
+    }
+//3 c>n/2 
+	//Moore’s Voting Algorithm:
+int majorityElement(vector<int> v) {
+	int c=0,ans=0,n=v.size();
+	for(int i=0;i<n;i++){
+		if(c==0){
+			ans=v[i];
+			c++;
+		}
+		else if(ans==v[i]) c++;
+		else c--;
+	}
+	c=0;
+	for(auto x:v) if(x==ans) c++;//no need to check if question states there is a majority element for sure
+		
+	if(c>n/2) return ans;
+	return -1;
+	// (c>n/2) ? return ans : return -1;//wont work
+	// return (c>n/2) ? ans : -1;//will work
+}
+			OR
+	//map element vs frequency then check whose freq>n/2
+//4 kadane maxSubArray
+	int maxSubArray(vector<int>& nums) {
+        int ans=INT_MIN,n=nums.size(),s=0;
+        for(int i=0;i<n;i++){
+            s+=nums[i];
+            ans=max(ans,s);
+            s= s<0? 0:s;
+        }
+        return ans;
+    }
+//5 print subarray with given sum
+void subArrWithSumKOptimal(int arr[], int n, int k) {
+  int s=0,e=-1,sum=0;
+
+  while(e<n){
+  	while((e+1<n) && (sum+arr[e+1]<=k)){
+  		sum+=arr[++e];
+  	}
+  	if(sum==k){
+  		for(int i=s;i<=e;i++){
+  			cout<<arr[i]<<" ";
+  		}
+  		cout<<endl;
+  	}
+  	sum-=arr[s];
+  	s++;
+  }
+}
+//6 stock max profit
+int maximumProfit(vector<int> &prices){
+    // Write your code here.
+    int n=prices.size(),b=prices[0],ans=0;//buy at lowest in past
+
+    for(int i=1;i<n;i++){
+        //sell today
+        ans=max(ans,prices[i]-b);
+        b=min(b,prices[i]);
+    }
+    return ans;
+}
+		OR
+int maximumProfit(vector<int> &prices){
+    // Write your code here.
+    int n=prices.size(),s=prices[n-1],ans=0;//sell at highest in future
+
+    for(int i=n-2;i>=0;i--){
+        //buy today
+        ans=max(ans,s-prices[i]);
+        s=max(s,prices[i]);
+    }
+    return ans;
+}
+//7a rearrage alternate +ve -ve with equal +ve & -ve. maintain relative order
+vector<int> RearrangebySign(vector<int>A, int s){
+    vector<int> p,n;
+    for(auto x:A){
+    	if(x>0) p.push_back(x);
+    	else n.push_back(x);
+    }
+    for(int i=0;i<s/2;i++){
+    	A[2*i] = p[i];
+    	A[2*i+1] = n[i];
+    }
+    return A;
+}
+		OR
+vector<int> RearrangebySign(vector<int>A, int n){
+    vector<int> a(n,0);
+    int p=0,m=1;
+    for(auto x:A){
+    	if(x>0){
+    		a[p]=x;
+    		p+=2;
+    	}
+    	else{
+    		a[m]=x;
+    		m+=2;
+    	}
+    }
+    return a;
+}
+//7b unequal + -
+vector<int> RearrangebySign(vector<int>A, int n){
+	vector<int> p,m;
+	for(auto x:A){
+		if(x>0) p.push_back(x);
+		else m.push_back(x);
+	}
+	if(p.size() < m.size()){
+		for(int i=0;i<p.size();i++){
+			A[2*i]=p[i];
+			A[2*i+1]=m[i];
+		}
+		int idx=2*p.size();
+		for(int i=p.size();i<m.size();i++){
+			A[idx++]=m[i];
+		}
+	}
+	else{
+		for(int i=0;i<m.size();i++){
+			A[2*i]=p[i];
+			A[2*i+1]=m[i];
+		}
+		int idx=m.size()*2;
+		for(int i=m.size();i<p.size();i++){
+			A[idx++]=p[i];
+		}
+	}
+	return A;
+}
+//8 next_permutation
+    int arr[] = {3,2,1,4,4,1};
+    int n=sizeof(arr)/sizeof(arr[0]);
+	next_permutation(arr,arr+n);//it will work even if no greater possible, it will return smallest. eg for 321 it will give 123.
+		//it works for repeated values as well
+	for(auto x:arr) cout<<x<<" ";
+	cout<<endl; 
+		OR 
+vector<int> nextGreaterPermutation(vector<int> &A) {
+	//find breakpoint -> idx where num is less than its next
+	int n=A.size();
+	int idx=n-2;
+	while(idx>=0){
+		if(A[idx]<A[idx+1]) break;
+		idx--;
+	}
+	
+	//if mo breakpoint reverse and return
+	if(idx==-1){
+		reverse(A.begin(),A.end());
+		return A;
+	}
+	//find swap idx -> from end just greater than breakpoint
+	int i=n-1;
+	while(A[i]<=A[idx]) i--;
+	swap(A[i],A[idx]);
+	//reverse from breakpoint + 1 till end
+	reverse(A.begin()+idx+1,A.end());
+	return A;
+}
+//9 leaders in array
+max=arr[n-1];ans.push_back(max);
+for(n-2 to 0) if ele>max max=ele & ans.push_back(ele);
+reverse ans and return
+//10 longest consecutive subsequence in any order 3,4,8,1,9,2 -> 1234 4
+int longestConsecutive(vector < int > & nums) {
+  set < int > hashSet;
+  for (int num: nums) {
+    hashSet.insert(num);
+  }
+
+  int longestStreak = 0;
+
+  for (int num: nums) {	//num: hashSet
+    if (!hashSet.count(num - 1)) {
+      int currentNum = num;
+      int currentStreak = 1;
+
+      while (hashSet.count(currentNum + 1)) {
+        currentNum += 1;
+        currentStreak += 1;
+      }
+
+      longestStreak = max(longestStreak, currentStreak);
+    }
+  }
+
+  return longestStreak;
+}
+//11 zeroMatrix
+	//if ele =0 ,mark -1 row and col except which are 0.
+	-1 change to 0 and return
+		OR
+	//two extra array
+#include <bits/stdc++.h> 
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+	// Write your code here.
+	vector<int> r(n,0),c(m,0);
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			if(matrix[i][j]==0){
+				r[i]=1;
+				c[j]=1;
+			}
+		}
+	}
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			if(r[i] || c[j]){
+				matrix[i][j]=0;
+			}
+		}
+	}
+	return matrix;
+}
+	OR
+	//inplace
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+	// Write your code here.
+	bool col0 = false;
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			if(matrix[i][j]==0){
+				matrix[i][0]=0;
+				if(j!=0) matrix[0][j]=0;
+				else col0=true;
+			}
+		}
+	}
+	for(int i=1;i<n;i++){
+        for (int j = 1; j < m; j++) {
+			if(matrix[i][0]==0 || matrix[0][j]==0) matrix[i][j]=0;
+        }
+    }
+
+	if(matrix[0][0]==0){
+		for(int i=0;i<m;i++) matrix[0][i]=0;//first row
+	}
+
+	if(col0){
+		for(int i=0;i<n;i++) matrix[i][0]=0;//first col
+	}
+    return matrix;
+}
+//12a rotate anti 90 degree
+	//transpose and reverse rows
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int r=matrix.size(),c=matrix[0].size();
+        for(int i=0;i<r;i++) 
+        {
+            for(int j=0;j<i;j++)	//IMP
+            {
+                swap(matrix[i][j],matrix[j][i]);
+            }
+        }
+        for(int i=0;i<r;i++)
+        {
+            reverse(matrix[i].begin(),matrix[i].end());	//IMP
+        }
+    }
+};
+//12b rotate matrix clockwise 1 place 
+	//save 1 in temp and use its place to rotate
+#include <bits/stdc++.h>
+
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
+{
+    // Write your code here
+    int l=0,r=m-1,t=0,b=n-1,k,temp;
+
+    while(l<r && t<b){
+        temp=mat[t][l];
+        for(int col=l+1;col<=r;col++){
+            k=mat[t][col];
+            mat[t][col]=temp;
+            temp=k;
+        }
+        t++;
+
+        for(int row=t;row<=b;row++){
+            k=mat[row][r];
+            mat[row][r]=temp;
+            temp=k;
+        }
+        r--;
+
+        for(int col=r;col>=l;col--){
+            k=mat[b][col];
+            mat[b][col]=temp;
+            temp=k;
+        }
+        b--;
+
+        for(int row=b;row>=t;row--){
+            k=mat[row][l];
+            mat[row][l]=temp;
+            temp=k;
+        }
+        l++;
+
+        mat[t-1][l-1]=temp;
+    }
+
+}
+
+/*
+1 2 3 4
+5 6 7 8
+9 10 11 12
+13 14 15 16
+
+5 1 2 3
+9 10 6 4
+13 11 7 8
+14 15 16 12
+*/
+
+		OR
+//move in opp direction
+#include <bits/stdc++.h>
+
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
+{
+    // Write your code here
+    int l=0,r=m-1,t=0,b=n-1,k,temp;
+
+    while(l<r && t<b){
+        temp=mat[t][l];
+        for(int row=t;row<b;row++){
+            mat[row][l]=mat[row+1][l];
+        }
+        for(int col=l;col<r;col++){
+            mat[b][col]=mat[b][col+1];
+        }
+        for(int row=b;row>t;row--){
+            mat[row][r]=mat[row-1][r];
+        }
+        for(int col=r;col>l+1;col--){ 	//IMP
+            mat[t][col]=mat[t][col-1];
+        }
+        mat[t][l+1]=temp;
+        l++,r--,t++,b--;
+    }
+
+}
+
+//13 spiralOrder 
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int n=matrix.size(),m=matrix[0].size();
+        int l=0,t=0,r=m-1,b=n-1;
+        vector<int> a;
+        while(t<=b && l<=r){
+            for(int col=l;col<=r;col++) a.push_back(matrix[t][col]);
+            t++;
+            for(int row=t;row<=b;row++) a.push_back(matrix[row][r]);
+            r--;
+            if(t>b) break;
+            for(int col=r;col>=l;col--) a.push_back(matrix[b][col]);
+            b--;
+            if(l>r) break;
+            for(int row=b;row>=t;row--) a.push_back(matrix[row][l]);
+            l++;
+        }
+        return a;
+    }
+};
+		OR
+	//direction matrix
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int n=matrix.size(),m=matrix[0].size();
+        vector<int> a;//ans
+        vector<vector<int>> dir={{0,1},{1,0},{0,-1},{-1,0}};//direction
+        vector<int> s={m,n-1};//steps if 3*4 4r,2d,3l,1u,2r,0d stop
+        int ir=0,ic=-1;//initial row,col
+        int id=0;//initial dir right
+
+        while(s[id%2]){
+            for(int i=0;i<s[id%2];i++){
+                ir+=dir[id][0];
+                ic+=dir[id][1];
+                a.push_back(matrix[ir][ic]);
+            }
+            s[id%2]--;
+            id=(id+1)%4;
+        }
+        return a;
+    }
+};
+//13b kth element in spiralOrder 
+	//brute if k<=m*n , return a[k-1]
+		OR
+int findK(vector<vector<int>> &a, int n, int m, int k)
+{
+    // Your code goes here
+    // if(k>n*m) return -1;
+    int l=0,r=m-1,t=0,b=n-1;
+    
+    while(k>(2*m + 2*n -4)) {
+        k-=(2*m + 2*n -4);
+        l++;
+        r--;
+        t++;
+        b--;
+        m-=2;
+        n-=2;
+    }
+    n--;
+    while(k>0){
+        // cout<<k<<" "<<m<<endl;
+        if(k>m){
+            t++;
+            k-=m;
+            m--;
+        }
+        else{
+            return a[t][l+(k-1)];
+        }
+        
+        if(k>n){
+            r--;
+            k-=n;
+            n--;
+        }
+        else{
+            return a[t+(k-1)][r];
+        }
+        
+        if(k>m){
+            b--;
+            k-=m;
+            m--;
+        }
+        else{
+            return a[b][r-(k-1)];
+        }
+        
+        if(k>n){
+            l++;
+            k-=n;
+            n--;
+        }
+        else{
+            return a[b-(k-1)][l];
+        }
+    }
+}
+//14 count subarrays with sum = k 
+int findAllSubarraysWithGivenSum(vector < int > & arr, int k) {
+    // Write Your Code Here
+    int c=0;
+    map<int,int> m;//better unordered_map
+    m[0]=1;//IMP
+    int p=0,r;//pre sum
+    for(auto x:arr){
+        p+=x;
+        r=p-k;
+        c+=m[r];
+        m[p]++;
+    }
+    return c;
+}
+50:subsequence delete 0 or more elements but preserve order
+
+51:for each on array inside function will give error
+
+52:Arrays Hard
+//1 nth row of pascal triangle
+	//50 testcase passed
+class Solution{
+public:
+    vector<ll> nthRowOfPascalTriangle(int n) {
+        // code here
+        ll mod=1e9+7;
+        vector<ll> a;
+        n--;
+        ll r=0;
+        ll nCr=1;
+        a.push_back(nCr);
+        for(r=0;r<n;r++){
+            nCr=(nCr*(n-r)/(r+1)) %mod;
+            a.push_back(nCr);
+        }
+        return a;
+    }
+};
+	//all passed
+class Solution{
+
+public:
+    vector<ll> nthRowOfPascalTriangle(int n) {
+         if(n==1)
+        {
+            vector<ll> tmp;
+            tmp.push_back(1ll);
+            return tmp;
+        }
+        vector<ll> tans = nthRowOfPascalTriangle(n-1);
+        vector<ll> ans;
+        ans.push_back(1);
+        for(int i=1;i<tans.size();i++)
+        ans.push_back((tans[i]+tans[i-1])%1000000007);
+        ans.push_back(1);
+        return ans;
+    }
+    
+};
+//2 majority > n/3
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        int e1=INT_MIN,e2=INT_MIN,c1=0,c2=0,n=nums.size();
+        for(auto x:nums){
+            if(x==e1) c1++;
+            else if(x==e2) c2++;
+            else if(c1==0 && x!=e2) c1=1,e1=x;
+            else if(c2==0 && x!=e1) c2=1,e2=x;
+            else c1--,c2--;
+        }
+        vector<int> a;
+        c1=0,c2=0;
+        for(auto x:nums){
+            c1+=x==e1;
+            c2+=x==e2;
+        }
+        if(c1>n/3) a.push_back(e1);
+        if(c2>n/3) a.push_back(e2);
+        return a;
+    }
+};
+//3 3sum = 0
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        if(n<3) return {};
+        if(nums[0]>0) return {};//all +ve wont add 3 nums to 0
+        vector<vector<int>> a;
+        for(int i=0;i<n-2;i++){
+            if(nums[i]>0) break;
+            if(i>0 && nums[i]==nums[i-1]) continue;
+            int l=i+1,h=n-1,s=-nums[i],cs;
+            while(l<h){
+                cs=nums[l]+nums[h];
+                if(cs==s){
+                    a.push_back({nums[i],nums[l],nums[h]});
+                    while(l<h && nums[l+1]==nums[l]) l++;
+                    while(l<h && nums[h-1]==nums[h]) h--;
+                    l++,h--;
+                }
+                else if(cs>s){
+                    h--;
+                }
+                else l++;
+            }
+        }
+        return a;
+    }
+};
+//4 4sum = target
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> a;
+        int n=nums.size();
+        if(n<4) return {};
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<n-3;i++){
+            if(i>0 && nums[i]==nums[i-1]) continue;
+            if(nums[i]*1ll+nums[i+1]+nums[i+2]+nums[i+3]>target) break;//or return a IMP 1ll
+            if(nums[i]*1ll+nums[n-1]+nums[n-2]+nums[n-3]<target) continue;//cant get target with nums[i]
+
+            for(int j=i+1;j<n-2;j++){
+                if(j>i+1 && nums[j]==nums[j-1]) continue;
+                if(nums[i]*1ll+nums[j]+nums[j+1]+nums[j+2]>target) break;
+                if(nums[i]*1ll+nums[n-1]+nums[n-2]+nums[j]<target) continue;//cant get target with nums[j]
+
+                int l=j+1,r=n-1;
+                while(l<r){
+                    long long sum=nums[i]*1ll+nums[j]+nums[l]+nums[r];
+                    if(sum>target) r--;
+                    else if(sum<target) l++;
+                    else{
+                        a.push_back(vector<int>{nums[i],nums[j],nums[l],nums[r]});
+                        do{l++;}while(l<r && nums[l]==nums[l-1]);
+                        do{r--;}while(l<r && nums[r]==nums[r+1]);
+                    }
+                }
+            }
+        }
+        return a;        
+    }
+};
+//5 return max length of subarray with sum 0
+    int maxLen(vector<int>&A, int n)
+    {   
+        // Your code here
+        unordered_map<int,int> u;//sum vs idx
+        int s=0,a=0,r;//s currect sum, a ans , r remaining sum
+        for(int i=0;i<n;i++){
+            s+=A[i];
+            if(s==0){
+                a=i+1;
+            }
+            else{
+                r=-s;
+                if(u.find(r)!=u.end()){
+                    a=max(a,i-u[r]);
+                }
+                else u[r]=i;
+            }
+        }
+        return a;
+    }
+//6 Return the total number of subarrays having bitwise XOR equals to K.
+int subsetXOR(vector<int> arr, int N, int K) {
+    // code here
+    unordered_map<int,int> u;//xorval vs freq
+    u[0]++;
+    int x=0,r,c=0;//xor till now & remaining xor & count
+    for(int i=0;i<N;i++){
+        x^=arr[i];
+        r=x^K;
+        c+=u[r];
+        u[x]++;
+    }
+    return c;
+}
+//7 merge overlappedInterval
+    vector<vector<int>> overlappedInterval(vector<vector<int>>& intervals) {
+         // Code here
+        vector<vector<int>> a;
+        sort(intervals.begin(),intervals.end());
+        a.push_back(intervals[0]);
+        int n=intervals.size();
+        for(int i=1;i<n;i++){
+        	if(intervals[i][0]<=a.back()[1]){
+        		a.back()[1]=max(a.back()[1],intervals[i][1]);
+        	}
+        	else a.push_back(intervals[i]);
+        }
+        return a;
+    }
+//8 merge 2 sorted array without extra space
+        void merge(long long arr1[], long long arr2[], int n, int m) 
+        { 
+            // code here 
+            if(n*m == 0)  return ;
+            int i=n-1,j=0,f=0;
+            while(i>=0 && j<m){
+                if(arr1[i]<=arr2[j]) break;//check highest of1st and lowest of 2nd 
+                else{
+                    swap(arr1[i--],arr2[j++]);
+                }
+            }
+            if(i==(n-1)) return;//if i==n-1 means no swaps already both sorted
+            
+            sort(arr1,arr1+n);
+            sort(arr2,arr2+m);
+            
+            
+            return;
+        } 
+        	OR
+    //gap method
+//9 repeating and missing
+    vector<int> findTwoElement(vector<int> arr, int n) {
+        // code here
+        long long s=0,s2=0,r,m;
+        for(auto x:arr){
+            s+=x;
+            s2+=1ll*x*x;
+        }
+        //sum of arr - sum of 1st n = repeating - missing
+        s-=1ll*n*(n+1)/2;//r-m
+        s2-=1ll*n*(n+1)*(2*n+1)/6;//r^2-m^2
+        s2/=s;//r+m
+        r=(s+s2)/2;
+        m=r-s;
+        return {(int)r,(int)m};
+        
+    }
+//10 count inversion pairs 
+	//using global variable
+#include<bits/stdc++.h>
+using namespace std;
+int c=0;//count inversion pairs i<j a[i]>a[j]
+void merge(vector<int> &v,int l,int m,int h){
+	vector<int> t;
+	int i=l,j=m+1;
+	while(i<=m && j<=h){
+		if(v[i]>v[j]){
+			c+=m-i+1;
+			t.push_back(v[j++]);
+		}
+		else {
+			t.push_back(v[i++]);
+		}
+	}
+	while(i<=m) t.push_back(v[i++]);
+	while(j<=h) t.push_back(v[j++]);
+
+	for(i=l;i<=h;i++){
+		v[i]=t[i-l];
+	}
+}
+
+void ms(vector<int> &v,int l,int h){
+	if(l>=h) return;
+	int m=(l+h)>>1;
+	ms(v,l,m);
+	ms(v,m+1,h);
+
+	merge(v,l,m,h);
+}
+
+int main() {
+	vector<int> v={5, 4, 3, 20, 1};
+	ms(v,0,4);
+	for(auto x:v) cout<<x<<" ";
+	cout<<endl;
+	cout<<c<<endl;
+  	return 0;
+}
+		OR
+			//without global
+#include<bits/stdc++.h>
+using namespace std;
+int merge(vector<int> &v,int l,int m,int h){
+	vector<int> t;
+	int c=0;//count inversion pairs i<j a[i]>a[j]
+	int i=l,j=m+1;
+	while(i<=m && j<=h){
+		if(v[i]>v[j]){
+			c+=m-i+1;
+			t.push_back(v[j++]);
+		}
+		else {
+			t.push_back(v[i++]);
+		}
+	}
+	while(i<=m) t.push_back(v[i++]);
+	while(j<=h) t.push_back(v[j++]);
+
+	for(i=l;i<=h;i++){
+		v[i]=t[i-l];
+	}
+	return c;
+}
+
+int ms(vector<int> &v,int l,int h){
+	if(l>=h) return 0;
+	int c=0;
+	int m=(l+h)>>1;
+	c+=ms(v,l,m);
+	c+=ms(v,m+1,h);
+
+	c+=merge(v,l,m,h);
+	return c;
+}
+
+int main() {
+	vector<int> v={5, 4, 3, 20, 1};
+	cout<<ms(v,0,4)<<endl;
+	for(auto x:v) cout<<x<<" ";
+	cout<<endl;
+	// cout<<c<<endl;
+  	return 0;
+}
+//11 count reverse pairs i<j a[i]>2*a[j]
+	//seperately calculate pairs bcoz condition for merge and counting is different , which was same in inversion so calculated while merging
+#include <bits/stdc++.h>
+using namespace std;
+
+void merge(vector<int> &arr, int low, int mid, int high) {
+    vector<int> temp; // temporary array
+    int left = low;      // starting index of left half of arr
+    int right = mid + 1;   // starting index of right half of arr
+
+    //storing elements in the temporary array in a sorted manner//
+
+    while (left <= mid && right <= high) {
+        if (arr[left] <= arr[right]) {
+            temp.push_back(arr[left]);
+            left++;
+        }
+        else {
+            temp.push_back(arr[right]);
+            right++;
+        }
+    }
+
+    // if elements on the left half are still left //
+
+    while (left <= mid) {
+        temp.push_back(arr[left]);
+        left++;
+    }
+
+    //  if elements on the right half are still left //
+    while (right <= high) {
+        temp.push_back(arr[right]);
+        right++;
+    }
+
+    // transfering all elements from temporary to arr //
+    for (int i = low; i <= high; i++) {
+        arr[i] = temp[i - low];
+    }
+}
+
+int countPairs(vector<int> &arr, int low, int mid, int high) {
+    int right = mid + 1;
+    int cnt = 0;
+    for (int i = low; i <= mid; i++) {
+        while (right <= high && arr[i] > 2 * arr[right]) right++;
+        cnt += (right - (mid + 1));
+    }
+    return cnt;
+}
+
+int mergeSort(vector<int> &arr, int low, int high) {
+    int cnt = 0;
+    if (low >= high) return cnt;
+    int mid = (low + high) / 2 ;
+    cnt += mergeSort(arr, low, mid);  // left half
+    cnt += mergeSort(arr, mid + 1, high); // right half
+    cnt += countPairs(arr, low, mid, high); //Modification
+    merge(arr, low, mid, high);  // merging sorted halves
+    return cnt;
+}
+
+int team(vector <int> & skill, int n)
+{
+    return mergeSort(skill, 0, n - 1);
+}
+
+int main()
+{
+    vector<int> a = {4, 1, 2, 3, 1};
+    int n = 5;
+    int cnt = team(a, n);
+    cout << "The number of reverse pair is: "
+         << cnt << endl;
+    return 0;
+}
+//12 max subarray product
+	long long maxProduct(vector<int> arr, int n) {
+	    // code here
+	    long long a=INT_MIN,p=1,s=1;
+	    for(int i=0;i<n;i++){
+	        p*=arr[i];
+	        s*=arr[n-1-i];
+	        
+	        a=max(a,max(p,s));
+	        
+	        if(p==0) p=1;
+	        if(s==0) s=1;
+	    }
+	    
+	    return a;
+	}
+
+53:
+Precedence	Operator	Description	Associativity
+1	::	Scope resolution	Left-to-right →
+2	a++   a--	Suffix/postfix increment and decrement
+type()   type{}	Functional cast
+a()	Function call
+a[]	Subscript
+.   ->	Member access
+3	++a   --a	Prefix increment and decrement	Right-to-left ←
++a   -a	Unary plus and minus
+!   ~	Logical NOT and bitwise NOT
+(type)	C-style cast
+*a	Indirection (dereference)
+&a	Address-of
+sizeof	Size-of[note 1]
+co_await	await-expression (C++20)
+new   new[]	Dynamic memory allocation
+delete   delete[]	Dynamic memory deallocation
+4	.*   ->*	Pointer-to-member	Left-to-right →
+5	a*b   a/b   a%b	Multiplication, division, and remainder
+6	a+b   a-b	Addition and subtraction
+7	<<   >>	Bitwise left shift and right shift
+8	<=>	Three-way comparison operator (since C++20)
+9	<   <=   >   >=	For relational operators < and ≤ and > and ≥ respectively
+10	==   !=	For equality operators = and ≠ respectively
+11	a&b	Bitwise AND
+12	^	Bitwise XOR (exclusive or)
+13	|	Bitwise OR (inclusive or)
+14	&&	Logical AND
+15	||	Logical OR
+16	a?b:c	Ternary conditional[note 2]	Right-to-left ←
+throw	throw operator
+co_yield	yield-expression (C++20)
+=	Direct assignment (provided by default for C++ classes)
++=   -=	Compound assignment by sum and difference
+*=   /=   %=	Compound assignment by product, quotient, and remainder
+<<=   >>=	Compound assignment by bitwise left shift and right shift
+&=   ^=   |=	Compound assignment by bitwise AND, XOR, and OR
+17	,	Comma	Left-to-right →
+
+54:
+bool compareSecondElement(const std::vector<int>& a, const std::vector<int>& b) {
+    return a[1] < b[1];
+}
+
+int main() {
+    std::vector<std::vector<int>> arr = {{1, 5}, {2, 3}, {3, 7}, {4, 2}, {5, 9}};
+
+    // Sorting the array based on the second element of each subarray
+    std::sort(arr.begin(), arr.end(), compareSecondElement);
+
+55:binary search on 1d
+//1 basic
+        int l=0,r=n-1,m;
+        while(l<=r){
+            m=(l+r)>>1;//or l+(r-l)/2
+            if(arr[m]==k) return m;
+            else if(arr[m]>k) r=m-1;
+            else l=m+1;
+        }
+        return -1;
+    OR
+    //find min in sorted rotated
+    int i=0,j=n-1,m;
+    while(i<j){
+    	m=(i+j)>>1;
+    	if(arr[m]>arr[j]) i=m+1;//ans lies in right
+    	else j=m;//ans lies in left till m
+    }
+    return arr[i];//or arr[j] //both points to same element which is the ans 
+//2 lower bound
+    int findFloor(vector<long long> v, long long n, long long x){
+        
+        // Your code here
+        int a=-1,l=0,r=n-1,m;
+        while(l<=r){
+            m=(l+r)>>1;
+            if(v[m]==x) return m;
+            else if(v[m]>x) r=m-1;
+            else {
+                a=m;
+                l=m+1;
+            }
+        }
+        return a;
+    }
+//3upper bound 4insert position 5flooe/ceil 6first&last occurence 7count occurence
+//8 search in rotated sorted array
+    int search(int A[], int l, int h, int key){
+        // l: The starting index
+        // h: The ending index, you have to search the key in this range
+        
+        //complete the function here
+        int m;
+        while(l<=h){
+            m=(l+h)>>1;
+            if(A[m]==key) return m;
+            else if(A[m]>=A[l]){
+                //left sorted
+                if(key>=A[l] && key<A[m]) h=m-1;
+                else l=m+1;
+            }
+            else{
+                if(key>A[m] && key<=A[h]) l=m+1;
+                else h=m-1;
+            }
+        }
+        return -1;
+    }
+//9 search in rotated sorted array (with dups)
+    bool Search(int N, vector<int>& A, int Key) {
+        // Code here
+        int l=0,h=N-1,m;
+        while(l<=h){
+            m=(l+h)>>1;
+            if(A[m]==Key) return true;
+            
+            if(A[l]==A[m] && A[m]==A[h]){
+                l++,h--;
+                continue;
+            }
+            
+            if(A[m]>=A[l]){
+                //left sorted
+                if(Key>=A[l] && Key<A[m]) h=m-1;
+                else l=m+1;
+            }
+            else{
+                if(Key>A[m] && Key<=A[h]) l=m+1;
+                else h=m-1;
+            }
+        }
+        return false;
+    }
+//10 min in rotated sorted array
+    int findMin(int arr[], int n){
+        //complete the function here
+        int a=INT_MAX,l=0,h=n-1,m;
+        while(l<=h){
+            if(arr[l]<=arr[h]){//already sorted search space
+                a=min(a,arr[l]);
+                break;
+            }
+            m=(l+h)>>1;
+            if(arr[m]>=arr[l]){
+                a=min(a,arr[l]);
+                l=m+1;
+            }
+            else{
+                a=min(a,arr[m]);
+                h=m-1;
+            }
+        }
+        return a;
+    }
+//11 find how many times rotated = find idx of smallest element
+    int findMin(int arr[], int n){
+        //complete the function here
+	    // code here
+	    int i=0,j=n-1;
+	    while(i<j){
+	        int mid=i+(j-i)/2;
+	        if(arr[mid]>arr[j]) i=mid+1;
+	        else j=mid;
+	    }
+	    return arr[i];//i idx of smallest element
+    }
+//12 one element once rest twice in sorted array
+    int findOnce(int arr[], int n)
+    {
+        //code here.
+        int l=0,r=n-1,m;
+        while(l<r){
+            m=(l+r)>>1;
+            if( ( m%2==0 && arr[m]==arr[m+1] ) || ( m%2==1 && arr[m]==arr[m-1] ) ){
+                l=m+1;
+            }
+            else r=m;
+        }
+        return arr[l];//or arr[r]
+    }
+//13 peakElement : greater than neighbours if neighbours present
+    int peakElement(int arr[], int n)
+    {
+       // Your code here
+       int l=0,h=n-1,m;
+       while(l<h){
+           m=(l+h)>>1;
+           if(arr[m]>arr[m+1]) h=m;
+           else l=m+1;
+       }
+       return l;//or h
+    }
+56:BS on ans
+//1 floor square root eg root5 = 2.23... floor =2
+    long long int floorSqrt(long long int x) 
+    {
+        // Your code goes here   
+        long long int l=1,r=x,m,a;
+        while(l<=r){
+            m=(l+r)>>1;
+            if(m*m <= x){
+                a=m;
+                l=m+1;
+            }
+            else r=m-1;
+        }
+        return a;
+    }
+//2 nth root of m
+	int NthRoot(int n, int m)
+	{
+	    // Code here.
+	    int l=1,r=m,mid,ans=-1;
+	   // long long int p;//wont work
+	   double p;
+	    while(l<=r){
+	        mid=(l+r)>>1;
+	        p=pow(mid,n);
+	        if(p==m) return mid;//or dont store in p direct pow(mid,n)==m
+	        else if(p>m) r=mid-1;
+	        else l=mid+1;
+	    }
+	    return ans;
+	}  
+		OR
+	int power(int mid,int n,int m){
+	    long long prod=1;
+	    for(int i=1;i<=n;i++){
+	        prod*=mid;
+	        if(prod>m) return 1;
+	    }
+	    if(prod==m) return 0;
+	    return 2;
+	}
+	
+	int NthRoot(int n, int m)
+	{
+	    // Code here.
+	    int l=1,r=m,mid,ans=-1;
+	   // long long int p;//wont work
+	   int p;
+	    while(l<=r){
+	        mid=(l+r)>>1;
+	        p=power(mid,n,m);
+	        if(p==0) return mid;
+	        else if(p==1) r=mid-1;
+	        else l=mid+1;
+	    }
+	    return ans;
+	}  
+//3 min bananas to eat per hour to complete
+    bool isPossible(int N, vector<int>& piles, int H,int m){
+        int t=0;
+        for(auto x:piles){
+            t+=(x+m-1)/m;
+            if(t>H) return false;
+        }
+        return true;
+    }
+  
+    int Solve(int N, vector<int>& piles, int H) {
+        // Code here
+        int l=1,r=*max_element(piles.begin(),piles.end()) ,amin=-1,m;
+        if(N==H) return r;
+        while(l<=r){
+            m=(l+r)>>1;
+            if(isPossible(N,piles,H,m)){
+                amin=m;
+                r=m-1;
+            }
+            else l=m+1;
+        }
+        return l;//or amin
+    }
+//4 min days to make M bouquets from K consecutive flowers
+    bool isPossible(int M, int K, vector<int> &bloomDay,int m){
+        int cb=0,ccf=0;//count bouquets , count consecutive flowers
+        for(auto x:bloomDay){
+            if(x<=m){
+                ccf++;
+                cb+=ccf/K;
+                ccf%=K;
+            }
+            else ccf=0;
+        }
+        return cb>=M;
+    }
+    //or 
+    for()
+    	if(x<=m) ccf++; 
+    	 else{
+    	 	cb+=ccf/K;
+    	 	ccf=0;
+    	 }
+    }
+    cb+=ccf/K;
+
+    int solve(int M, int K, vector<int> &bloomDay){
+      // Code here
+      int n=bloomDay.size();
+      if(n<1ll*K*M) return -1;
+      int l=1,r=*max_element(bloomDay.begin(),bloomDay.end()),m,amin;//or l=*min_element
+      if(n==1ll*K*M) return r;
+      while(l<=r){
+        m=(l+r)>>1;
+        if(isPossible(M,K,bloomDay,m)){
+          amin=m;
+          r=m-1;
+        }
+        else l=m+1;
+      }
+      return amin;
+
+    }
+//5 smallestDivisor
+    bool isPossible(vector<int>& nums, int K, int m){
+        int s=0;
+        for(auto x:nums){
+            s+=(x+m-1)/m;
+            if(s>K) return false;
+        }
+        return true;
+    }
+  
+    int smallestDivisor(vector<int>& nums, int K) {
+
+        // Write your code here.
+        int l=1,r=*max_element(nums.begin(),nums.end()),n=nums.size(),m,amin;
+        //base
+        if(n==K) return r;
+        while(l<=r){
+            m=(l+r)>>1;
+            if(isPossible(nums,K,m)){
+                amin=m;
+                r=m-1;
+            }
+            else l=m+1;
+        }
+        return amin;//or l
+    }
+//6 leastWeightCapacity
+    bool isP(int arr[], int N, int D, int m){
+        int cd=1,cl=0;//count days,count current load
+        for(int i=0;i<N;i++){
+            if(arr[i]>m) return false;
+            if(cl+arr[i]>m){
+                cd++;
+                cl=arr[i];
+            }
+            else cl+=arr[i];
+            if(cd>D) return false;
+        }
+        return true;
+    }
+    //or
+        for(int i=0;i<N;i++){
+            if(arr[i]>m) return false;
+            cl+=arr[i];
+            if(cl>m) {
+                cd++;
+                cl=arr[i];
+            }
+            if(cd>D) return false;
+        }
+
+    int leastWeightCapacity(int arr[], int N, int D) {
+        // code here
+        int l=*max_element(arr,arr+N);
+        //base d=n return l
+        if(D==N) return l;
+        
+        int r=accumulate(arr,arr+N,0);
+        //base d=1 return r
+        if(D==1) return r;
+        
+        int m,amin;
+        while(l<=r){
+            m=(l+r)>>1;
+            if(isP(arr,N,D,m)){
+                amin=m;
+                r=m-1;
+            }
+            else l=m+1;
+        }
+        return amin;
+        
+    }
+//7 kth missing positive 
+	//O(n)
+int KthMissingElement(int a[], int n, int k)
+{
+    // Complete the function
+    int tk=a[n-1]-a[0]-(n-1);//total missing num
+    if(k>tk) return -1;
+    for(int i=1;i<n;i++){
+        int mtt=a[i]-a[i-1]-1;//missing this time
+        if(k<=mtt) return a[i-1]+k;
+        else k-=mtt;
+    }
+}
+	//bs
+int KthMissingElement(int a[], int n, int k)
+{
+    // Complete the function
+    int tk=a[n-1]-a[0]-(n-1);//total missing num
+    if(k>tk) return -1;
+    int l=0,r=n-1,m,amax;
+    while(l<=r){
+        m=(l+r)>>1;
+        int mtt=a[m]-a[0]-(m);//missed till this
+        if(mtt<k){
+            amax=m;
+            l=m+1;
+        }
+        else r=m-1;
+    }
+    return a[amax]+(k-(a[amax]-a[0]-amax));
+}
+//8 aggressive cows
+    bool isp(int n, int k, vector<int> &stalls, int m){
+        int pcp=stalls[0], cp=1;//previous cow placed, cows placed
+        for(int i=1;i<n;i++){
+            if(stalls[i]-pcp>=m){
+                pcp=stalls[i];
+                cp++;
+            }
+            if(cp>=k) return true;
+        }
+        return false;
+    }
+
+    int solve(int n, int k, vector<int> &stalls) {
+    
+        // Write your code here
+        sort(stalls.begin(),stalls.end());
+        int l=0,r=stalls[n-1]-stalls[0],m,amax;
+        while(l<=r){
+            m=(l+r)>>1;
+            if(isp(n,k,stalls,m)){
+                amax=m;
+                l=m+1;
+            }
+            else r=m-1;
+        }
+        return amax;
+    }
+//9 findPages
+    bool isp(int A[], int N, int M, int m){
+        int c=1,cpg=0;//c count people , cpg count page
+        for(int i=0;i<N;i++){
+            if(A[i]+cpg<=m) cpg+=A[i];
+            else {
+                if(A[i]>m) return false;
+                c++;
+                cpg=A[i];
+            }
+            if(c>M) return false;
+        }
+        return true;
+    }    
+    //Function to find minimum number of pages.
+    int findPages(int A[], int N, int M) 
+    {
+        //code here
+        if(M>N) return -1;
+        int l=*max_element(A,A+N);
+        if(M==N) return l;
+        int r=accumulate(A,A+N,0);
+        if(M==1) return r;
+
+        int m,amin;
+        while(l<=r){
+            m=(l+r)>>1;
+            if(isp(A,N,M,m)){
+                amin=m;
+                r=m-1;
+            }
+            else l=m+1;
+        }
+        return amin;
+    }
+//10 Given an array and a number k, find the largest sum of the subarray containing at least k numbers. It may be assumed that the size of array is at-least k.
+long long int maxSumWithK(long long int a[], long long int n, long long int k) 
+{
+    int i=0,j=0,isum=0,jsum=0,amax;
+    while(i<k){
+        isum+=a[i++];
+    }
+    amax=isum;
+    while(i<n){
+        isum+=a[i++];
+        jsum+=a[j++];
+        if(jsum<0){
+            isum-=jsum;
+            jsum=0;
+        }
+        amax=max(amax,isum);
+    }
+    return amax;
+}
+//11 Minimize Max Distance to Gas Station PTC
+//12 Given two sorted arrays array1 and array2 of size m and n respectively. Find the median of the two sorted arrays. 
+    double MedianOfArrays(vector<int>& array1, vector<int>& array2)
+    {
+        // Your code goes here
+        int s1=array1.size(),s2=array2.size();
+        if(s1==0 && s2==0) return 0.0;
+        if(s1==0){
+            if(s2%2) return array2[s2/2];
+            return (array2[s2/2-1]+array2[s2/2])/2.0;
+        }
+        if(s2==0){
+            if(s1%2) return array1[s1/2];
+            return (array1[s1/2-1]+array1[s1/2])/2.0;
+        }
+        if(s1>s2) return MedianOfArrays(array2,array1);
+        int lh=(s1+s2+1)/2,rh=s1+s2-lh;
+
+        int l=0,r=s1,cut1,cut2;
+        int l1,l2,r1,r2;
+        while(l<=r){
+            cut1=(l+r)>>1;
+            cut2=lh- cut1;
+
+            l1= cut1<0 ? INT_MIN : array1[cut1-1];//or cut1==0
+            l2= cut2<0 ? INT_MIN : array2[cut2-1];
+            r1= cut1==s1 ? INT_MAX : array1[cut1];
+            r2= cut2==s2 ? INT_MAX : array2[cut2];
+
+            if(l1<=r2 && l2<=r1){
+                if((s1+s2)%2) return max(l1,l2);
+                return (max(l1,l2)+min(r1,r2))/2.0;
+            }
+            else if(l1>r2) r=cut1-1;
+            else l=cut1+1;
+        }
+        return 0.0;
+
+    }
+//13  find the element that would be at the kth position of the final sorted array. 
+    int kthElement(int arr1[], int arr2[], int n, int m, int k)
+    {
+        if(n>m){
+            return kthElement(arr2,arr1,m,n,k);//keep 1st array of small size to reduce search space and complexity
+        }
+        int l=max(0,k-m),r=min(n,k);
+        int c1,c2;
+        while(l<=r){
+            c1=(l+r)>>1;
+            c2=k-c1;
+
+            int l1= c1<0 ? INT_MIN : arr1[c1-1];
+            int l2= c2<0 ? INT_MIN : arr2[c2-1];
+            int r1= c1==n ? INT_MAX : arr1[c1];
+            int r2= c2==m ? INT_MAX : arr2[c2];
+
+            if(l1<=r2 && l2<=r1) return max(l1,l2);
+            else if(l1>r2) r=c1-1;
+            else l=c1+1; 
+        }
+        return 1;
+    }
+
+57:BS on 2D array
+//1 sorted rowWithMax1s
+	int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
+	    // code here
+	    int ans=-1;
+	    for(int i=0;i<n;i++){
+	        for(int j=m-1;j>=0;j--){
+	            if(arr[i][j]){
+	                ans=i;
+	                m--;
+	            }
+	            else{
+	                break;
+	            }
+	        }
+	    }
+	    return ans;
+	}
+		OR
+	int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
+	    // code here
+	    int ans=-1,i=0,j=m-1;
+	    while(i<n && j>=0){
+	        if(arr[i][j]){
+	            ans=i;
+	            j--;
+	        }
+	        else i++;
+	    }
+	    return ans;
+	}
+//2&3 search in row & column wise sorted
+	//start with i=0,j=m-1 top right
+	int matSearch (vector <vector <int>> &mat, int N, int M, int X)
+	{
+	    // your code here
+	    int i=0,j=M-1;
+	    while(i<N && j>=0){
+	        if(mat[i][j]==X) return 1;
+	        else if(mat[i][j]>X) j--;
+	        else i++;
+	    }
+	    return 0;
+	}
+//4 strictly greater than all of its adjacent neighbors to the left, right, top, and bottom.
+    vector<int> findPeakGrid(vector<vector<int>>& mat) {
+        int ro=mat.size(),co=mat[0].size();
+        int i=0,j=0;
+        while(i>=0 && i<ro && j>=0 && j<co){
+            int l=j>0? mat[i][j-1] : -1;
+            int r=j<co-1? mat[i][j+1] : -1;
+            int t=i>0? mat[i-1][j]:-1;
+            int b=i<ro-1? mat[i+1][j]:-1;
+
+            int x=mat[i][j];
+            if(x>l && x>r && x>t && x>b) return {i,j};
+
+            int maxi=max(l,max(r,max(t,b)));
+            if(maxi==l) j--;
+            else if(maxi==r) j++;
+            else if(maxi==t) i--;
+            else i++;
+        }
+        return {};
+    }
+//5 Given a row wise sorted matrix of size R*C where R and C are always odd, find the median of the matrix.
+    int count(vector<int>&row,int mid)
+    {
+        int l=0,h=row.size()-1;
+        while(l<=h)
+        {
+            int md=(l+h)/2;
+            if(row[md]<=mid)
+            l=md+1;
+            else
+            h=md-1;
+        }
+        return l;
+    }
+    
+    int median(vector<vector<int>> &matrix, int R, int C){
+        // code here   
+        int low=1,high=2000;
+     while(low<=high)
+     {
+         int mid=(low+high)/2;
+         
+         int cnt=0;
+         for(int i=0;i<R;i++)
+         {
+            //  cnt+=count(matrix[i],mid);
+             cnt+=upper_bound(matrix[i].begin(),matrix[i].end(),mid)-matrix[i].begin();
+         }
+         
+         if(cnt<=(R*C)/2)
+         {
+             low=mid+1;
+         }
+         else
+         high=mid-1;
+     }
+     return low;
+     
+    }
+58: STRING 
+	//basics
+	+ concat, .substr(1,4) from 1st idx 4 char, .find("John") return start idx if found else -1, [] or .at() , length() or size() 
+
+//bro coders
+//1 kam.al.koth -> koth.al.kam
+    string reverseWords(string S) 
+    { 
+        // code here 
+        int i=0,j=0,s=S.size();
+        
+        reverse(S.begin(),S.end());
+        // string t="";
+        while(j<s){
+            if(S[j]=='.'){
+                reverse(S.begin()+i,S.begin()+j);
+                i=j+1;
+            }
+            j++;
+        }
+        reverse(S.begin()+i,S.begin()+j);
+        return S;
+    }
+//2 addStrings "79"+"234"="313"
+    string addStrings(string num1, string num2) {
+        int s1=num1.size(),s2=num2.size();
+        int i=s1-1,j=s2-1;
+        int c=0;
+        string a="";
+        while(i>=0 && j>=0){
+            int sum= num1[i]+num2[j]+c-2*'0';
+            int d=sum%10;
+            char cd=(char)(d+'0');
+            c=sum/10;
+            a=cd+a;
+            i--,j--;
+        }
+        while(i>=0){
+            int sum= num1[i]+c-'0';
+            int d=sum%10;
+            char cd=(char)(d+'0');
+            c=sum/10;
+            a=cd+a;
+            i--;
+        }
+        while(j>=0){
+            int sum= num2[j]+c-'0';
+            int d=sum%10;
+            char cd=(char)(d+'0');
+            c=sum/10;
+            a=cd+a;
+            j--;
+        }
+        if(c>0){
+            a=char(c+'0')+a;
+        }
+        return a;
+    } 
+    	OR
+#include<bits/stdc++.h>
+using namespace std;
+
+std::string addStrings(std::string num1, std::string num2) {
+    std::reverse(num1.begin(), num1.end());
+    std::reverse(num2.begin(), num2.end());
+
+    std::string result;
+    int carry = 0;
+    int i = 0;
+
+    while (i < num1.size() || i < num2.size() || carry != 0) {
+        int digit1 = (i < num1.size()) ? (num1[i] - '0') : 0;
+        int digit2 = (i < num2.size()) ? (num2[i] - '0') : 0;
+        int sum = digit1 + digit2 + carry;
+
+        carry = sum / 10;
+        int digit = sum % 10;
+
+        result = std::to_string(digit)+result;
+        i++;
+    }
+
+    // std::reverse(result.begin(), result.end());
+
+    return result;
+}
+
+int main() {
+	std::string num1 = "99";
+	std::string num2 = "456";
+	std::string sum = addStrings(num1, num2);
+	cout << "Sum: " << sum ;  // Output: Sum: 579
+
+  	return 0;
+}
+//3 intToRoman
+	string intToRoman(int num) {
+        string s[]={"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+        int a[]={1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        string res="";
+        for(int i=0;num!=0;i++){
+            while(num/a[i]){
+                num-=a[i];
+                res+=s[i];
+            }
+        }
+        return res;
+    }
+    	OR
+    string intToRoman(int num) {
+        string ones[] = {"","I","II","III","IV","V","VI","VII","VIII","IX"};
+        string tens[] = {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+        string hrns[] = {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+        string ths[]={"","M","MM","MMM"};
+        
+        return ths[num/1000] + hrns[(num%1000)/100] + tens[(num%100)/10] + ones[num%10];
+    }
+//4 Given a string s, remove all its adjacent duplicate characters recursively. 
+    string rremove(string s){
+        // code here
+        // cout<<s<<" . "<<endl;
+        string r="";
+        int i;
+        for( i=0;i<s.size();i++){
+        	if(i==0){
+        		if(s[i]!=s[i+1] ) r+=s[i];
+        	}
+        	else if(i==s.size()-1){
+        		if(s[i]!=s[i-1]) r+=s[i];
+        	}
+            else if(s[i]!=s[i+1] && s[i]!=s[i-1]) r+=s[i];
+            // else i++;
+        }
+        if(i==s.size()-1) r+=s[i];
+        if(r.size()==s.size()) return s;
+        return rremove(r);
+    }
+//5 string to num. check -ve and invalid also
+    int atoi(string str) {
+        //Your code here
+        int a=0,flag=1,i=0,s=str.size();
+        if(str[0]=='-') {
+            flag=-1;
+            i++;
+            
+        }
+        while(i<s){
+            if(str[i]>='0' && str[i]<='9'){
+                a=a*10+(str[i]-'0');
+            }
+            else return -1;
+            i++;
+        }
+        return flag*a;
+    }
+//6 remove k Duplicates
+	string removeDuplicates(string s, int k) {
+        stack< pair<char,int> > st;//char vs freq
+        for(auto c:s){
+            if(st.empty()){
+                st.push({c,1});
+            }
+            else{
+                if(st.top().first != c){
+                    st.push({c,1});
+                }
+                else{
+                    st.top().second++;
+                    if(st.top().second==k) st.pop();
+                }
+            }
+        }        
+        string a="";
+        while(!st.empty()){
+            int count=st.top().second;
+            char ch=st.top().first;
+            while(count--){
+                a+=ch;//this is better than a=ch+a without reverse
+            }
+            st.pop();
+        }
+        reverse(a.begin(),a.end());
+        return a;
+    }
+    	OR
+    string removeDuplicates(string s, int k) {
+        int i = 0, n = s.length();
+        vector<int> count(n);
+        for (int j = 0; j < n; ++j, ++i) {
+            s[i] = s[j];
+            count[i] = i > 0 && s[i - 1] == s[j] ? count[i - 1] + 1 : 1;
+            if (count[i] == k) i -= k;
+        }
+        return s.substr(0, i);
+    }
+    	OR
+    string removeDuplicates(string s, int k) {
+        vector<pair<int, char>> stack = {{0, '#'}};
+        for (char c: s) {
+            if (stack.back().second != c) {
+                stack.push_back({1, c});
+            } else if (++stack.back().first == k)
+                stack.pop_back();
+        }
+        string res;
+        for (auto & p : stack) {
+            res.append(p.first, p.second);
+        }
+        return res;
+    }
+//7 longestPalindrome substring
+	//for odd select pivot and move both sides till matching
+	//for even imaginary pivot in between 
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int n=s.size();
+        int ml=1;
+        string ans="";
+        ans+=s[0];
+        //odd 1left 1right then 2l 2r and so on till unequal or out of string
+        for(int i=1;i<n-1;i++){
+            for(int x=1;i-x>=0 && i+x<n;x++){
+                if(s[i-x]!=s[i+x]) break;
+                int l=2*x+1;
+                if(l>ml){
+                    ml=l;
+                    ans=s.substr(i-x,l);
+                }
+            }
+        }
+        //even imaginary boundary in between elements 1l 1r
+        for(int i=0;i<n-1;i++){
+            for(int x=1;i-x+1>=0 && i+x<n;x++)//including element in left side
+            {
+                if(s[i-x+1]!=s[i+x]) break;
+                int l=2*x;
+                if(l>ml){
+                    ml=l;
+                    ans=s.substr(i-x+1,l);
+                }
+            }
+        }
+        return ans;
+
+    }
+};
+	//a2
+class Solution {
+  public:
+  
+  string longestPalin (string s) {
+        int n=s.size();
+        int start=0,end=0,maxl=1;
+        
+        //odd length
+        for(int i=0;i<n;i++)
+        {
+            int l=i,r=i;
+            while(l>=0 && r<n)
+            {
+                if(s[l]!=s[r])
+                {
+                    break;
+                }
+                l--;
+                r++;
+            }
+            int len=r-l-1;
+            if(len>maxl)
+            {
+                maxl=len;
+                start=l+1;
+                end=r-1;
+            }
+        }
+        
+        //even length
+        for(int i=0;i<n;i++)
+        {
+            int l=i,r=i+1;
+            while(l>=0 && r<n)
+            {
+                if(s[l]!=s[r])
+                {
+                    break;
+                }
+                l--;
+                r++;
+            }
+            int len=r-l-1;
+            if(len>maxl)
+            {
+                maxl=len;
+                start=l+1;
+                end=r-1;
+            }
+        }
+        
+        return s.substr(start,maxl);
+    }
+};
+	//a3
+    int fun(string S,int &l,int &r,int &n){ //& to make change in l&r which are used later
+        while(l>=0 && r<n){
+            if(S[l]!=S[r]) break;
+            l--;
+            r++;
+        }
+        return r-l-1;
+    }
+    
+    string longestPalin (string S) {
+        // code here
+        // string ans=S[0];
+        int n=S.size();
+        //odd
+        int l,r,len=0,maxlen=1,start=0;
+        for(int i=1;i<n-1;i++){
+            l=i-1;
+            r=i+1;
+            // while(l>=0 && r<n){
+            //     if(S[l]!=S[r]) break;
+            //     l--;
+            //     r++;
+            // }
+            // len=r-l-1;
+            len=fun(S,l,r,n);
+            if(len>maxlen){
+                maxlen=len;
+                start=l+1;
+            }
+        }
+        
+        //even
+        for(int i=0;i<n-1;i++){
+            l=i;
+            r=i+1;
+            // while(l>=0 && r<n){
+            //     if(S[l]!=S[r]) break;
+            //     l--;
+            //     r++;
+            // }
+            // len=r-l-1;
+            len=fun(S,l,r,n);
+            if(len>maxlen){
+                maxlen=len;
+                start=l+1;
+            }
+        }
+        
+        return S.substr(start,maxlen);
+    }
+//8 return the index of the first occurrence
+    int strStr(string haystack, string needle) {
+        int m=haystack.size(),n=needle.size();
+        for(int i=0;i<=m-n;i++){
+            int j;
+            for( j=0;j<n;j++){
+                if(haystack[i+j]!=needle[j]) break;
+            }
+            if(j==n) return i;
+        }
+        return -1;
+    }
+    	OR
+    return haystack.find(needle);
+    	OR
+    if(found != string::npos){//invalid string.end()
+    	cout<<"found";
+    }
+    //string.find(what to find,from where to find bydefault 0)
+	string s="kamka";
+	cout<<s.find("ka",1);//find from 1st idx
+	//to find next occurence start from next idx after 1st found s.find("ka",found+1);
+59: STRINGS 5.1 BASICS
+//1 remove outer (). tc O(n) sc O(1)
+    string removeOuter(string& s) {
+        // code here
+        string res="";
+        int i=0,c=1,n=s.size();
+        for(int j=1;j<n;j++){
+            if(s[j]=='(') c++;
+            else c--;
+            if(c==0){
+                res+=s.substr(i+1,j-i-1);
+                i=j+1;
+            }
+        }
+        return res;
+    }
+	//a2 count>1 while pushing ( and count>0 while poping ). tc O(n) sc O(1)
+    string removeOuter(string& s) {
+        // code here
+        int n = s.size();
+        int cnt = 0;
+        string ans = "";
+        for(int i = 0 ; i < n ; i++) {
+            if(s[i] == '(') {
+                cnt++;
+                if(cnt!=1) {
+                    ans+='(';
+                }
+            }
+            else {
+                cnt--;
+                if(cnt!=0) {
+                    ans+=')';
+                }
+            }
+        }
+        return ans;
+    }
+    //a3 tc O(n) sc O(n)
+    string removeOuter(string& s) {
+        // code here
+        int n = s.size();
+        string ans = "";
+        stack<char> st;
+        for(int i = 0 ; i < n ; i++) {
+            if(s[i] == '(') {
+                st.push('(');
+                if(st.size() != 1) {
+                    ans += '(';
+                }
+            }
+            else {
+                st.pop();
+                if(st.size() != 0) {
+                    ans += ')';
+                }
+            }
+        }
+        return ans;
+    }
+//2 reverse words line 2411 bro coders string Q1
+//3 largest odd num in string
+    string maxOdd(string s) {
+        // your code here
+        int n=s.size(),j=n-1;
+        while(j>=0){
+            int num=s[j]-'0';
+            if(num%2) break;
+            j--;
+        }
+        return s.substr(0,j+1);
+    }
+//4 longestCommonPrefix
+	string longestCommonPrefix (string arr[], int N)
+    {
+        // your code here
+        if(N==1) return arr[0];
+        for(int i=0;i<arr[0].size();i++){
+            char ch=arr[0][i];
+            for(int j=1;j<N;j++){
+                if(i>=arr[j].size() || arr[j][i]!=ch){
+                    if(i==0) return "-1";
+                    return arr[0].substr(0,i);
+                }
+            }
+        }
+        return arr[0];
+    }
+//5 1 to 1 map in order
+    bool areIsomorphic(string str1, string str2)
+    {
+        
+        // Your code here
+        int s1=str1.size(), s2= str2.size();
+        if(s1!=s2) return false;
+        unordered_map<char,char> u;
+        for(int i=0;i<s1;i++){
+            char c=str1[i];
+            if(u.find(c)==u.end()){
+                u[c]=str2[i];
+            }
+            else{
+                if(u[c]!=str2[i]) return false;
+            }
+        }
+        unordered_set<char> us;
+        for(auto x:u){
+            if(us.count(x.second)) return false;
+            us.insert(x.second);
+        }
+        return true;
+    }
+//6 check if s2 can be formed by rotating s1
+    bool areRotations(string s1,string s2)
+    {
+        // Your code here
+        int n1=s1.size(), n2=s2.size(),j;
+        if(n1!=n2) return 0;
+        for(int i=0;i<n1;i++){
+            for( j=0;j<n1;j++){
+                if(s1[j]!=s2[(i+j)%n1]) break;
+            }
+            if(j==n1) return 1;
+        }
+        return 0;
+    }
+    //a2
+    bool areRotations(string s1,string s2)
+    {
+        // Your code here
+        int n1=s1.size(), n2=s2.size(),j;
+        if(n1!=n2) return 0;
+        s1+=s1;
+        return (s1.find(s2) != string::npos);
+    }
+//7 isAnagram
+    bool isAnagram(string a, string b){
+        
+        // Your code here
+        int n1=a.size(), n2= b.size();
+        if(n1!=n2) return 0;
+        int f[26]={0};
+        for(auto x:a){
+            f[x-'a']++;
+        }
+        for(auto x:b){
+            if(f[x-'a']==0) return 0;//either this line or below for loop
+            f[x-'a']--;
+        }
+        // for(auto x:f){
+        //     if(x!=0) return 0;
+        // }
+        return 1;
+    }
+60: 5.2 STRING MEDIUM
+//1 sort array by frequency 5 5 4 6 4 => 4 4 5 5 6
+#include <bits/stdc++.h>
+using namespace std;
+
+bool comp(pair<int,int> a,pair<int,int> b){
+    if(a.second > b.second) return 1;
+    else if(a.second < b.second) return 0;
+    else {
+        return a.first < b.first;
+    }
+}
+
+int main() {
+    //code
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        int a[n];
+        map <int,int> mpp;//num vs freq
+        for(int i=0;i<n;i++){
+            cin>>a[i];
+            mpp[a[i]]++;
+        }
+        vector< pair<int,int> > v;
+        for(auto x:mpp) v.push_back(x);
+        sort(v.begin(), v.end(),comp);
+
+        for(auto x:v){
+            for(int j=0;j<x.second;j++) cout<<x.first<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
+//2 level of nesting (()) = 2
+    int maxDepth(string s) {
+        // code here
+        int c=0,amax=0;
+        for(auto x:s){
+            if(x=='('){
+                c++;
+                amax=max(amax,c);
+            }
+            else if(x==')') c--;
+        }
+        return amax;
+    }
+//3 romanToDecimal IV = 4
+int romanToDecimal(string &str) {
+        // code here
+        unordered_map<char,int> um = {{'M',1000},{'D',500},{'C',100},{'L',50},{'X',10},{'V',5},{'I',1}};
+        // string sa[]={'M','D','C','L','X','V','I'};
+        // int ia[]={1000,500,100,50,10,5,1};
+        int ans=0,prev=0;
+        reverse(str.begin(),str.end());
+        for(auto x:str){
+            if(um[x]>=prev){
+                ans+=um[x];
+                prev=um[x];
+                // cout<<"i";
+            }
+            else {
+                ans-=um[x];
+                // cout<<'e';
+            }
+            
+        }
+        return ans;
+    }
+    //a2
+    int romanToDecimal(string &str) {
+        // code here
+        unordered_map<char,int> um = {{'M',1000},{'D',500},{'C',100},{'L',50},{'X',10},{'V',5},{'I',1}};
+        // string sa[]={'M','D','C','L','X','V','I'};
+        // int ia[]={1000,500,100,50,10,5,1};
+        int ans=0,next=0,n=str.size();
+        // reverse(str.begin(),str.end());
+        for(int i=n-1;i>=0;i--){
+            int c=um[str[i]];
+            if(c>=next){
+                ans+=c;
+                next=c;
+            }
+            else ans-=c;
+        }
+        return ans;
+    }
+//4 atoi ASCII to INT or stoi string to int
+	line 2543 (bro coders string Q5) & inbuilt function stoi(str) or atoi(str)
+//5 count all possible substrings (not necessarily distinct) that have exactly k distinct characters.
+	//atmost 3(3,2,1,0) - atmost 2(2,1,0) = exact 3. atmost(k)-atmost(k-1)=exact k
+    long long int solve(string s, int k){
+        //return count of substr with atmost k distinct char
+        if(k==0) return 0;
+        int n=s.size();        
+        int freq[26] = {0};
+        long long int ans=0;
+        int i=0,j=0,cd=0;//count distinct char
+        while(j<n){
+            freq[s[j]-'a']++;
+            if(freq[s[j]-'a']==1) cd++;
+            while(cd>k){
+                freq[s[i]-'a']--;
+                if(freq[s[i]-'a']==0) cd--;
+                i++;
+            }
+            ans+=j-i+1;//add all substr ending on idx j with atmost k distinct char
+            j++;
+        }
+        return ans;
+    }
+    long long int substrCount (string s, int k) {
+        //code here.
+        int n=s.size();
+        if(k>n) return 0;
+        return solve(s,k)-solve(s,k-1);
+    }
+//6 longest palindromic substring
+	line 2616 bro coders string Q7
+//7 sum of beauty of all substrings (diff of max & least occuring char in every substr)
+class Solution {
+public:
+    int beautySum(string s) {
+        int n=s.size();
+        map<char,int> m;//char vs freq
+        int a=0;
+        for(int i=0;i<n-2;i++){
+            int mx=0,mn=500;
+            for(int j=i;j<n;j++){
+                m[s[j]]++;
+                for(auto x:m){
+                    mx=max(mx,x.second);
+                    mn=min(mn,x.second);
+                }
+                a+=mx-mn;
+                mn=500;
+            }
+            m.clear();
+        }
+        return a;
+    }
+};
+//8 reverse words line 2411 bro coders string Q1
+61: 6 LINKED LIST
+//6.0 implement linked list
+//1 Linked list implementation in C++
+
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+
+// Creating a node
+class Node {
+   public:
+  int value;
+  Node* next;
+};
+
+int main() {
+  Node* head;
+  Node* one = NULL;
+  Node* two = NULL;
+  Node* three = NULL;
+
+  // allocate 3 nodes in the heap
+  one = new Node();
+  two = new Node();
+  three = new Node();
+
+  // Assign value values
+  one->value = 1;
+  two->value = 2;
+  three->value = 3;
+
+  // Connect nodes
+  one->next = two;
+  two->next = three;
+  three->next = NULL;
+
+  // print the linked list value
+  head = one;
+  while (head != NULL) {
+    cout << head->value;
+    head = head->next;
+  }
+}
+//2
+#include<bits/stdc++.h>
+using namespace std;
+
+class node{
+public:	//bydefault private
+	int data;
+	node* next;	//*
+	node(int val){
+		data = val;
+		next = NULL;
+	}
+};
+
+int main()
+{
+	node* a=new node(11);	//*
+	cout<< a->data <<" "<< a->next;	//->
+    return 0;
+}
+//6.1 learn 1d linked list
+//1 Linked List for the array ‘arr’ = [4, 2, 5, 1] is 4 -> 2 -> 5 -> 1.
+void insertAtHead(Node* &head, int val){
+    Node* newN = new Node(val);
+    newN->next = head;
+    head = newN;
+}
+
+Node* constructLL(vector<int>& arr) {
+    // Write your code here
+    Node* head=NULL;
+    for(int i=arr.size()-1;i>=0;i--){
+        insertAtHead(head,arr[i]);
+    }
+    return head;
+}
+	//a2
+Node* constructLL(vector<int>& arr) {
+    // Write your code here
+    Node* head=new Node(arr[0]);
+    Node* temp = head;
+    for(int i=1;i<arr.size();i++){
+        Node* newN = new Node(arr[i]);
+        temp->next= newN;
+        temp=temp->next;
+    }
+    return head;
+}
+//2 insertAtHead
+//3 delete last
+Node *deleteLast(Node *list){
+    // Write your code here
+    Node* head=list;
+    while(list->next->next != NULL){    //nullptr
+        list=list->next;
+    }
+    Node* temp=list->next;//node to del
+    list->next=NULL;
+    // free(temp);
+    delete(temp);
+    return head;
+}
+//4 find length of ll
+//5 searchInLinkedList
+int searchInLinkedList(Node<int> *head, int k) { //Node<int> * head can point only to ll with nodes having int data. Node *head is general, can point any data
+    // Write your code here.
+    while(head != NULL){
+        if(head->data == k) return 1;
+        head=head->next;
+    }
+    return 0;
+}
+int length(Node *head)
+{
+	//Write your code here
+    int ans=0;
+    while(head != NULL){
+        ans++;
+        head=head->next;
+    }
+    return ans;
+}
+
+//6.3 & 6.5  SINGLY LINKED LIST MEDIUM & HARD
+#include<bits/stdc++.h>
+using namespace std;
+
+class node{
+public:	//bydefault private
+	int data;
+	node* next;	//*
+	node(int val){
+		data = val;
+		next = NULL;
+	}
+};
+
+void insertAtHead(node* &head,int val){
+	node* newn = new node(val);
+	newn->next= head;
+	head= newn;
+}
+
+void display(node* head){	//passing by value , else create temp=head and use temp to traverse
+	while(head!=NULL){
+		cout<<head->data<<"->";
+		head= head->next;
+	}
+	cout<<"NULL\n";
+}
+
+void insertAtTail(node* &head,int val){
+	node* temp=head;
+	while(temp->next!=NULL){
+		temp=temp->next;
+	}
+	node* newNode= new node(val);
+	temp->next= newNode;
+}
+
+void insertAtPosition(node* &head,int val,int k){	//0 based position
+	if(k==0){
+		insertAtHead(head,val);
+		return;
+	}
+	node* temp= head;
+	while(--k){
+		temp= temp->next;
+
+	}
+	node* newNode=new node(val);
+	newNode->next = temp->next; //IMP this first else we will lose access to next node
+	temp->next = newNode;
+}
+
+void deleteAtHead(node* &head){
+	node* temp = head;
+	head=head->next;
+	free(temp);
+}
+
+void deleteAtTail(node* head){
+	while(head->next->next != NULL)
+	{
+		head=head->next;
+	}
+	node* temp=head->next;//node to delete;
+	head->next=NULL;
+	free(temp);
+}
+
+void deleteAtPos(node* head,int k){
+	while(--k) head=head->next;
+	node* temp = head->next; //node to del
+	head->next = head->next->next;
+	free(temp);
+}
+
+void deleteAlternate(node*  head){
+	while(head!=NULL && head->next!=NULL){
+		node* temp=head->next;//node to del
+		head->next=head->next->next;
+		head=head->next;
+		free(temp);
+	}
+}
+
+void removeDups(node* &head){
+	node* temp=head;
+	while(temp->next != NULL ){
+		if(temp->next->data == temp->data){
+			node* nextNode=temp->next;//node to delete
+			temp->next=temp->next->next;
+			free(nextNode);
+		}
+		
+		else temp=temp->next;
+	}
+}
+
+void displayReverse(node* head){
+	if(head){
+		displayReverse(head->next);
+		cout<<head->data<<"->";
+	}
+}
+
+void reverseLL(node* &head){
+	node* prev=NULL;
+	node* curr=head;
+	while(curr){	//(curr!=NULL)
+		node* nextN= curr->next;
+		curr->next=prev;
+		prev=curr;
+		curr=nextN;
+	}
+	head=prev;
+}
+
+node* reverseRecursive(node* &head){
+	// node* curr=head;
+	if(head==NULL || head->next==NULL){
+		return head;
+	}
+	node* newH=reverseRecursive(head->next);
+	head->next->next=head;
+	head->next=NULL;
+	return newH;
+}
+
+node* reverseK(node* &head, int k){
+
+	//reverse only if k nodes are there else keep same
+	// int countsize=0;
+	// node* st=head;
+	// while(st){
+	// 	countsize++;
+	// 	st=st->next;
+	// }
+	// if(countsize<k) return head;
+
+	//reverse how many are left as well
+	node* temp=head;
+	int c=0;
+	node* prev=NULL;
+
+	while(temp && c<k){
+		node* nextptr=temp->next;
+		temp->next=prev;
+		prev=temp;
+		temp=nextptr;
+		c++;
+	}
+	if(temp) {
+	
+		node* newH= reverseK(temp,k);
+		head->next = newH;
+	}
+	return prev;
+
+}
+
+//hackerrant
+bool compare_lists(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
+
+    while(head1 && head2){
+        if(head1->data != head2->data) return false;
+        head1=head1->next;
+        head2=head2->next;
+    }
+    return head1 == head2;
+}
+
+//find intersection => same address not value
+    int llsize(ListNode *head){
+        int c=0;
+        while(head){
+            c++;
+            head=head->next;
+        }
+        return c;
+    }
+
+    void moveAhead(ListNode* &head,int k){
+        while(k--) head=head->next;
+    }
+
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int s1=llsize(headA);
+        int s2=llsize(headB);
+        if(s1>=s2){
+            moveAhead(headA,s1-s2);
+        }
+        else moveAhead(headB,s2-s1);
+
+        while(headA){
+            if(headA==headB) return headA;
+            headA=headA->next;
+            headB=headB->next;
+        }
+        return NULL;
+    }
+
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* fast=head;
+        ListNode* slow=head;
+
+        while(n--) fast=fast->next;
+
+        if(fast==NULL) {
+            ListNode* temp=head;//node to del
+            head=head->next;
+            delete(temp);
+            return head;
+        }
+
+        while(fast->next){
+            fast=fast->next;
+            slow=slow->next;
+        }
+        //now slow points to one node before to which needs to be del;
+        ListNode* temp= slow->next;
+        slow->next=slow->next->next;
+        delete(temp);
+        return head;
+    }
+
+    //iterative
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* list3= new ListNode();
+        ListNode* ans=list3;
+        while(list1 && list2){
+            if(list1->val <= list2->val){
+                list3->next=list1;
+                list3=list1;
+                list1=list1->next;
+            }
+            else {
+                list3->next=list2;
+                list3=list2;
+                list2=list2->next;
+            }
+        }
+        if(list1) list3->next=list1;
+        else list3->next=list2;
+        return ans->next;
+    }
+    //recursive
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if(!list1) return list2;
+        if(!list2) return list1;
+
+        if(list1->val <= list2->val){
+            list1->next=mergeTwoLists(list1->next,list2);
+            return list1;
+        }
+        else{
+            list2->next=mergeTwoLists(list1,list2->next);
+            return list2;
+        }
+    }
+
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if(lists.size()==0) return NULL;//or nullptr
+
+        // while(lists.size()>1){
+        //     lists.push_back( mergeTwoLists(lists[0],lists[1]) );
+        //     lists.erase(lists.begin());
+        //     lists.erase(lists.begin());
+
+
+        // }
+
+        int len=lists.size();
+        while(len>1){
+            for(int i=0;i<len/2;i++){
+                lists[i]=mergeTwoLists(lists[i],lists[len-1-i]);
+            }
+            len=(len+1)/2;
+        }
+
+        return lists.front();//or lists[0]
+    }
+
+    ListNode* middleNode(ListNode* head) {
+        ListNode *slow=head,*fast=head;
+        while(fast && fast->next){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        return slow;
+    }
+
+    //detect cycle present or not. if present return start of cycle
+    ListNode *detectCycle(ListNode *head) {
+        ListNode *fast=head,*slow=head;
+        // bool flag=true;
+        while(fast && fast->next){
+            fast=fast->next->next;
+            slow=slow->next;
+            if(fast==slow) {
+                //from intersection and start of ll start of cycle is equidistant
+                fast=head;
+                while(slow != fast){
+                    fast=fast->next;
+                    slow=slow->next;
+                }
+                return slow;//or fast
+            }
+        }
+        
+        return NULL;
+    }
+//palindrome
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+
+    // ListNode* reverseRecursive(ListNode* &head){
+    //     // ListNode* curr=head;
+    //     if(head==NULL || head->next==NULL){
+    //         return head;
+    //     }
+    //     ListNode* newH=reverseRecursive(head->next);
+    //     head->next->next=head;
+    //     head->next=NULL;
+    //     return newH;
+    // }
+
+    ListNode* reverseLL(ListNode* &head){
+        ListNode* prev=NULL;
+        ListNode* curr=head;
+        while(curr){    //(curr!=NULL)
+            ListNode* nextN= curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nextN;
+        }
+        return prev;
+    }
+
+    bool isPalindrome(ListNode* head) {
+
+        if(head==NULL || head->next==NULL) return true;
+
+        ListNode *slow=head,*fast=head;
+        while(fast && fast->next){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+
+        ListNode *revHead= reverseLL(slow);
+
+        while(revHead){
+            if(head->val != revHead->val) return false;
+            head=head->next;
+            revHead=revHead->next;
+        }
+        return true;
+    }
+};
+
+// rotateRight
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+
+    int sizeLL(ListNode* head){
+        int a=0;
+        while(head){
+            a++;
+            head=head->next;
+        }
+        return a;
+    }
+
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head==NULL || head->next==NULL) return head;
+        if(k==0) return head;
+
+        int sz=sizeLL(head);
+        k%=sz;
+        if(k==0) return head;
+        ListNode* temp=head;
+        int c=k;
+        while(c--) temp=temp->next;
+        //temp is k nodes ahead. when temp will be at NULL slow will be at kth node from end.
+        //when temp is at last , slow will be at k-1 node from end
+        ListNode* slow=head;
+        while(temp->next){
+            temp=temp->next;
+            slow=slow->next;
+        }
+        ListNode* newStart=slow->next;
+        slow->next=NULL;
+        temp->next=head;
+        return newStart;
+    }
+};
+
+// oddEvenList
+    ListNode* oddEvenList(ListNode* head) {
+        if(head==NULL || head->next==NULL) return head;
+
+        ListNode* o=head;
+        ListNode* e=head->next;
+        ListNode* evenhead=e;//even start
+
+        while(o->next && o->next->next){
+            o->next=o->next->next;
+            e->next=e->next->next;
+
+            o=o->next;
+            e=e->next;
+        }
+
+        // while(odd->next && even->next){
+        //     odd->next = even->next; //Connect all odds
+        //     even->next = odd->next->next;  //Connect all evens
+        //     odd = odd->next;
+        //     even = even->next;
+        // }
+        o->next=evenhead;
+        return head;
+    }
+
+//reorder 1 6 2 5 3  or 1 6 2 5 3 4 
+    /**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseLL(ListNode* &head){
+        ListNode* prev=NULL;
+        ListNode* curr=head;
+        while(curr){    //(curr!=NULL)
+            ListNode* nextN= curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nextN;
+        }
+        return prev;
+    }
+
+    void reorderList(ListNode* head) {
+        if(head==NULL || head->next==NULL || head->next->next==NULL) return;
+        ListNode* slow = head,*fast = head;
+        while(fast && fast->next){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        ListNode* p2=reverseLL(slow);
+        ListNode* p1=head,*temp;
+
+        while(p1!=p2){
+            temp=p1->next;
+            p1->next=p2;
+            p1=p2;
+            p2=temp;
+        }
+
+        // ListNode* p1n=p1->next,*p2n=p2->next;
+        // while(p1!=p2 && p2n){
+        //     p1->next=p2;
+        //     p2->next=p1n;
+
+        //     p1=p1n;
+        //     p2=p2n;
+
+        //     p1n=p1->next;
+        //     p2n=p2->next;
+        // }
+    }
+};
+
+//swap adjacent
+    ListNode* swapPairs(ListNode* head) {
+        if(head==NULL || head->next==NULL ) return head;
+
+        ListNode* sec=head->next;
+        head->next=swapPairs(sec->next);
+        sec->next=head;
+        return sec;
+    }
+
+//clone a LL with next and random pointer
+/*
+ * Definition for linked list.
+ * class Node {
+ *  public:
+ *      int data;
+ *      Node *next;
+ *      Node *random;
+ *      Node() : data(0), next(nullptr), random(nullptr){};
+ *      Node(int x) : data(x), next(nullptr), random(nullptr) {}
+ *      Node(int x, Node *next, Node *random) : data(x), next(next), random(random) {}
+ * };
+ */
+
+Node *cloneLL(Node *head){
+    // Write your code here
+
+    //step1 make copy and attach in between
+    Node* it=head,*fr=head;//iterator & front
+
+    while(it){
+        fr=it->next;
+        Node *cp=new Node(it->data);
+        it->next=cp;
+        cp->next=fr;
+        it=fr;
+    }
+
+    //step 2 assign random of copy
+    it=head;
+    while(it){
+        if(it->random) it->next->random=it->random->next;//checking because if it->random is null then its next will give error
+        it=it->next->next;
+    }
+
+    //step 3 seperate both lists
+    Node *dummy=new Node(-1);
+    it=head,fr=head;
+    Node *cpit=dummy;
+
+    while(it){
+        fr=it->next->next;
+
+        cpit->next=it->next;
+        it->next=fr;
+
+        cpit=cpit->next;
+        it=it->next;
+    }
+    return dummy->next;
+}
+
+//flatenning of LL
+/*
+ * Definition for linked list.
+ * class Node {
+ *  public:
+ *      int data;
+ *      Node *next;
+ *      Node *child;
+ *      Node() : data(0), next(nullptr), child(nullptr){};
+ *      Node(int x) : data(x), next(nullptr), child(nullptr) {}
+ *      Node(int x, Node *next, Node *child) : data(x), next(next), child(child) {}
+ * };
+ */
+
+//RECURSIVE
+Node* merge(Node *a,Node *b){
+    if(a==NULL) return b;
+    if(b==NULL) return a;
+
+    Node *temp= NULL;
+    
+	if(a->data < b->data){
+		temp=a;
+		temp->child=merge(a->child,b);
+	}
+	else{
+		temp=b;
+		temp->child=merge(a,b->child);
+	}
+	return temp;
+}
+
+//ITERATIVE
+Node* merge(Node *a,Node *b){
+    if(a==NULL) return b;
+    if(b==NULL) return a;
+
+    Node *temp= new Node(-1);
+    Node *res=temp;
+    while(a && b){
+        if(a->data <= b->data){
+            res->child=a;
+            a=a->child;
+            res=res->child;
+        }
+        else {
+            res->child=b;
+            b=b->child;
+            res=res->child;
+        }
+    }
+    if(a) res->child=a;
+    else res->child=b;
+
+    return temp->child;
+}
+
+Node* flattenLinkedList(Node* head) 
+{
+    // Write your code here
+    if(head==NULL || head->next==NULL) return head;
+
+	Node* ne=flattenLinkedList(head->next);
+	head->next=NULL;
+
+    head=merge(head,ne);
+
+    return head;
+}
+
+//sort 0 1 2
+/*
+zeroH , zeroT , oneH , oneT, twoH, twoT
+zeroT->next= oneH? oneH : twoH
+*/
+//sort alternating ll 1 9 4 8 10 7 => 1 4 7 8 9 10
+/*
+steps:
+1 seperate 2 ll
+2 reverse 2nd
+3 merge both
+*/
+
+int main()
+{
+	node* head= NULL;
+	insertAtHead(head,2);
+	display(head);
+	cout<<head->data<<endl;
+
+	insertAtHead(head,1);
+	display(head);
+	cout<<head->data<<endl;
+
+	insertAtTail(head,3);
+	display(head);
+	cout<<head->data<<endl;
+
+	insertAtTail(head,4);
+	display(head);
+	cout<<head->data<<endl;
+
+	insertAtPosition(head,23,2);
+	display(head);
+	cout<<head->data<<endl;
+
+	insertAtTail(head,5);
+	display(head);
+	cout<<head->data<<endl;
+
+	insertAtTail(head,6);
+	display(head);
+	cout<<head->data<<endl;
+
+	// deleteAtHead(head);
+	// display(head);
+	// cout<<head->data<<endl;
+
+	// deleteAtHead(head);
+	// display(head);
+	// cout<<head->data<<endl;
+
+	// deleteAtTail(head);
+	// display(head);
+
+	// deleteAtPos(head,2);
+	// display(head);
+
+	// deleteAlternate(head);
+	// display(head);
+/*
+	//removedups
+	insertAtHead(head,1);
+	insertAtHead(head,100);
+	insertAtHead(head,100);
+	insertAtTail(head,6);
+	insertAtTail(head,6);
+	display(head);
+
+	removeDups(head);
+	display(head);
+*/
+	displayReverse(head);
+	cout<<endl;
+
+	display(head);
+	reverseLL(head);
+	display(head);
+
+	head=reverseRecursive(head);
+	display(head);
+
+	head=reverseK(head,4);
+	display(head);
+    return 0;
+}
+
+//6.2 DOUBLY LNIKED LIST MEDIUM & HARD
+//6.2
+//1 constructDLL from vector values
+Node* constructDLL(vector<int>& arr) {
+    // Write your code here
+    Node* prevNode=new Node(arr[0]);
+    Node* head=prevNode;
+    for(int i=1;i<arr.size();i++){
+        Node* currNode= new Node(arr[i]);
+        prevNode->next=currNode;
+        currNode->prev=prevNode;
+        prevNode=currNode;
+    }
+    return head;
+}
+
+//2 insertAtTail
+Node * insertAtTail(Node *head, int k) {
+    // Write your code here
+    Node* newNode=new Node(k);
+    if(!head) return newNode;
+
+    Node* temp=head;
+    while(temp->next){
+        temp=temp->next;
+    }
+    temp->next=newNode;
+    newNode->prev=temp;
+
+    return head;
+}
+
+//3 deleteLastNode
+Node * deleteLastNode(Node *head) {
+    // Write your code here
+    if(head->next==NULL) return NULL;
+
+    Node* temp=head;
+    while(temp->next){
+        temp=temp->next;
+    }
+    temp->prev->next=NULL;
+    free(temp);
+    return head;
+}
+
+//4 reverseDLL
+Node* reverseDLL(Node* head)
+{   
+    // Write your code here  
+    if(head->next==NULL) return head;
+
+    Node* curr=head,*temp=NULL;
+    while(curr){
+        temp=curr->prev;
+        curr->prev=curr->next;
+        curr->next=temp;
+        curr=curr->prev;
+    }
+    return temp->prev;
+
+    // Node* curr=head;
+    // Node* ans=head;
+    // while(curr){
+    //     ans=curr;
+
+    //     Node* nextptr=curr->next;
+    //     curr->next=curr->prev;
+    //     curr->prev=nextptr;
+    //     curr=nextptr;
+    // } 
+    // return ans;
+}
+
+//a2 recursive
+Node* reverseDLL(Node* head)
+{
+    // Base condition
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+
+    // Recursive calls
+    Node * temp = reverseDLL(head->next);
+    
+    temp->prev = NULL;
+    head->next->next = head;
+    head->prev = head->next ;
+    head->next = NULL;
+    
+    return temp;
+}
+//6.4
+//1 deleteAllOccurrences
+Node * deleteAllOccurrences(Node* head, int k) {
+    // Write your code here
+
+    if(head==NULL) return head;
+
+    // while(head && head->data==k) head=head->next;
+
+    // if(head==NULL) return head;
+    // head->prev=NULL;
+    Node* curr=head;
+    while(curr){
+        if(curr->data == k){
+            
+            if(curr->prev) curr->prev->next=curr->next;
+            if(curr->next) curr->next->prev=curr->prev;
+            Node* del=curr;
+            if(curr==head) head=head->next;//either this or commented
+            curr=curr->next;
+            free(del);
+
+        }
+        else curr=curr->next;
+    }
+    return head;
+}
+//2 findPairs with sum k
+vector<pair<int, int>> findPairs(Node* head, int k)
+{
+    // Write your code here.
+    Node* tail=head;
+    while(tail->next) tail=tail->next;
+    vector<pair<int,int> > ans;
+    while(head!=tail && head->prev!=tail){  //or head->data < tail->data
+        int sum=head->data + tail->data;
+        if(sum>k) tail=tail->prev;
+        else if(sum<k) head=head->next;
+        else {
+            ans.push_back({head->data,tail->data});
+            head=head->next;
+            tail=tail->prev;
+        }
+    }
+    return ans;
+}
+//3 removeDuplicates
+Node * removeDuplicates(Node *head)
+{
+    // Write your code here
+    Node *curr=head->next;
+    while(curr){
+        if(curr->data == curr->prev->data){
+            curr->prev->next=curr->next;
+            if(curr->next) curr->next->prev=curr->prev;
+            Node* del=curr;
+            curr=curr->next;
+            free(del);
+        }
+        else curr=curr->next;
+    }
+    return head;
+}
+//CIRCULAR LL
+we can traverse from anywhere, in singly to traverse we need to start from head
+temp=head;	//start from anywhere
+while(temp->next != head)	//until next is start
+
+template <typename T>
+class Node{
+	T data;//instead of int data. so datatype will be decided at runtime based on what we pass
+		//Node<int> , Node<char> etc
+	Node* next;	
+};
+
+62: 7 RECURSION
+RECURSION
+	//A bro coders
+//1 fibonaci factorial
+//2 geekonaci (sum of previous 3)
+//3 1 to n without loop (i.e using recursion)
+//4 1st row 1, 2nd 1 1 , 3rd 1 2 1, 4th 1 3 3 1
+#define mod 1000000007
+class Solution{
+public:
+    vector<ll> nthRowOfPascalTriangle(int n) {
+        // code here
+        if(n==1) return {1};
+        
+        vector<ll> v=nthRowOfPascalTriangle(n-1);
+        
+        for(int i=n-2;i>0;i--){
+            v[i]=(v[i] + v[i-1])%mod;
+        }
+        v.push_back(1);
+        
+        return v;
+    }
+};
+//a2 
+   vector<ll> nthRowOfPascalTriangle(int n) {
+        vector<ll> dp(n, 0);
+        dp[0] = 1;
+        int mod = pow(10,9) + 7;
+        for(int i = 1;i < n;++i)
+            for(int j = i;j > 0;--j)
+                    dp[j] = (dp[j] + dp[j-1]) % mod;
+        return dp;
+    }
+//5 deleteMid of stack (3rd del in 5) & (2nd del in 4)
+    void deleteMid(stack<int>&s, int sizeOfStack)
+    {
+        // code here.. 
+        if(s.size()==(sizeOfStack+1)/2) {
+            s.pop();
+            return;
+        }
+        int ele=s.top();
+        s.pop();
+        deleteMid(s,sizeOfStack);
+        s.push(ele);
+    }
+//6 sort stack (highest at top)
+    //brute pop and push into other stack while ele<top() then push ele & then push ele from other stack
+    //optimal
+/*
+class SortedStack{
+public:
+	stack<int> s;
+	void sort();
+};
+*/
+
+/* The below method sorts the stack s 
+you are required to complete the below method */
+
+void insertAtCorrectPosition(stack<int> &s,int ele){
+    if(s.empty() || ele>s.top()) {
+        s.push(ele);
+        return;
+    }
+    else //if(ele<s.top())
+    {
+        int n=s.top();
+        s.pop();
+        insertAtCorrectPosition(s,ele);
+        s.push(n);
+    }
+    
+}
+
+void SortedStack :: sort()
+{
+   //Your code here
+   if(s.size()==1) return;
+   
+   int ele=s.top();
+   s.pop();
+   sort();
+   
+   insertAtCorrectPosition(s,ele);
+}
+//7 kth bit in nth binary s1=0, si=s(i-1)+'1'+revinv s(i-1)
+//8 num raise to rev 
+//9 josephus (kill every kth person in n ppl till 1 left, find that 1 position in original array)
+    int safePos(int n,int k){   //we want 1 based idx
+        return safePos2(n,k)+1;
+    }
+
+    int safePos2(int n, int k) {    // this will give ans in 0 based idx
+            // code here
+        if(n==1) return 0;
+    
+        int pos=safePos2(n-1,k);
+        int ans=(k+pos)%n;
+        return ans;
+    }
+//a2
+    int safePos(int n, int k) {
+        // code here
+        if(n==1) return 1;
+        int pos=safePos(n-1,k);
+        
+        int ans=(k-1+pos)%n+1;//+1 imp to get ans >0, so -1 inside
+        return ans;
+    }
+//10 all subsets sum (take / not take)
+    void f(vector<int> &arr,vector<int> &ans, int i,int s){
+        if(i==arr.size()){
+            ans.push_back(s);
+            return;
+        }
+        f(arr,ans,i+1,s);
+        f(arr,ans,i+1,s+arr[i]);
+    }
+
+    vector<int> subsetSums(vector<int> arr, int N)
+    {
+        // Write Your Code here
+        vector<int> ans;
+        f(arr,ans,0,0);//arr ans index sum
+        return ans;
+    }
+//11 Given a positive integer N, the task is to find all the N bit binary numbers having more than or equal 1’s than 0’s for any prefix of the number.
+	void f(vector<string> &a , int n, int idx, string stn , int ones ){
+        if(idx>n){
+            if(ones>=(n+1)/2){
+                a.push_back(stn);
+            }
+            return;
+        }
+    
+        f(a,n,idx+1,stn+'1',ones+1);
+        if(ones>=(idx+1)/2){    //any prefix of an must have 1's greater than equal to 0's
+            f(a,n,idx+1,stn+'0',ones);
+        }
+    }
+
+    vector<string> NBitBinary(int N)
+        {
+            // Your code goes here
+            vector<string> a;
+            f(a,N,1,"",0);//ans total bits index stringtillnow numberOf1's
+            return a;
+        }
+//12 countGoodNumbers :even at even idx , prime at odd idx 
+/*
+
+    Time Complexity : O(logN).
+
+    Space Complexity : O(logN), Recursion stack space.
+
+*/
+
+#define mod 1000000007
+class Solution {
+private:
+    long long power(long long x, long long n){
+        if(n == 0){
+            return 1;
+        }
+        long long ans = power(x, n/2);
+        ans *= ans;
+        ans %= mod;
+        if(n%2==1){
+            ans *= x;
+            ans %= mod;
+        }
+        return ans;
+    }
+public:
+    int countGoodNumbers(long long n) {
+        long long numberOfOddPlaces = n/2;
+        long long numberOfEvenPlaces = n/2 + n%2;
+        return (power(5, numberOfEvenPlaces) * power(4, numberOfOddPlaces))%mod;
+    }
+};
+//a2 if odd (20)^(n/2) * 5, if even (20)^(n/2)
+
+//13 AllParenthesis balanced with n open & n close brackets
+    void f(vector<string> &a, string temp,int idx,int n,int open, int close){
+
+        if(idx>2*n){
+            a.push_back(temp);
+            return;
+        }
+
+        if(open<n){
+            f(a,temp+'(',idx+1,n,open+1,close);
+        }
+        if(close<open){
+            f(a,temp+')',idx+1,n,open,close+1);
+        }
+    }
+
+    vector<string> AllParenthesis(int n) 
+    {
+        // Your code goes here 
+        vector<string> a;
+        f(a,"",1,n,0,0);   //ans anstillnow selectingIth n opens closes
+        return a;
+    }
+//14 space permutation take A or A_, for last no option of space 
+    void f(int idx,string s,string temp,int n,vector<string> &a){
+        //take char with space
+        if(idx==(n-1)){
+            a.push_back(temp+s[idx]);
+            return;
+        }
+
+        f(idx+1,s,temp+s[idx]+' ',n,a);
+        f(idx+1,s,temp+s[idx],n,a);
+    }
+
+    vector<string> permutation(string S){
+        // Code Here
+        vector<string> a;
+        f(0,S,"",S.size(),a);
+        return a;
+    }
+//15 PredictTheWinner if both play optimally
+    int f(vector<int> &nums,int l,int r){
+        if(l>r) return 0;
+        //first we chose element which gives max ans, then p2 will chose max ans after step 1, so we will be left with min 
+        int choice1= nums[l]+min(f(nums,l+2,r),f(nums,l+1,r-1));
+        int choice2= nums[r]+min(f(nums,l+1,r-1),f(nums,l,r-2));
+
+        return max(choice1,choice2);
+    }
+
+    bool PredictTheWinner(vector<int>& nums) {
+        int tot=accumulate(nums.begin(),nums.end(),0);
+        int p1=f(nums,0,nums.size()-1);
+        return p1>=(tot-p1);    
+    }
+//16 tower of hanoi
+    void f(vector<vector<int>> &v,int N,int from,int help,int dest){
+        // if(N==1) {
+        //     v.push_back({from,dest});
+        //     return;
+        // }
+        // if(N==2){
+        //     v.push_back({from,help});   
+        //     v.push_back({from,dest});
+        //     v.push_back({help,dest});
+        //     return;
+        // }
+        if(N==0) return;
+
+        f(v,N-1,from,dest,help);
+        v.push_back({from,dest});
+        f(v,N-1,help,from,dest);
+
+    }
+
+    vector<int> shiftPile(int N, int n){
+        // code here
+        vector<vector<int>> v;
+        f(v,N,1,2,3);
+        return v[n-1];
+    }
+//a2
+void toh(int N,int &n,vector<int>&ans,int a,int b,int c){
+    if(N==0) return ;
+     toh(N-1,n,ans,a,c,b);
+     n--;
+     if(n==0) {
+         ans.push_back(a);
+         ans.push_back(b);
+         return;
+     }
+     toh(N-1,n,ans,c,b,a);
+     
+}
+    vector<int> shiftPile(int N, int n){
+        // code here
+        int idx=0;
+        vector<int>ans;
+        toh(N,n,ans,1,3,2);
+        return ans;
+    }
+
+//striver 7.1 recursion
+//1 atoi
+if(x>='0' && x<='9') ans=ans*10 + (x-'0');
+            //missed 0 to 9 , wrote 1 to 9 and few test case failed
+
+//2 power of numbers (index can be +ve or -ve) 2^3=8 2^-3=1/8
+double myPow2(double x, int n) {
+    // Write Your Code Here
+    if(n==0) return double(1);
+
+    double ans=myPow2(x,n/2);
+    ans*=ans;
+    if(n&1 ) {
+        ans*=x;
+    }
+
+    return ans ;
+}
+
+double myPow(double x, int n) {
+    double a=myPow2(x,n);
+
+    if(n<0){
+        a=1.0/a;
+    }
+
+    return a;
+}
+
+//3 is good , digit greater than sum of digits on its right
+bool good(int num,int sum,int digit,int ite){
+	if(num==0) return 1;
+
+	int last=num%10;
+
+	if(last==digit || (last<=sum && ite!=1) ) return 0;
+        //in 1st iteration 840 will fail 0<=0 return 0.so  avoid checking in 1st ite
+
+	return good(num/10,sum+last,digit,ite+1);
+}
+
+vector<int> goodNumbers(int a, int b, int digit) {
+	// Write your code here.
+	vector<int> ans;
+	for(int i=a;i<=b;i++){
+		if(good(i,0,digit,1)) ans.push_back(i);
+	}
+	return ans;
+}
+
+/*
+bool isGood( int x, int D, int sum ){
+        if( x==0 )
+            return true;
+        int temp = x%10;// current digit
+        if( temp<=sum or temp==D )
+            return false;
+        
+        return isGood( x/10, D, sum+temp );
+    }
+    
+    vector<int> goodNumbers(int a, int b, int digit) {
+        vector<int> ans;
+        for( int i=a; i<=b; i++ ){
+            if( i%10==digit )   
+                continue;
+            if(isGood(i/10, digit, i%10))
+                ans.push_back( i );
+        }
+        return ans;
+    }
+*/
+//4 sort stack 
+//5 reverse stack
+void pushBottom(int t,stack<int> &stack){
+    if(stack.empty()) {
+        stack.push(t);
+        return;
+    }
+    int te=stack.top();
+    stack.pop();
+    pushBottom(t, stack);
+    stack.push(te);
+}
+
+void reverseStack(stack<int> &stack) {
+    // Write your code here
+    if(stack.empty()) return;
+    int t=stack.top();
+    stack.pop();
+    reverseStack(stack);
+    pushBottom(t,stack);
+}
+
+//a2 without recursion 
+pop from s1 and push in s2 
+s1=s2 
+
+//7.2 
+//1 generate all binary string of length N with no consecutive 1
+void f(int N,vector<string> &ans,string atn,bool cso){
+    if(N==0) {
+        ans.push_back(atn);
+        return;
+    }
+    f(N-1,ans,atn+'0',1);
+    if(cso) f(N-1,ans,atn+'1',0);
+}
+/*
+//a2 without flag
+if(temp=="" || temp.back() == '0')solve(temp+'1',ans,i+1,n);
+        // temp.pop_back();
+*/
+vector<string> generateString(int N) {
+    // Write your code here.
+    vector<string> ans;
+    f(N,ans,"",1) ;   //atn:answer till now, cso:can select one
+    return ans;
+}
+
+//2 validParenthesis with n '(' and n ')'
+void f(int n,vector<string> &ans,string temp,int o,int c){
+    if(o==n && c==n){
+        ans.push_back(temp);
+        return;
+    }
+    if(o<n) f(n,ans,temp+'(',o+1,c);
+    if(c<o) f(n,ans,temp+')',o,c+1);
+}
+
+vector<string> validParenthesis(int n){
+    // Write your code here.
+    vector<string> ans;
+    f(n,ans,"",0,0) ;
+    return  ans;
+}
+
+//3 generateSubsequences
+	//subsequence can be not continous but relative ordering must be preserved
+	//abc -> "" 
+void f(string s,int i,vector<string> &a, string str){
+    if(i==s.size()){
+        a.push_back(str);
+        return;
+    }
+    //not take
+    f(s,i+1,a,str);
+
+    //take
+    f(s,i+1,a,str+s[i]);
+}
+
+vector<string> generateSubsequences(string s)
+{
+    // Write your code here.
+    vector<string> a;
+    f(s,0,a,"");//string idx ans
+    return a;
+}
+
+//4 count distinct subsequences
+
+/*
+//a2
+void solve(string &a, int index, int &n, int &cnt){
+
+    if(index==n){
+
+        cnt++;
+
+        return;
+
+    }
+    //take index and move to next
+    solve(a, index+1, n, cnt);
+
+    while(index+1<n && a[index]==a[index+1]) index++;
+
+    //ignore and move to next distinct
+    solve(a, index+1, n, cnt);
+
+}
+*/
+
+//a1
+/*
+void solve(string &a,int idx,int n,int &cnt){
+    if(idx==n) return;
+    for(int i=idx;i<n;i++){
+        if(i==idx || a[i]!=a[i-1]) solve(a,i+1,n,cnt),cnt++;
+    }
+}
+*/
+//a3
+int solve(string a,int n){
+    int c=1;
+    unordered_map<char,int> um;
+    for(auto x:a){
+        int pre=um[x];
+        um[x]=c;
+        c*=2;
+        c-=pre;
+    }
+    return c;
+}
+
+string moreSubsequence(int n, int m, string a, string b)
+
+{
+
+    string a1 = a, b1 = b;
+
+    sort(a.begin(), a.end());    
+
+    sort(b.begin(), b.end());
+
+    int cnt1=0, cnt2=0;
+
+    // solve(a, 0, n, cnt1);
+
+    // solve(b, 0, m, cnt2);
+
+    cnt1=solve(a,n);
+    cnt2=solve(b,m);
+
+    // cout<<cnt1<<" "<<cnt2<<endl;
+
+    return cnt1>=cnt2 ? a1 : b1; 
+
+}
+
+//5 subarraysWithSumK
+
+vector<vector<int>> subarraysWithSumK(vector<int> a, long long k) {
+    // Write your code here
+    vector<vector<int>> ans;
+    int i=0,j=0,sz=a.size();
+    long long s=0;
+    while(j<sz){
+        s+=a[j];
+
+        while(s>k){
+            s-=a[i++];
+        }
+
+        if(s==k){
+            vector<int> temp;
+            for(int it=i;it<=j;it++){
+                temp.push_back(a[it]);
+            }
+            ans.push_back(temp);
+            // temp.clear();
+        }
+        j++;
+    }
+    return ans;
+}
+//extra count subsequence with sum k
+int f2(vector<int> a, long long k, int i, long long sum){
+    if(sum>k) return 0;
+    if(sum==k) return 1;
+    if(i==a.size()){
+        if(k==sum) return 1;
+        return 0;
+    }
+    return f2(a,k,i+1,sum+a[i]) + f2(a,k,i+1,sum);
+}
+
+int f(vector<int> a, long long k) {
+    int c=f2(a,k,0,0ll);    //array tar idx sum
+
+    return c;
+
+}
+
+//6 isSubsetPresent which sums k
+	//subset or subsequence
+	//optimise using DP later
+bool f(int n, int k, vector<int> &a, int i,int currsum){
+    if(i==n){
+        return currsum==k;
+    }
+    if(currsum==k) return true;
+    if(currsum>k) return false;
+    return f(n,k,a,i+1,currsum+a[i]) || f(n,k,a,i+1,currsum);
+}
+
+bool isSubsetPresent(int n, int k, vector<int> &a)
+{
+    // Write your code here
+    return f(n,k,a,0,0);//n k a idx currsum
+}
+
+//7 combSum 1
+	//make 8 from 2,3,5 -> 2222 233 35
+
+void f(vector<int> &ARR, int B,int i,int s, int n,vector<int> &t,vector<vector<int>> &ans){
+    if(s>B) return;
+    if(s==B){
+        // cout<<"k ";
+        ans.push_back(t);
+        return;
+    }
+    if(i==n) return;
+
+    f(ARR,B,i+1,s,n,t,ans);
+
+    t.push_back(ARR[i]);
+    f(ARR,B,i,s+ARR[i],n,t,ans);
+    t.pop_back();
+}
+
+vector<vector<int>> combSum(vector<int> &ARR, int B)
+{
+    // Write your code here.
+    sort(ARR.begin(),ARR.end());
+    vector<vector<int>> ans;
+    vector<int> t;//temp
+    f(ARR,B,0,0,ARR.size(),t,ans); // i s
+    return ans;
+}
+
+//8 combSum 2
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void f(vector<int> &arr, int n,int i, int target,vector<int> &t,int sum,vector<vector<int>> &ans){
+	if(sum>target) return;
+	if(i==n){
+		if(sum==target){
+			ans.push_back(t);
+		}
+		return;
+	}
+
+
+	t.push_back(arr[i]);
+	f(arr,n,i+1,target,t,sum+arr[i],ans);
+	t.pop_back();
+
+	while(i+1<n && arr[i+1]==arr[i]) i++;
+	f(arr,n,i+1,target,t,sum,ans);
+}
+
+vector<vector<int>> combinationSum2(vector<int> &arr, int n, int target){
+	// Write your code here.
+	vector<vector<int>> ans;
+	sort(arr.begin(),arr.end());
+
+	vector<int> t;
+	// f(arr,n,i,target,t,s);
+	f(arr,n,0,target,t,0,ans);
+
+
+	return ans;
+}
+//a2
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void f(vector<int> &arr, int n,int i, int target,vector<int> &t,int sum,vector<vector<int>> &ans){
+	if(sum>target) return;
+	if(sum==target){
+		ans.push_back(t);
+		return;
+	}
+	if(i==n){
+		return;
+	}
+
+	for(int idx=i;idx<n;idx++){
+		if(idx!=i && arr[idx]==arr[idx-1]) continue;
+		t.push_back(arr[idx]);
+		f(arr,n,idx+1,target,t,sum+arr[idx],ans);
+		t.pop_back();
+	}
+}
+
+vector<vector<int>> combinationSum2(vector<int> &arr, int n, int target){
+	// Write your code here.
+	vector<vector<int>> ans;
+	sort(arr.begin(),arr.end());
+
+	vector<int> t;
+	// f(arr,n,i,target,t,s);
+	f(arr,n,0,target,t,0,ans);
+
+
+	return ans;
+}
+
+//9 all subsetSum in sorted order
+void f(vector<int> &num,vector<int> &a,int i, int s){
+    if(i==num.size()){
+        a.push_back(s);
+        return;
+    }
+
+    f(num,a,i+1,s+num[i]);
+    f(num,a,i+1,s);
+}
+
+vector<int> subsetSum(vector<int> &num){
+    // Write your code here.    
+    vector<int> a;
+    f(num,a,0,0); //array ansarr idx sum
+    sort(a.begin(), a.end());
+    return a;
+}
+
+//10 getUniqueSubsets
+void f(vector<vector<int>> &a,vector<int>& arr,vector<int>& ds,int i){
+    a.push_back(ds);
+
+    for(int j=i;j<arr.size();j++){
+        if(j!=i && arr[j]==arr[j-1]) continue;//not first & repeated continue
+        ds.push_back(arr[j]);
+        f(a,arr,ds,j+1);
+        ds.pop_back();
+    }
+}
+
+vector<vector<int>> getUniqueSubsets(vector<int>& arr) {
+    // Write Your Code Here  
+    vector<vector<int>> a;
+    // sort(arr.begin(), arr.end());
+    //since already sorted
+    vector<int> ds;
+    f(a,arr,ds,0);//ans givenarr datastructure to build ans , idx
+    return a;  
+}
+
+//11 k=2 n=5 two numbers from 1-9 which add to n
+	//1 4, 2 3 
+
+void f(int k,int n,vector<int> &t,vector<vector<int>> &ans,int start){
+
+    if(k==0){
+        if(n==0){
+            ans.push_back(t);
+        }
+        return;
+    }
+
+    for(int i=start;i<=9;i++){
+        if(i>n) break;
+
+        t.push_back(i);
+        f(k-1,n-i,t,ans,i+1);
+        t.pop_back();
+    }
+}
+
+vector<vector<int>> combinationSum(int k, int n) {
+    // Write Your Code Here
+    vector<vector<int>> ans;
+    vector<int> t;
+    f(k,n,t,ans,1);//last selected 0, so we can select anything higher than it
+    return ans;
+}
+
+//12 letterCombinations
+
+void f(string s, int n,vector<string> &ans,vector<string> &v,int i,string t ){
+
+    if(i==n){
+        ans.push_back(t);
+        return;
+    }
+    // / Get the letters corresponding to the current digit.
+    //     string letters = mapping[digits[index] - '0'];
+
+    //     // Iterate over the letters and generate combinations.
+    //     for (char letter : letters) {
+    //         combination += letter;
+    //         generateCombinations(digits, index + 1, combination , mapping, result);
+    //         combination.pop_back();
+    //     }
+    for(int a=0;a<v[s[i]-'0'].size();a++){
+        f(s,n,ans,v,i+1,t+v[ s[i]-'0' ][a]);
+    }
+}
+
+vector<string> letterCombinations(string s) {
+    // Write your code here.
+    vector<string> v={"0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    int n=s.size();
+    vector<string> ans;
+    
+    f(s,n,ans,v,0,"");
+
+    return ans;
+
+}
+
+//7.3 HARD
+//1 Palindrome Partioning 
+/*
+bool pallindrome(string &s,int start,int end)
+
+{
+
+    while(start<=end)
+
+    {
+
+        if(s[start++]!=s[end--])
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+void find(int index,string &s,vector<string>&path,vector<vector<string>>&res)
+
+{
+
+    if(index==s.size())
+
+    {
+
+        res.push_back(path);
+
+        return;
+
+    }
+
+    for(int i=index;i<s.size();i++)
+
+    {
+
+        if(pallindrome(s,index,i))
+
+        {
+
+            path.push_back(s.substr(index,i-index+1));
+
+            find(i+1,s,path,res);
+
+            path.pop_back();
+
+        }
+
+    }
+
+}
+
+ 
+
+vector<vector<string>> partition(string s) {
+
+    // Write your code here.
+
+     vector<vector<string>>res;
+
+        vector<string>path;
+
+        find(0,s,path,res);
+
+        return res;
+
+ 
+
+}
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+bool ispal(string str){
+    int l=0,r=str.size()-1;
+    while(l<=r){
+        if(str[l++] != str[r--]) return false;
+    }
+    return true;
+}
+
+void f(string s,int i,vector<vector<string>> &v,vector<string> &t){
+    if(i==s.size()){
+        v.push_back(t);
+        return;
+    }
+
+    for(int j=i;j<s.size();j++){
+        string check=s.substr(i,j-i+1);
+        if(ispal( check )){
+            t.push_back(check);
+            f(s,j+1,v,t);
+            t.pop_back();
+        }
+    }
+}
+
+vector<vector<string>> partition(string s) {
+    // Write your code here.
+    vector<vector<string>> v;
+    vector<string> t;
+    f(s,0,v,t);    //s i v t 
+    return v;
+
+}
+//2 word search
+
+
+bool search(int i,int j,int wi,vector<vector<char>> &board, string &word){
+	if(wi==word.size()) return 1;
+
+	if(i<0 || j<0 || i==board.size() || j==board[0].size() || board[i][j]!=word[wi]) return 0;
+
+	// if(board[i][j]==word[wi]){
+		board[i][j]='-';
+
+		if ( search(i-1,j,wi+1,board,word) ) return 1;
+		if ( search(i+1,j,wi+1,board,word) ) return 1;
+		if ( search(i,j-1,wi+1,board,word) ) return 1;
+		if ( search(i,j+1,wi+1,board,word) ) return 1;
+
+		board[i][j]=word[wi];
+
+	// }
+	return 0;
+}
+
+//return true if we can find word from 00 to [n-1][m-1]
+	//recursion if we cant find start at 00 return can we start at 01,02,03,10,11,...n-1m-1.
+bool f(vector<vector<char>> &board, string &word, int n, int m,int i,int j){
+	// if b[i][j]==words[0]
+	// {
+	// 	if ( search(i,j,0,board,word) ) return 1;
+	// }
+	// return f(next)
+	if(i==n) return 0;
+	if(j==m) return f(board,word,n,m,i+1,0);
+
+	if(board[i][j]==word[0]){
+		//we can start
+		if(search(i,j,0,board,word) ) return 1;
+	}
+	return f(board,word,n,m,i,j+1);
+}
+
+bool present(vector<vector<char>> &board, string &word, int n, int m) 
+{
+    // Write your code here.
+    //base
+    if(n*m<word.size()) return 0;
+    return f(board,word,n,m,0,0);
+}
+//3 n queen
+#include <bits/stdc++.h>
+using namespace std;
+
+bool safe(vector<vector<int>> &cb,int r,int c,int n){
+    for(int i=0;i<r;i++) if(cb[i][c]) return 0;
+
+    for(int i=r-1,j=c-1; i>=0 && j>=0;i--,j--) if(cb[i][j]) return 0;
+
+    for(int i=r-1,j=c+1; i>=0 && j<n;i--,j++) if(cb[i][j]) return 0;
+
+    return 1;
+}
+
+void f(int n, int r, vector<vector<int>> &cb,vector<vector<int>> &ans){
+
+    if(r==n){
+        vector<int> t;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                t.push_back(cb[i][j]);
+            }
+        }
+        ans.push_back(t);
+        return;
+    }
+
+    for(int c=0;c<n;c++){
+        if(safe(cb,r,c,n)){
+            cb[r][c]=1;
+            f(n,r+1,cb,ans);
+            cb[r][c]=0;
+        }
+        
+
+    }
+}
+
+vector<vector<int>> nQueens(int n)
+{
+    // Write your code here.
+    vector<vector<int>> cb (n,vector<int> (n,0));//chess board
+
+    vector<vector<int>> ans;
+    f(n,0,cb,ans);
+    return ans;
+}
+//a2 without safe 
+vector<int> col ,rd , ld;//global
+
+f(){
+    for(int c=0;c<n;c++){
+        // if(safe(cb,r,c,n)){
+        
+        if(col[c] || rd[r+c] || ld[c-r+n-1] ) continue;
+        else
+        {
+            col[c]=1;
+            rd[r+c]=1;
+            ld[c-r+n-1]=1;
+
+            cb[r][c]=1;
+            f(n,r+1,cb,ans);
+            cb[r][c]=0;
+
+            col[c]=0;
+            rd[r+c]=0;
+            ld[c-r+n-1]=0;
+        }
+
+            
+        // }
+        
+
+    }
+}
+
+vector<vector<int>> nQueens(int n)
+{
+    // Write your code here.
+    col=vector<int> (n,0);
+    rd =vector<int> (2*n-1,0);
+    ld =vector<int> (2*n-1,0);
+
+//4 Rat in Maze
+//D L R U
+void f(vector<vector<int>> &mat, vector<vector<int>> &vis, vector<string> &a, string t, int row, int col) {
+    if (row < 0 || col < 0 || row >= mat.size() || col >= mat[0].size() || (mat[row][col] == 0) || vis[row][col])
+        return;
+
+    if (row == mat.size() - 1 && col == mat[0].size() - 1) {
+        a.push_back(t); 
+        return;
+    }
+
+    vis[row][col] = 1;
+
+    f(mat, vis, a, t + "D", row + 1, col);
+    f(mat, vis, a, t + "L", row, col - 1);
+    f(mat, vis, a, t + "R", row, col + 1);
+    f(mat, vis, a, t + "U", row - 1, col);
+
+    vis[row][col] = 0;
+}
+
+
+vector<string> ratMaze(vector<vector<int>> &mat) {
+    int n = mat.size();
+    vector<string> a; 
+    if (mat[0][0] == 0 || mat[n - 1][n - 1] == 0) return a;
+    string t = "";
+    vector<vector<int>> vis(n, vector<int>(n, 0));
+    f(mat, vis, a, t, 0, 0);
+    return a;
+}
+
+//a2 without vis 
+//D L R U
+void f(vector<vector<int>> &mat, vector<string> &a, string t, int row, int col) {
+    if (row < 0 || col < 0 || row >= mat.size() || col >= mat[0].size() || (mat[row][col] == 0) )
+        return;
+
+    if (row == mat.size() - 1 && col == mat[0].size() - 1) {
+        a.push_back(t); 
+        return;
+    }
+
+    mat[row][col] = 0;
+
+    f(mat,  a, t + "D", row + 1, col);
+    f(mat,  a, t + "L", row, col - 1);
+    f(mat,  a, t + "R", row, col + 1);
+    f(mat,  a, t + "U", row - 1, col);
+
+    mat[row][col] = 1;
+}
+
+
+vector<string> ratMaze(vector<vector<int>> &mat) {
+    int n = mat.size();
+    vector<string> a; 
+    if (mat[0][0] == 0 || mat[n - 1][n - 1] == 0) return a;
+    string t = "";
+    
+    f(mat,a, t, 0, 0);
+
+    return a;
+}
+//a3 using dir matrix
+vector<pair<int,int>> dir={{-1,0},{1,0},{0,-1},{0,1}};
+
+string d="UDLR";
+
+void solve(int i,int j,vector<vector<int>> &mat,vector<string> &ans,string path)
+{
+    if(i==mat.size()-1 && j==mat.size()-1)
+    {
+        ans.push_back(path);
+        return ;
+    }
+    for(int k=0;k<4;k++)
+    {
+        int x=i+dir[k].first,y=j+dir[k].second;
+        if(x>=0 && y>=0 && x<mat.size() && y<mat.size() && mat[x][y]==1)
+
+        {
+	        mat[i][j]=0;
+
+            solve(x,y,mat,ans,path+d[k]);
+
+            mat[i][j]=1;
+        }
+        else
+        {
+            continue;
+        }
+    }
+    return;
+}
+
+vector<string> ratMaze(vector<vector<int>> &mat) 
+{
+    // Write your code here.
+    int n=mat.size();
+    vector<string> ans;
+    string tmp="";
+    solve(0,0,mat,ans,tmp);
+    return ans;
+}
+//5 word break
+
+void f(vector<string> &ans,string temp,string &s,unordered_set <string> &us,int maxi,int idx){
+	if(idx==s.size()){
+		ans.push_back(temp);
+		return;
+	}
+
+	for(int i=1;idx+i<=(s.size()) && i<=maxi ; i++){
+		string sub=s.substr(idx,i);
+		if(us.count(sub)){
+            //to avoid space at end
+            if(idx+i==s.size())
+                f(ans,temp+sub,s,us,maxi,idx+i);
+            else
+    			f(ans,temp+sub+" ",s,us,maxi,idx+i);
+
+		}
+	}
+
+}
+
+vector<string> getAllValidSentences(string &s, vector<string> &dict)
+{
+    //  write your code here.
+    unordered_set <string> us;
+    int maxi=0;
+    for(auto x:dict){
+    	us.insert(x);
+    	maxi=max(maxi,(int)x.size());
+    }
+    vector<string> ans;
+    string temp="";
+
+    f(ans,temp,s,us,maxi,0);
+
+    return ans;
+
+}
+//a2 dp
+//a3 trie
+
+//6 m colouring
+
+bool safe(vector<vector<int>> &mat,int n,int i,int idx,vector<int> &c){
+	//can we colour node idx with colour i
+	for(int j=0;j<n;j++){
+		if(mat[idx][j]==1){	//linked
+			if(c[j]==i) return 0;	//linked node coloured same so cant
+		}
+	}
+	return 1;
+}
+
+bool f(vector<vector<int>> &mat, int m,int n,int idx,vector<int> &c){
+	if(idx==n) return 1;
+
+	for(int i=1;i<=m;i++){
+		if(safe(mat,n,i,idx,c)){
+			c[idx]=i;
+			if ( f(mat,m,n,idx+1,c) ) return 1;
+			c[idx]=0;
+		}
+	}
+	return 0;
+}
+
+string graphColoring(vector<vector<int>> &mat, int m) {
+    // Write your code here
+    int n=mat.size();
+    vector<int> c(n,0);
+    if ( f(mat,m,n,0,c) ) return "YES";
+    return "NO";
+}
+//7 sudoko
+
+bool canplace(int board[][9],int r, int c,int i){
+    for(int j=0;j<9;j++){
+        if(board[r][j]==i) return false;
+        if(board[j][c]==i) return false;
+        if(board[(r/3*3)+(j/3)][(c/3*3)+(j%3)] == i) return false; 
+    }
+    return true;
+}
+
+bool solve(int board[][9],int r, int c){
+    
+    if(r==9) return true;
+    if(c==9) return solve(board,r+1,0);
+
+    if(board[r][c]) return solve(board,r,c+1);
+
+    for(int i=1;i<=9;i++){
+        if(canplace(board,r,c,i)){
+            board[r][c]=i;
+            if( solve(board,r,c+1) ) return true;
+            board[r][c]=0;
+        }
+    }
+    return false;
+}
+
+bool sudokuSolver(int board[][9]) {
+    /* Don't write main().
+     *  Don't read input, it is passed as function argument.
+     *  Don't print output and return output as specified in the question
+    */
+    return solve(board,0,0);
+}
+//8 expression add operators
+	//while * left to right wont work, BODMAS M>A/S
+class Solution {
+public:
+    vector<string> ans;
+    void f(string &num, int target,string temp, long sum,long prev,int i){
+
+        if(i==num.size()){
+            if(sum==target){
+                ans.push_back(temp);
+            }
+            return;
+        }
+
+        for(int j=i;j<num.size();j++){
+            if(j>i && num[i]=='0') return;
+            long number = stol(num.substr(i,j-i+1));   //string to long
+
+            if(i==0){
+                f(num,target,temp+num.substr(i,j-i+1),sum+number,number,j+1);
+            }
+            else{
+                f(num,target,temp+"+"+num.substr(i,j-i+1),sum+number,number,j+1);
+                f(num,target,temp+"-"+num.substr(i,j-i+1),sum-number,-number,j+1);
+                f(num,target,temp+"*"+num.substr(i,j-i+1),sum-prev+(prev*number),prev*number,j+1);
+            }
+        }
+        
+    }
+    vector<string> addOperators(string num, int target) {
+        f(num,target,"",0,0,0);
+        return ans;
+    }
+};
+
+63: 8 BIT MANIPULATION
+//articles
+	//A hackerearth
+	~ not flip & | ^ << >> 
+		//1 power of 2
+	all powers of 2 have only 1 set bit. x-1 will have all set bits except righttmost set bit
+	4 100 4-1=3 011 4&3=0. edge case 0 is not power of 2
+	return (x && !(x&x-1));
+		//2 count set bits
+	x-1 will have rightmost set bit as unset and rest all set on its right
+	10100 20 10011 19 3rd bit 0 and all on its right 1. 10100 & 10011 = 10000 1 operation means 1 set bit
+	int setBits(int N) {
+        int a;
+        for(a=0;N;a++) N&=(N-1);
+        return a;
+    }
+    	//3 check ith bit set or not
+    bool isKthBitSet(int n, int k)
+	{
+	    // return (n&(1<<k-1));
+	    return (n>>k-1)&1;
+	}
+		//4 all possible subsets
+void fun(char arr[],int n){
+// void fun(char (&arr)[3],int n){
+	for(int i=0;i<(1<<n);i++){
+		for(int j=0;j<n;j++){
+			if(i&(1<<j)) cout<<arr[j]<<"\t";
+			else cout<<"\t";
+		}
+		cout<<endl;
+	}
+}
+
+int main() {
+	char arr[]={'a','b','c'};
+	// char arr[]={a,b,c};//error
+
+	// for(auto x:arr) cout<<x<<" ";
+	fun(arr,3);
+	return 0;
+}
+		//5 largest power of 2 less than or equal to n
+	//we make all 1s till leftmost 1. 10010 => 11111 then remove all 1s except leftmost => 10000
+long long largestPower(long long n){	//10010
+	n=n|(n>>1);//copy leftmost 1 into its right 11010
+	n=n|(n>>2);//now copy left 2 into next 2 11110
+	n=n|(n>>4);
+	n=n|(n>>8);
+	n=n|(n>>16);//copy 16 left into right
+	return n^(n>>1);//preserve leftmost remove rest
+}
+
+int main() {
+	cout<<largestPower(5);
+	return 0;
+}
+	//application even selected 
+	1 2 3 4 5 6 7 8 9 10  ===>Given queue
+    2 4 6 8 10
+       4 8
+        8
+    //a2
+int powerOfTwo(int num){
+    return 1<<(int)(log2(num));    //log2(num)+1 gives number of bits 
+}
+		//extra smallest power of 2 >= N
+    long long nearestPowerOf2(long long N){
+        //code here
+        if((N&N-1)==0) return N;
+        return 1ll*1<<(int)(log2(N)+1);
+//or    return 1ll<<(int)(log2(N)+1);
+
+    }
+    //a2		
+long long nearestPowerOf2(long long N){
+      float x=log2(N);
+      int y=log2(N);
+       
+       if(x==y){
+           return N;
+       }
+       
+       y++;
+       long long val=pow(2,y);
+       return val;
+    }
+        //6 x ^ ( x & (x-1)) : Returns the rightmost 1 in binary representation of x.
+        same task x & (-x) //-x is 2's complement (1's complement(flip bits) + 1)
+    //B gfg
+    	//1 A -> 01000001          a -> 01100001
+    			   100000 mask to make lower from upper
+    			   this is 32 ascii of space ' '
+        char ch='A';
+		ch|=' ';
+		cout<<ch;//a
+
+		char ch='a';
+		ch&='_';//ascii of _ is 95 1011111
+		cout<<ch;//A
+
+		int lastSetBit(int n){
+		    return log2(n & -n)+1;
+		}
+		The logarithmic value of AND of x and -x to the base 2 gives the index of the last set bit(for 0-based indexing).
+
+		//2
+// Direct XOR of all numbers from 1 to n
+int computeXOR(int n)
+{
+	if (n % 4 == 0)
+		return n;
+	if (n % 4 == 1)
+		return 1;
+	if (n % 4 == 2)
+		return n + 1;
+	else
+		return 0;
+}
+	//3 Count of numbers (x) smaller than or equal to n such that n+x = n^x:
+	count = pow(2, count of zero bits).
+	1010 10 1_1_ empty places can be filled to get n+x=n^x 
+	x=0,1,4,5 
+
+	//4 xor of all subsets =0 if n>1 if n==1 ans=single element
+	//5
+	__builtin_popcount(x) count set bits
+	__builtin_clz(x) count leading zeros
+	__builtin_ctz(x) count trailing zeros
+	//6 binary to int
+	auto number = 0b1101;
+    cout << number;
+    //7 swap using ^
+    a^=b;
+    b^=a;
+    a^=b;
+    //8 check if num has bits in alternate position
+    num=num^(num>>1);//now all bits must be set
+    return num&(num+1)==0;// 11111 + 1 = 100000 . & =0
+    //9 sum without + bro
+    int sum(int a , int b)
+    {
+        //code here
+        int ans=0,c=0,i=0,t=0;
+        while(a || b || c){
+            if(a&1) t++;
+            if(b&1) t++;
+            if(c)   t++;
+            c=t/2;
+            if(t&1) ans|=(1<<i);
+            t=0;
+            a>>=1;
+            b>>=1;
+            i++;
+        }
+        return ans;
+        
+    }
+    //a2
+    int sum(int a , int b)
+    {
+        //code here
+        while(b){
+            int carry=(a&b)<<1;
+            a^=b;
+            b=carry;
+        }
+        return a;
+        
+    }
+    //10 reverse bits bro
+unsigned int Solution::reverse(unsigned int A) {
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+    
+    unsigned int ans=0;
+    int pos=0;
+    while(A){
+        if(A&1){
+            ans|=(1<<(31-pos));
+        }
+        pos++;
+        A>>=1;
+    }
+    return ans;
+}
+
+64: 8.1 learn bit manipulation
+//1 get,set & clear ith bit 
+vector<int> bitManipulation(int num, int i){
+    // Write your code here.
+    int t=num;
+    vector<int> ans(3);
+    // ans[0]=(num&(1<<(i-1)) ) ? 1:0;
+    ans[0]=(num>>(i-1)&1);
+    ans[1]=(num|(1<<i-1));
+    ans[2]=(num&(~(1<<i-1)));
+    return ans;
+}
+//5 count number of set bits from 1 to n
+	//tle 
+	//for 9 1001 check last bit 1001&1=1 and >>1 100=4 whose ans already calculated before
+int countSetBits(int N)
+{
+    //Write your code here
+  	int a=0;
+    int dp[N+1]={0};
+    for(int i=1;i<=N;i++){
+        dp[i]=dp[i>>1]+(i&1);
+        a+=dp[i];
+    }
+    return a  ;
+}
+	//a2 for 11 highest power less than equal to is 8=2^3
+	in 0=000 to 7=111 there are 3*(2^(3-1)) set bits
+	in 8=1000 to 11=1011 there are (11-8+1) 1's in start
+	after removing this 1's we get 1011 - 1000 =011 (11-8=3)
+
+int hpo2ltetn(int n){
+    int x=0;
+    while((1<<x)<=n){
+        x++;
+    }
+    return x-1;
+}
+
+int countSetBits(int N)
+{
+    if(N==0) return 0;
+    int x=hpo2ltetn(N);//highest power of 2 less than equal to N
+    return x*(1<<x-1)+(N-(1<<x)+1)+countSetBits(N-(1<<x));
+}
+//6 set rightmost unset bit if any else return same
+int setBits(int N){
+    // Write your code here.
+    if((N&(N+1))==0) return N;
+    
+    return N|(N+1);
+}
+//7 divide without /
+#include <bits/stdc++.h> 
+int divideTwoInteger(int dividend, int divisor) {
+    // Write your code here.
+    int sign=(divisor>0)^(dividend>0)? -1:1;
+    dividend=abs(dividend);
+    divisor=abs(divisor);
+    int q=0;
+    while(dividend>=divisor){
+        int temp=divisor;
+        int m=1;
+        while((temp<<1)<=dividend){
+            temp<<=1;
+            m<<=1;
+        }
+        dividend-=temp;
+        q+=m;
+    }
+    return q*sign;
+} 
+	//a2 107 / 8 
+	107=8*2^3 + 8*2^2 + 8*2^0 +3
+    long long int q=0;
+	long long int a=dividend,b=divisor;
+	for(int i=30;i>=0;i--){
+		if( (b<<i) <= a){
+			a-=(b<<i);
+			q|=(1<<i);
+		}
+	}
+65: 8.2 Bits Interview Problems
+//1 flip bits to make same
+we find a^b it will 1 in place where different bits
+just count 1s in a^b
+//3 all non empty subsequence of str
+#include <bits/stdc++.h> 
+vector<string> subsequences(string str){
+	
+	// Write your code here
+	int n=str.size();
+	vector<string> ans;
+	for(int i=1;i<(1<<n);i++){	//non empty so start from 1 else 0
+		string t="";
+		for(int j=0;j<n;j++){
+			if(i&(1<<j)){
+				t.push_back(str[j]);
+			}
+
+		}
+		ans.push_back(t);
+	}
+	return ans;
+	
+}
+//5 twoOdd occur
+vector<int> twoOddNum(vector<int> arr){
+    // Write your code here.
+    int xora=0;//xor is giving error
+    for(auto x:arr) xora^=x;
+    int n1=0,n2=0;
+    xora=(xora)&(-xora);//rightmost 1
+    //rightmost 1 is difference in both num so we group based on this
+    for(auto x:arr){
+        if(x&xora) n1^=x;
+        else n2^=x;
+    }
+    if(n1>n2) return {n1,n2};
+    return {n2,n1};
+}
+
+66: 8.3 Advanced Maths
+//1 Prime factors of num
+	vector<int>AllPrimeFactors(int N) {
+	    // Code here
+	    vector<int> a;
+	    for(int i=2;i<=N && N>1;i++){
+	        if(N%i==0){
+	            a.push_back(i);
+	            while(N%i==0){
+	               N/=i; 
+	            }
+	        }
+	    }
+	    return a;
+	}
+//2 all divisors in tc:O(sqrt(n)) sc:O(sqrt(n)) 
+    void print_divisors(int n) {
+        // Code here.
+        set<int> os;
+        for(int i=1;i*i<=n;i++){
+            if(n%i==0){
+                cout<<i<<" ";
+                int b=n/i;
+                if(b*b!=n) os.insert(b);//or if(n/i != i) insert
+            } 
+        }
+        for(auto x:os) cout<<x<<" ";
+        // cout<<endl;
+    }
+//3 sieveOfEratosthenes
+	//return prime till n
+    vector<int> sieveOfEratosthenes(int n)
+    {
+        // Write Your Code here
+        vector<bool> v(n+1,true);
+        for(int i=2;i*i<=n;i++){
+            if(v[i]){
+                for(int j=i*i;j<=n;j+=i){
+                    v[j]=false;
+                }
+            }
+        }
+        vector<int> a;
+        for(int i=2;i<=n;i++){
+            if(v[i]) a.push_back(i);
+        }
+        return a;
+    }
+    //return count of prime less than n
+        vector<bool> v(n+1,true);
+        for(int i=2;i*i<=n;i++){
+            if(v[i]){
+                for(int j=i*i;j<=n;j+=i){
+                    v[j]=false;
+                }
+            }
+        }
+        int a=0;
+        for(int i=2;i<n;i++){
+            if(v[i]) a++;
+        }
+        return a;
+
+//5 power (n,x)
+#define mod2 1000000007
+int power(int n, int r)
+{
+    //Your code here
+    int mod=1e9+7;
+    if(r==0) return 1;
+    long long h=power(n,r/2);
+    h=(h*h)%mod;
+    if(r&1) h=(h*n)%mod;
+    return h;
+}
+67:STACKS
+
+//STACKS PW
+//implement stack using array
+	maintain top index
+	top++ and add the element
+//implement stack using linked list
+	add at head
+//basic
+Copy stack problem
+Insert at bottom or any index problem
+Remove from bottom/any index
+Reverse stack
+//problems1
+balanced brackets
+next greater element (nge nse pge pse) //next & previous smaller & greater
+stock span
+largest rectangle => nse & pse
+//problems2
+//Q min stack
+//a1 maintain 2 stacks 1 normal & other mini
+	//push in mini if ele<=mini.top(), pop from mini if normal.top()==mini.top()
+//a2 using 1 stack only
+min stack (store the net change in minimum value due to addition of an element)
+//code
+#define ll long long
+class MinStack {
+public:
+    stack<ll> st;
+    ll mini;
+    MinStack() {
+        this->mini=INT_MAX;
+    }
+    
+    void push(int val) {
+        if(this->st.empty()) {
+            this->st.push(val);
+            mini=val;
+        }
+        else{
+            this->st.push(val-mini);
+            if(val<mini) mini=val;
+        }
+        
+    }
+    
+    void pop() {
+        if(!this->st.empty()){
+            if(this->st.top()<0) {
+                this->mini=this->mini - this->st.top();
+               
+            }
+            this->st.pop();
+        }
+    }
+    
+    int top() {
+        if(this->st.size()==1) return this->st.top();
+        else if(this->st.top()<0) return mini;
+        else return mini+this->st.top();
+    }
+    
+    int getMin() {
+        return mini;
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack* obj = new MinStack();
+ * obj->push(val);
+ * obj->pop();
+ * int param_3 = obj->top();
+ * int param_4 = obj->getMin();
+ */
+minimum number of brackets to Remove to make balanced brackets 
+	//eg (())) (() ans 1
+postfix prefix infix
+
+//stacks bro coders
+//1 Parenthesis Checker
+    bool ispar(string x)
+    {
+        // Your code here
+        if(x.size() & 1) return 0;
+        stack<char> st;
+        for(auto c:x){
+            if(c=='(' || c=='[' || c=='{') st.push(c);
+            else{
+                if(st.empty()) return 0;
+                if( (c==')' && st.top()!='(') || (c==']' && st.top()!='[') || (c=='}' && st.top()!='{') ) return 0;
+                else st.pop();
+            }
+        }
+        return st.empty();
+        
+    }
+//2 evaluatePostfix
+    //pre and postfix expression dont need Parenthesis so faster computation , wheresa infix needs Parenthesis
+{
+    public:
+    //Function to evaluate a postfix expression.
+    int cal(int v1,int v2,char op){
+        if(op=='*') return v1*v2;
+        else if(op=='/') return v1/v2;
+        else if(op=='+') return v1+v2;
+        else if(op=='-') return v1-v2;
+    }
+    
+    int evaluatePostfix(string S)
+    {
+        // Your code here
+        // int ans=0;	//mistake
+        stack<int> st;
+        for(auto x:S){
+            if(x<='9' && x>='0'){
+                st.push(x-'0');
+            }
+            else {
+                int v2=st.top();
+                st.pop();
+                int v1=st.top();
+                st.pop();
+                int val=cal(v1,v2,x);// ans+ = cal mistake . we need to calculate and put the ans back in stack
+                st.push(val);
+            }
+        }
+        return st.top();
+    }
+};
+//a2
+switch(c){
+	case '+': st.push(op1+op2);
+	break;
+	case '-': st.push(op1-op2);
+	break;
+	case '*': st.push(op1*op2);
+	break;
+	case '/': st.push(op1/op2);
+	break;
+
+}
+//extra evaluate infix
+	//2 stacks operand and operator 
+	if ')' pop till '('
+	if st.top() precedence > current operator pop and perform calc
+
+//3
+	//isalpha() isdigit() isalnum()
+#include <iostream>
+#include <stack>
+#include <cctype> // Include this header for isalpha()
+
+    int precedence(char op) {
+        if (op == '^') return 4;  // Higher precedence for '^'
+        else if (op == '/' || op == '*') return 3;
+        else if (op == '+' || op == '-') return 2;
+        else return 1;
+    }
+    
+    string infixToPostfix(string s) {
+        string ans = "";
+        stack<char> st;
+        for (auto x : s) {
+            if (isalnum(x)) { //testcase with alpha and digit failed with isalpha
+                ans += x;
+            } else if (x == '(') {
+                st.push(x);
+            } else if (x == ')') {
+            	//while (!st.empty() && st.top() != '(') {
+                while (st.top() != '(') {
+                    ans += st.top();
+                    st.pop();
+                }
+                st.pop();  // Pop '('
+            } else {
+            	// while (!st.empty() && st.top() != '(' && precedence(x) <= precedence(st.top())) {
+                while (!st.empty() && precedence(x) <= precedence(st.top())) {
+                    ans += st.top();
+                    st.pop();
+                }
+                st.push(x);
+            }
+        }
+        while (!st.empty()) {
+            ans += st.top();
+            st.pop();
+        }
+        return ans;
+    }
+//4 nextLargerElement nge
+    	//a1 left to right
+    vector<long long> nextLargerElement(vector<long long> arr, int n){
+        // Your code here
+        vector<long long> ans(n,-1); //to find index of nge (n,n)
+        stack<long long> st;
+
+        for(int i=0;i<n;i++){
+            
+            while( (!st.empty() ) && arr[i]>arr[st.top()]){
+                ans[st.top()]=arr[i]; ////to find index of nge ans[st.top()]=i;
+                st.pop();
+            }
+            st.push(i);
+            
+        }
+        return ans;
+    }
+//a2 right to left
+    vector<long long> nextLargerElement(vector<long long> arr, int n){
+        // Your code here
+        vector<long long> ans(n,-1);
+        stack<long long> st;
+
+        for(int i=n-1;i>=0;i--){
+            while( !st.empty() && arr[i]>=st.top()){
+                st.pop();
+            }
+            if(!st.empty()) ans[i]=st.top();
+            st.push(arr[i]);
+        }
+        return ans;
+    }
+//5 calculateSpan stock
+    vector <int> calculateSpan(int price[], int n)
+    {
+       // Your code here
+        vector<int> ans(n);
+        stack<int> st;
+        for(int i=0;i<n;i++){
+            while(!st.empty() && price[i]>=price[st.top()]){
+                st.pop();
+            }
+            
+            ans[i]= st.empty() ? i+1 : i-st.top();
+            
+            st.push(i);
+        }
+        return ans;
+    }
+//6 celebrity
+    //a1.1 among 2 only 1 can be celeb. enter all in stack and remove 2 and push only 1 back until size<=1
+    int celebrity(vector<vector<int> >& M, int n) 
+    {
+        // code here 
+        stack<int> st;
+        for(int i=0;i<n;i++) st.push(i);
+        
+        while(st.size()>1){
+            int v1=st.top();
+            st.pop();
+            int v2=st.top();
+            st.pop();
+            
+            if(M[v1][v2]==0 && M[v2][v1]) st.push(v1);
+            if(M[v1][v2] && M[v2][v1]==0) st.push(v2);
+        }
+        
+        if(st.empty()) return -1;
+        
+        int cel=st.top();
+        for(int i=0;i<n;i++) {
+            if(i!=cel && M[cel][i]) return -1;
+            if(i!=cel && M[i][cel]==0) return -1;
+        }
+        return cel;
+    }
+    //a1.2
+    int celebrity(vector<vector<int> >& M, int n) 
+    {
+        // code here 
+        stack<int> st;
+        for(int i=0;i<n;i++) st.push(i);
+        
+        while(st.size()>1){
+            int v1=st.top();
+            st.pop();
+            int v2=st.top();
+            st.pop();
+            
+            if(M[v1][v2]) st.push(v2);  //if v1 knows v2
+            else st.push(v1);   //else v1 doesnt knows v2
+        }
+        
+        int cel=st.top();
+        for(int i=0;i<n;i++) {
+            if(i!=cel && (M[cel][i] || M[i][cel]==0 ) ) return -1;
+                // != == > && > || 
+        }
+        return cel;
+    }
+    //a2.1 indegree & outdegree
+    	//for celeb in=n-1 && out=0
+    int celebrity(vector<vector<int> >& M, int n) 
+    {
+        // code here 
+        vector<int> in(n,0),out(n,0);
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(M[i][j]){
+                    out[i]++;
+                    in[j]++;
+                }
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(in[i]==n-1 && out[i]==0) return i;
+        }
+        return -1;
+    }
+    //a2.2
+    int celebrity(vector<vector<int> >& M, int n) 
+    {
+        // code here 
+        vector<int> in(n,0);
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(M[i][j]){
+                    in[i]--;
+                    in[j]++;
+                }
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(in[i]==n-1 ) return i;
+        }
+        return -1;
+    }
+    //a3
+    int celebrity(vector<vector<int> >& M, int n) 
+    {
+        // code here 
+        int r=0,c=n-1;
+        while(r<c){
+            if(M[r][c]) r++;//index with this row cant be celeb
+            else c--;//index with this col cant be celeb
+        }
+        
+        for(int i=0;i<n;i++){
+            if(i!=r && (M[i][r]==0 || M[r][i]==1)) return -1;
+        }
+        return r;
+    }
+//7 min stack
+	//refer pw
+	//a3
+#define ll long long
+class MinStack {
+public:
+    stack<ll> st;
+    ll mini;
+    MinStack() {
+        this->mini=INT_MAX;
+    }
+    
+    void push(int val) {
+        if(val<=this->mini){
+            st.push(this->mini);
+            mini=val;
+        }
+        st.push(val);
+    }
+    
+    void pop() {
+        if(st.top()==this->mini){
+            st.pop();
+            this->mini=st.top();
+        }
+        st.pop();
+    }
+    
+    int top() {
+        return st.top();
+    }
+    
+    int getMin() {
+        return this->mini;
+    }
+};
+//8 largestRectangleArea in a histogram
+	// find nse & pse . ans=height*(nsi-psi-1) //i index
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        int ans=0,n=heights.size();
+        stack<int> st;
+        for(int i=0;i<n;i++){
+            while(!st.empty() && heights[st.top()]>heights[i]){
+                //i will be next smaller & previous smaller will be in stack after pop
+                int idx=st.top();
+                st.pop();
+                int pidx= st.empty() ? -1 : st.top() ;
+                int cans= heights[idx]*(i-pidx-1);
+                ans=max(ans,cans);
+            }
+            st.push(i);
+        }
+
+        while(!st.empty()){ //for elements whose next smaller isnt present we will take n
+            int idx=st.top();
+            st.pop();
+            int pidx=st.empty() ? -1 : st.top() ;
+            int cans= heights[idx]*(n-pidx-1);
+            ans=max(ans,cans);
+        }
+        return ans;
+    }
+};
+//9
+//a1
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+        string ans;
+        for(auto x:num){
+            while(ans.size() && k && (ans.back()-'0')>(x-'0') ){ // no need of -'0' we can check ans.back()>x
+                ans.pop_back();
+                k--;
+            }
+            ans+=x;
+        }
+        
+        ans=ans.substr(0,ans.size()-k);
+        // while(k--){
+        //     ans.pop_back();
+        // }
+
+        int i=0;
+        while(ans[i]=='0') i++;//leading zeros
+        ans=ans.substr(i);
+        if(ans.empty()) return "0";//if empty return "0"
+        return ans;
+    }
+};
+//a2
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+        string ans;
+        for(auto x:num){
+            while(ans.size() && k && (ans.back()-'0')>(x-'0') ){
+                ans.pop_back();
+                k--;
+            }
+            // ans+=x;
+
+            //this check helps in removing leading zeros
+            if(ans.size()||x!='0')  ans+=x;
+        }
+        
+        // ans=ans.substr(0,ans.size()-k);
+        while(ans.size() && k--){
+            ans.pop_back();
+        }
+
+        // int i=0;
+        // while(ans[i]=='0') i++;//leading zeros
+        // ans=ans.substr(i);
+
+        // if(ans.empty()) return "0";//if empty return "0"
+        // return ans;
+
+        return ans==""? "0":ans;
+    }
+};
+//10
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        int r=matrix.size(),c=matrix[0].size(),ans=0;
+
+        vector<int> v(c,0);
+
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(matrix[i][j]=='1') v[j]++;	//=='1' missed
+                else v[j]=0;
+            }
+            int cans=largestRectangleArea(v);
+            cout<<cans<<" ";
+            ans=max(ans,cans);
+        }
+
+        return ans;
+    }
+//ex maximalSquare
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        int r=matrix.size(),c=matrix[0].size(),ans=0;
+        vector<vector<int>> dp (r,vector<int> (c,0));
+
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(i*j==0) {
+                    if(matrix[i][j]=='1') dp[i][j]=1;
+                }else{
+                    if(matrix[i][j]=='1'){
+                        dp[i][j]= min(dp[i][j-1],min( dp[i-1][j],dp[i-1][j-1]) ) +1;
+                    }
+                }
+                ans=max(ans,dp[i][j]);
+            }
+        }
+        return ans*ans;//missed ans* ans, incorrect when return ans
+    }
+};
+
+68:QUEUES
+//QUEUES
+//PW
+implement queue using arrays & linkedlist(space optimised)
+
+push enqueue
+pop dequeue
+
+//reverse a queue
+    transfer from queue to stack and back
+
+//deque double ended queue
+    removal & addition on both ends 
+    push_back push_front pop_back pop_front
+//Q find max in window of k 
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        int n=nums.size();
+        deque<int> dq;//using deque because we need to push and pop at front and back
+        vector<int> ans;
+
+        for(int i=0;i<k;i++){
+            while(!dq.empty() && nums[dq.back()]<nums[i]){
+                dq.pop_back();
+            }
+            dq.push_back(i);
+        }
+        ans.push_back( nums[ dq.front() ] );
+
+        for(int i=k;i<n;i++){
+            if(dq.front()==i-k) dq.pop_front();
+            while(!dq.empty() && nums[dq.back()]<nums[i]){
+                dq.pop_back();
+            }
+            dq.push_back(i);
+            ans.push_back( nums[ dq.front() ] );
+        }
+        return ans;
+    }
+};
+//a2
+vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    vector<int> result;
+    if (k == 0) return result;
+    deque<int> w;
+    for (int i = 0, n = (int)nums.size(); i < n; i++) {
+        while (!w.empty() && w.front() <= i-k)
+            w.pop_front();
+        while (!w.empty() && nums[w.back()] <= nums[i])
+            w.pop_back();
+        w.push_back(i);
+        if (i >= k-1)
+            result.push_back(nums[w.front()]);
+    }
+    return result;
+}
+
+//queue using stacks
+    //1 push efficient
+    //2 pop efficient
+
+//BRO CODERS
+//1 reverse first k elements of queue
+queue<int> modifyQueue(queue<int> q, int k) {
+    // add code here.
+    //1 2 3 4 5, k=3
+    int n=q.size();
+    stack<int> st;
+    int c=0;
+    while(c++<k){   //missed c++
+        st.push(q.front());
+        q.pop();
+    }
+    //s 3 2 1, q 4 5
+    while(!st.empty()){
+        q.push(st.top());
+        st.pop();
+    }
+    //q 4 5 3 2 1
+    int i=n-k;
+    while(i--){
+        int ele=q.front();
+        q.pop();
+        q.push(ele);
+    }
+    //q 3 2 1 4 5
+    return q;
+}
+
+//2 stack using 2 queues
+class MyStack {
+public:
+    queue<int> q1,q2;
+    MyStack() {
+        
+    }
+    
+    void push(int x) {
+        while(!q1.empty()){
+            q2.push(q1.front());
+            q1.pop();
+        }
+        q1.push(x);
+        while(!q2.empty()){
+            q1.push(q2.front());
+            q2.pop();
+        }
+    }
+    
+    int pop() {
+        int ans = q1.front();
+        q1.pop();
+        return ans;
+    }
+    
+    int top() {
+        return q1.front();
+    }
+    
+    bool empty() {
+        return q1.empty();
+    }
+};
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack* obj = new MyStack();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->top();
+ * bool param_4 = obj->empty();
+ */
+//a2 with single queue
+    void push(int x) {
+        int n=q1.size();
+        q1.push(x);
+        while(n--){
+            //a2
+            // q1.push(q1.front());
+            // q1.pop();
+            int ele=q1.front();
+            q1.pop();
+            q1.push(ele);
+        }
+    }
+//a3
+    void push(int x) {
+        q2.push(x);
+        while(!q1.empty()){
+            q2.push(q1.front());    q1.pop();
+        }
+        swap(q1, q2);
+    }
+//3 queue using stacks
+class MyQueue {
+public:
+    stack<int> s1,s2;
+    MyQueue() {
+        
+    }
+    
+    void push(int x) {
+        while(!s1.empty()){
+            s2.push(s1.top());
+            s1.pop();
+        }
+        s1.push(x);
+        while(!s2.empty()){
+            s1.push(s2.top());
+            s2.pop();
+        }
+    }
+    
+    int pop() {
+        int ans=s1.top();
+        s1.pop();
+        return ans;
+    }
+    
+    int peek() {
+        return s1.top();
+    }
+    
+    bool empty() {
+        return s1.empty();
+    }
+};
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue* obj = new MyQueue();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->peek();
+ * bool param_4 = obj->empty();
+ */
+//a2 more efficient
+    void push(int x) {
+        
+        s1.push(x);
+        
+    }
+    
+    int pop() {
+        int ans=peek();
+        s2.pop();
+        return ans;
+    }
+    
+    int peek() {
+        if(s2.empty()){
+            while(!s1.empty()){
+                s2.push(s1.top());
+                s1.pop();
+            }
+        }
+        return s2.top();
+    }
+    
+    bool empty() {
+        return s1.empty() && s2.empty();
+    }
+// 4 FirstNonRepeating
+class Solution {
+    public:
+        string FirstNonRepeating(string A){
+            int f[26]={0};
+            queue<char> q;
+
+            string ans;
+
+            for(auto x:A){
+                f[x-'a']++;
+                if(f[x-'a']==1) q.push(x);
+
+                while(!q.empty() && f[q.front()-'a']>1) q.pop();
+
+                ans+= q.empty() ? '#' : q.front();
+            }
+            // Code here
+
+            return ans;
+        }
+
+};
+// 5 orangesRotting
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution 
+{
+    public:
+    //Function to find minimum time required to rot all oranges. 
+    bool safe(int r, int c, vector<vector<int>>& grid){
+        if(r<0 || r>=grid.size() || c<0 || c>=grid[0].size() || grid[r][c]!=1) return 0;
+        return 1;
+    }
+
+    void addneighbours(int ro,int co,vector<vector<int>>& grid,queue<pair<int,int> > &q,int &c1){
+
+        int dr[]={1,0,-1,0};
+        int dc[]={0,1,0,-1};
+
+        int ir=ro,ic=co;
+        for(int k=0;k<4;k++){
+            ir=ro+dr[k];
+            ic=co+dc[k];
+
+            if(safe(ir,ic,grid)) {
+                // cout<<ir<<" "<<ic<<endl;
+                c1--;
+                grid[ir][ic]=-1;
+                q.push({ir,ic});
+            }
+        }
+        
+    }
+    
+    int orangesRotting(vector<vector<int>>& grid) {
+        // Code here
+        queue<pair<int,int> > q;
+        int r=grid.size(),c=grid[0].size();
+
+        int c1=0;//count ones
+
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(grid[i][j]==1) c1++;
+                else if(grid[i][j]==2) q.push({i,j});
+            }
+        }
+        
+        if(c1==0) return 0;//missed
+
+        int itr=0;
+        while(!q.empty()){
+            
+            itr++;
+            // cout<<itr<<"is"<<endl;
+            
+            int n=q.size();
+            while(n--){
+                pair<int,int> cur=q.front();
+                q.pop();
+
+                addneighbours(cur.first,cur.second,grid,q,c1);
+
+                if(c1==0) return itr;
+            }
+        }
+        // if(c1) return -1;
+        // return itr-1;//missed -1
+        return -1;
+    }
+
+
+};
+
+//{ Driver Code Starts.
+int main(){
+    int tc;
+    cin >> tc;
+    while(tc--){
+        int n, m;
+        cin >> n >> m;
+        vector<vector<int>>grid(n, vector<int>(m, -1));
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                cin >> grid[i][j];
+            }
+        }
+        Solution obj;
+        int ans = obj.orangesRotting(grid);
+        cout << ans << "\n";
+    }
+    return 0;
+}
+// } Driver Code Ends
+
+// 6 minStepToReachTarget by knight 
+    int minStepToReachTarget(vector<int>&KnightPos,vector<int>&TargetPos,int N)
+    {
+        // Code here
+        if(KnightPos[0]==TargetPos[0] && KnightPos[1]==TargetPos[1]) return 0;
+        
+        vector<vector<int>> v(N+1,vector<int> (N+1,0));
+        
+        queue<pair<int,int>> q;
+        q.push({KnightPos[0],KnightPos[1]});
+
+        int move=1;
+
+        int cx[]={1,1,-1,-1,2,2,-2,-2};
+        int cy[]={2,-2,2,-2,1,-1,1,-1};
+        //  vector<vector<int>> v = {{-1, 2}, {-1, -2}, {1, 2}, {1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
+
+        v[KnightPos[0]][KnightPos[1]]=1;
+
+        while(!q.empty()){
+            int sz=q.size();
+
+            while(sz--){
+
+                pair<int,int> cur=q.front();//auto [x, y] = q.front();
+                q.pop();
+                
+
+                int x=cur.first,y=cur.second,nx,ny;
+                
+                // for (auto ad : v)
+                // {
+                // int x = i + ad[0], y = j + ad[1];
+                
+                for(int k=0;k<8;k++){
+                    nx=x+cx[k];
+                    ny=y+cy[k];
+
+                    if(nx<1 || nx>N || ny<1 || ny>N || v[nx][ny]) continue;
+
+                    if(nx==TargetPos[0] && ny==TargetPos[1]) return move;
+
+                    v[nx][ny]=1;
+                    q.push({nx,ny});
+                }
+
+            }
+
+            move++;
+            
+
+        }
+
+        return -1;
+        
+    }
+// 7 minCost to connect ropes
+    //connect smaller first because their cost will be repeated 
+    //a1
+    #define ll long long
+    // Time Complexity: O(N log N), Because heap operations like insert and extract take O(Logn) time in priority_queue and for all n elements it takes n*logn.
+    long long minCost(long long arr[], long long n) {
+        // Your code here
+        priority_queue< ll,vector<ll>,greater<ll> > pq;//min at top
+        //priority_queue<long long, vector<long long>, greater<long long> > pq(arr, arr + n);
+        for(ll i=0;i<n;i++){
+            
+            pq.push(arr[i]);
+        }
+        ll ans=0;
+        while(pq.size()>1){
+            ll x1=pq.top();
+            pq.pop();
+            ll x2=pq.top();
+            pq.pop();
+            // cout<<x1<<" "<<x2<<endl;
+            ans+=x1+x2;
+            pq.push(x1+x2);
+        }
+        return ans;
+    }
+    //a2
+    long long minCost(long long arr[], long long n) {
+        // Your code here
+        multiset<long long> ms;
+        for(int i=0;i<n;i++) {
+            ms.insert(arr[i]);
+        }
+        long long ans=0;
+        while(ms.size() > 1) {
+            auto it = ms.begin();
+            long long cost = *it;
+            ms.erase(it);
+            it = ms.begin();
+            cost += *it;
+            ms.erase(it);
+            ms.insert(cost);
+            ans += cost;
+        }
+        return ans;
+    }
+// 8
+    //a1
+        priority_queue<int, vector<int> , greater<int> > pq;
+        vector<int> ans;
+        
+        for(int i=0;i<n;i++){
+            //tle when pushed all elements
+            //if pq=2,3,4,5 then no point of pushing 1 and popping . so push only if > top
+            if(pq.size()<k)
+                pq.push(arr[i]);
+            else if(arr[i]>pq.top()){
+                pq.pop();
+                pq.push(arr[i]);
+            }
+            
+            // while(pq.size()>k) pq.pop();
+            
+            ans.push_back(pq.size()==k? pq.top() :-1);
+        }
+        
+        return ans;
+        
+        
+    //a2 wont work for stream 
+        vector<int> a(k-1,-1);
+        sort(arr,arr+n);
+        
+        a.insert(a.end(),arr,arr+(n-k+1));
+        
+        return a;
+// 9 median of stream of numbers
+    priority_queue<int> s;//pqmaxs;//store smaller, max of smaller at top
+    priority_queue< int,vector<int>,greater<int> > g;//pqming;//store greater,min of greater at top
+
+    void insertHeap(int &x)
+    {
+        if(s.empty() || x<s.top()) s.push(x);
+        else g.push(x);
+    }
+    
+    //Function to balance heaps.
+    void balanceHeaps()
+    {
+        int diff=s.size()-g.size();
+        if(diff<2 && diff>-2) return;
+
+
+        if(diff>0){
+            int itr=diff/2;
+            while(itr--){
+                g.push(s.top());
+                s.pop();
+            }
+        }else{
+            int itr=(-1)*diff/2;
+            while(itr--){
+                s.push(g.top());
+                g.pop();
+            }
+        }
+    }
+    
+    //Function to return Median.
+    double getMedian()
+    {
+        balanceHeaps();
+        if(s.size()>g.size()) return s.top();
+        else if(s.size()<g.size()) return g.top();
+        else return (s.top()+g.top())/2.0;
+    }
+//a2
+void insertHeap(int &x) {
+    if (s.empty() || x < s.top()) s.push(x);
+    else g.push(x);
+
+    // Balance the heaps
+    if (s.size() > g.size() + 1) {
+        g.push(s.top());
+        s.pop();
+    } else if (g.size() > s.size() + 1) {
+        s.push(g.top());
+        g.pop();
+    }
+}
+
+double getMedian() {
+    if (s.size() == g.size()) return (s.top() + g.top()) / 2.0;
+    else return (s.size() > g.size()) ? s.top() : g.top();
+}
+
+69:STRIVER step 9 stacks & queues
+//9.1 learning
+//1 stack using array
+	top=-1 maintain top
+//2 queue using arrays
+	maintain start,end,size
+//3 stack using queue
+	1q 2q
+//4 queue using stack
+	s1 s2
+	input output
+//5 stack using linked list
+	add/remove at head
+//6 queue using linked list
+	start & end 
+//7 balanced parenthesis
+//8 min stack
+
+//9.2 pre post in
+//while converting focus on evaluation
+//1 in to post
+	//two stacks operator & operands , ( push , ) pop till (, * pop till greater or equal precedence
+#include <bits/stdc++.h>
+using namespace std;
+int pre(char c){
+	if(c=='(') return 1;
+	else if (c=='+' || c=='-') return 2;
+	else if (c=='*' || c=='/') return 3;
+	else return 4;//^
+}
+
+string infixToPostfix(string exp){
+	// Write your code here
+	string ans;
+	stack<char> st;
+	for(auto x:exp){
+		if(isalnum(x)) ans+=x;
+		else{
+			if(x=='(' ) st.push(x);
+			else if (x==')'){
+				while(st.top()!='('){
+					ans+=st.top();
+					st.pop();
+				}
+				st.pop();
+			}else {
+				while(!st.empty() && pre(st.top())>=pre(x)){
+					ans+=st.top();
+					st.pop();
+				}
+				st.push(x);
+			}
+
+		}
+	}
+	while(!st.empty() ){
+		ans+=st.top();
+		st.pop();
+	}
+	return  ans;
+}
+//2
+            pos.push(s1+s2+x);//  for pre to infix           pos.push('('+s1+x+s2+')');
+
+//3
+#include <bits/stdc++.h> 
+using namespace  std;
+
+string preToPost(string s) {
+    // Write Your Code Here
+
+    stack<string> pos;
+
+    int n=s.size();
+    for(int i=n-1;i>=0;i--){
+        char x=s[i];
+        if(isalpha(x)){
+            pos.push(s.substr(i,1));
+        }else{
+            string s1=pos.top();
+            pos.pop();
+            string s2=pos.top();
+            pos.pop();
+
+            pos.push(s1+s2+x);//  for pre to infix           pos.push('('+s1+x+s2+')');
+
+        }
+    }
+    return pos.top();
+}
+
+//4
+string postfixToPrefix(string &s){
+    // Write your code here.
+    stack<string> pre;
+
+    for(auto x:s){
+      if (isalpha(x)) {
+        string str;
+        str+=x;
+        pre.push(str);
+      } else {
+        string s1 = pre.top();
+        pre.pop();
+        string s2 = pre.top();
+        pre.pop();
+
+        pre.push(x + s2 + s1);
+      }
+    }
+    return pre.top();
+}
+
+//5
+string postToInfix(string postfix) {
+    // Write your code here.
+
+    stack<string> in;
+
+    for(auto x:postfix){
+        if(isalpha(x)){
+            string str;
+            str+=x;
+            in.push(str);
+        }else{
+            string s1=in.top();
+            in.pop();
+            string s2=in.top();
+            in.pop();
+
+            in.push('('+s2+x+s1+')');
+        }
+    }
+    return in.top();
+}
+
+//6 infix to pre
+	make 3 stacks pre post operators
+	reverse use '(' <=> ')'
+	treat as postfix
+	reverse
+Step 1: Reverse the infix expression. Note while reversing each ‘(‘ will become ‘)’ and each ‘)’ becomes ‘(‘.
+Step 2: Convert the reversed infix expression to “nearly” postfix expression.
+While converting to postfix expression, instead of using pop operation to pop operators with greater than or equal precedence, here we will only pop the operators from stack that have greater precedence.
+Step 3: Reverse the postfix expression.
+
+//a2
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int precedence(char op) {
+    if (op == '^') return 3;
+    else if (op == '*' || op == '/') return 2;
+    else if (op == '+' || op == '-') return 1;
+    else return 0;
+}
+
+bool isOperator(char c) {
+    return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
+}
+
+string infixToPrefix(string infix) {
+    stack<string> pre;
+    stack<char> op;
+
+    int n=infix.size();
+
+    for(auto x:infix){
+        if(isalnum(x)) pre.push(string(1, x)); 
+        else if(x=='(') op.push(x);
+        else if(x==')'){
+            while(op.top()!='('){
+                char c=op.top();
+                op.pop();
+
+                string s1=pre.top();
+                pre.pop();
+
+                string s2=pre.top();
+                pre.pop();
+
+                // Instead of pre.push(""+c+s2+s1);
+                pre.push(string(1, c) + s2 + s1);
+
+            }
+            op.pop();
+        }else{
+            while(!op.empty() && precedence(x)<=precedence(op.top())){
+                char c=op.top();
+                op.pop();
+
+                string s1=pre.top();
+                pre.pop();
+
+                string s2=pre.top();
+                pre.pop();
+
+                pre.push(string(1, c) + s2 + s1);
+            }
+            op.push(x);
+        }
+    }
+
+    while(!op.empty() ){
+        char c=op.top();
+        op.pop();
+
+        string s1=pre.top();
+        pre.pop();
+
+        string s2=pre.top();
+        pre.pop();
+
+        pre.push(string(1, c) + s2 + s1);
+    }
+
+    return pre.top();
+}
+
+
+int main() {
+    string infix = "((x*b)+(s-(j+g)))";
+    string prefix = infixToPrefix(infix);
+    cout << "Prefix Expression: " << prefix << endl;
+
+    return 0;
+}
+
+//9.3 monotonic stack/queue
+//1 nge
+//2 ng2 in circular array
+vector<int> nextGreaterElementII(vector<int>& a) {
+    // Write your code here.
+    int n=a.size();
+    // a.insert(a.end(),a.begin(),a.end());
+
+    vector<int> ans (a.size(),-1);
+
+    stack<int> st;
+    for(int i=0;i<2*n;i++){
+        while(!st.empty() && a[i%n]>a[st.top()]){ // %n
+            ans[st.top()] = a[i%n];
+            st.pop();
+        }
+        if(i<n) st.push(i);// <n
+    }
+
+    // vector<int> a2;
+    // a2.insert(a2.end(),ans.begin(),ans.begin()+n);
+
+    return  ans;
+}
+//a2
+vector<int> nextGreaterElementII(vector<int>& a) {
+    // Write your code here.
+    int n=a.size();
+
+    vector<int> ans (n);
+
+    stack<int> st;
+    
+    for(int i=n-2;i>=0;i--){    //to check elements after end. 1 5 3 4
+        while(!st.empty() && a[i]>=st.top()) st.pop();
+        st.push(a[i]);
+    }
+
+    for(int i=n-1;i>=0;i--){
+        while(!st.empty() && a[i]>=st.top()) st.pop();
+        // ans.push_back(st.empty()? -1 : st.top());
+        ans[i]=st.empty()? -1 : st.top();
+        st.push(a[i]);
+    }
+    //if push_back we need to reverse
+    // reverse(ans.begin(),ans.end());
+    return  ans;
+}
+//3 nse
+//4 number of greater elements on right
+//5 trapping rainwater
+	at each step min(leftmax,rightmax)-selfheight
+	//leftmax from current to 0 (including self)
+	//rightmax from current to n-1 (including self)
+
+//6  sumSubarrayMins
+//every element can be min in all subarrays till it finds smaller on left and right
+#include <bits/stdc++.h> 
+
+
+int sumSubarrayMins(vector<int>&arr) {
+    // Write your code here.
+    stack<int> st;
+
+    int ans=0,n=arr.size(),mod=1e9+7;
+
+    for(int i=0;i<n;i++){
+        while(!st.empty() && arr[i]<=arr[st.top()]){
+            int nsei=i;
+            int ci=st.top();
+            st.pop();
+            int psei= st.empty() ? -1 : st.top();
+            // cout<<(ci-psei)*(nsei-ci)<<endl;
+            ans+=( (arr[ci])*(ci-psei)*(nsei-ci) )%mod;
+            //answer = (answer + ((long)arr[i] * (leftSize * rightSize) % MOD) % MOD) % MOD;}
+            ans%=mod;
+        }
+        st.push(i);
+    }
+
+    while(!st.empty() ){
+        int nsei=n;
+        int ci=st.top();
+        st.pop();
+        int psei= st.empty() ? -1 : st.top();
+
+        // cout<<(ci-psei)*(nsei-ci)<<endl;
+
+        ans+=( (arr[ci])*(ci-psei)*(nsei-ci) )%mod;
+        ans%=mod;
+    }
+    return ans;
+}
+//7 collidingAsteroids
+#include <bits/stdc++.h> 
+
+
+vector<int> collidingAsteroids(vector<int> &asteroids)
+{
+    //    Write your code here.
+    stack<int> st;
+
+    for(auto x:asteroids){
+        if(st.empty() || x>0  ) st.push(x);
+
+        else{
+            while(!st.empty() && st.top()>0 && st.top()<(-x)) st.pop();
+
+            if(!st.empty() && st.top()>0 && st.top()==(-x)) st.pop();
+            else if(st.empty() || st.top()<=0) st.push(x);
+        }
+        
+        // else{
+        //     int flag=1;
+        //     while(!st.empty() && st.top()>0){
+        //         if(st.top()<(-x)) st.pop();
+        //         else if(st.top()>(-x)) { //break 0
+        //             flag=0;
+        //             break;
+        //         }
+        //         else{
+        //             flag=0;
+        //             st.pop();
+        //             break; 
+        //         }
+        //     }
+        //     if(flag) st.push(x);
+        // }
+    }
+
+    vector<int> ans;
+    while(!st.empty()){
+        ans.push_back(st.top());
+        st.pop();
+    }
+    reverse(ans.begin(),ans.end());
+
+    return  ans;
+}
+//8 sum of subarray ranges
+find max & min of all subarrays using //6  sumSubarrayMins
+	//z==2 to find max , 1 to fin mins
+    while( !st.empty() && ( (z==2 && arr[i]>=arr[st.top()] ) || (z==1 && arr[i]<=arr[st.top()] )   ) ){
+//a2 5>=4 to check 5<=4 we can check -5>=-4 
+	so sign 1 for >= , -1 for <=
+
+//9 removeKDigits to minimise number
+string removeKDigits(string num, int k) 
+{
+    int n=num.size();
+    if(k==n) return "0";
+
+    string ans;//use string as stack
+    for(auto x:num){
+        while(ans.size() && k && x<ans.back()){
+            ans.pop_back();
+            k--;
+        }
+        ans+=x;
+    }
+
+    while(k--) ans.pop_back();
+
+    int i=0;
+    while(i<ans.size() && ans[i]=='0') i++;
+    ans=ans.substr(i);
+
+    // if(ans.size()) return ans;
+    // return "0";
+    return ans.empty() ? "0" : ans;
+
+
+    // Write your code here.
+//a2
+    // if(k==num.size()) return "0";
+    // stack<char> st;
+    // for(auto x:num){
+    //     while(!st.empty() && k && x<st.top()){
+    //         st.pop();
+    //         k--;
+    //     }
+    //     st.push(x);
+    // }
+    // while(k--) st.pop();
+    // string ans;
+    // while(!st.empty()){
+    //     ans+=st.top();
+    //     st.pop();
+    // }
+    // reverse(ans.begin(),ans.end());
+
+    // int i=0;
+    // while(i<ans.size() && ans[i]=='0') i++;
+    // if(i==ans.size()) return "0";
+    // return ans.substr(i);
+}
+
+//10 largest rectangle
+//11 maximal rectangle
+
+//9.4 implementation
+//1 Sliding Window maximum		
+	use deque
+
+//2 Stock span problem				
+
+//3 The Celebrity Problem				
+
+//4 LRU cache (IMPORTANT)	
+remove least recently used	
+
+//5 LFU cache
+remove least frequently used (if tie remove lru)
+
+70: 10 SLIDING WINDOW & TWO POINTER
+SLIDING WINDOW & TWO POINTER
+
+// n-k+1 subarray of size k in array of size n
+//FRAZ
+//1 longestSubarray of 1s after 1 deletion
+    int longestSubarray(vector<int>& nums) {
+        int i=0,j=0,n=nums.size(),c=1,ans=0;
+        while(j<n){
+            if(nums[j]) j++;
+            else if(c) c--,j++;
+            else {
+                ans=max(ans,j-i);
+                while(nums[i]) i++;
+                i++;
+                c++;
+            }
+        }
+        ans=max(ans,j-i);
+
+        return ans-1;//missed -1
+    }
+//a2
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums) {
+        int i=0,j=0,n=nums.size(),c=1,ans=0;
+        while(j<n){
+            if(nums[j]==0) c--;
+            while(c<0){
+                if(nums[i]==0) c++;
+                i++;
+            }
+            //i & j is current correct window j-i+1 is length of it to include both i and j
+            //j-i exclude 1 , j-i+1 include both
+            //ans=max(ans,j-i+1); +1 if before j++
+            j++;
+            ans=max(ans,j-i);
+        }
+        // ans=max(ans,j-i);
+
+        return ans-1;//missed -1
+    }
+};
+//a3 template
+    int longestSubarray(vector<int>& nums) {
+        int i=0,j=0,n=nums.size(),cz=0,ans=0;
+        for(;j<n;j++){
+            if(nums[j]==0) cz++;
+            for(;cz>1;i++){
+                if(nums[i]==0) cz--;
+            }
+            ans=max(ans,j-i+1);
+        }
+        return --ans;
+    }
+//2 lengthOfLongestSubstring without repeating char
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int ans=0;
+        int l=0,r=0,n=s.size();
+
+        int f[256]={0};
+
+        while(r<n){
+            // cout<< f[ s[r] ] << " "<< f[ (int) s[r] ]<<endl;// both same
+            // cout<< s[r] << " "<< (int) s[r] <<endl;//b 98
+            f[s[r]]++;
+
+            while(f[s[r]]>1){
+                f[s[l]]--;
+                l++;
+            }
+
+            ans=max(ans,r-l+1);
+            r++;
+        }
+
+        return ans;
+    }
+};
+//a2 store previous occurence of current char 
+    int lengthOfLongestSubstring(string s) {
+        // int f[256] = {-1};//previous occurence of all char
+        //above line wont work to initialise all with -1,it works only for 0
+        int f[256];//or vector<int> f(256,-1) to avoid fill;
+        fill(f,f+256,-1);//if vector (v.begin(),v.begin()+n,value)
+        //we can fill in between as well (start,end,value)  //end idx excluded
+        int start=-1,ans=0,n=s.size();
+
+        for(int i=0;i<n;i++){
+            start=max(start,f[s[i]]);//start should not be at idx before last occurence 
+            f[s[i]]=i;//updating last occurence of s[i]
+
+            ans=max(ans,i-start);//start has repeated so exclude
+        }
+
+        return ans;
+    }
+//a3 using unordered_map
+    int lengthOfLongestSubstring(string s) {
+        unordered_map<char,int> um;
+
+        int i=0,j=0,n=s.size(),ans=0;
+
+        for(;i<n;i++){
+            //add 1 element to window
+            um[s[i]]++;
+            //make window valid
+            for(;um[s[i]]>1;j++) um[s[j]]--;
+            //mark ans
+            ans=max(ans,i-j+1);
+        }
+        return ans;
+    }
+// 3
+class Solution {
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        if(k<=1) return 0;//since nums[i]= [1,1000] cant get any subarray <1 
+        int l=0,r=0,prod=1,ans=0,n=nums.size();
+
+        for(;r<n;r++){
+            prod*=nums[r];
+
+            for(;prod>=k;l++){
+                prod/=nums[l];
+            }
+
+            if(r>=l) ans+=(r-l+1);
+        }
+        return ans;
+    }
+};
+//a2 without base case
+        int l=0,r=0,prod=1,ans=0,n=nums.size();
+
+        for(;r<n;r++){
+            prod*=nums[r];
+
+            for(;prod>=k && l<=r;l++){//l<=r
+                prod/=nums[l];
+            }
+
+            ans+=(r-l+1);//if invalid l will be at r+1 so r-l+1=0
+        }
+        return ans;
+// 4 maxFrequency of element if we increment any element by 1 in 1opertaion. we have k operation
+class Solution {
+public:
+    int maxFrequency(vector<int>& nums, int k) {
+        sort(nums.begin(),nums.end());
+        int ans=1,K=k,n=nums.size(),i=0,j=0;
+// 2 3 5 8 to make all equal we can make them 8 because only option is increment , we cant decrement .
+// cs = 18 and rs= 8*4=32 diff=14 if k>=14 valid else we will remove from left. eg k=10
+//3 5 8 cs=16 rs=24 diff=8 so valid
+        long long cs=0,rs=0;//current sum required sum
+        for(;j<n;j++){
+            cs+=nums[j];
+            rs=1ll*nums[j]*(j-i+1);//1ll or make i,j etc long
+            for(;rs-cs>k;i++){
+                cs-=nums[i];
+                rs-=nums[j];
+            }
+            ans=max(ans,j-i+1);
+        }
+        return ans;
+    }
+};
+//code with alisha
+
+// 1 subarrays With exactly K Distinct char
+class Solution {
+public:
+//f returns number of subarrays with atmost k elements
+    int f(vector<int>& nums, int k){
+        int i=0,j=0,ans=0,n=nums.size();
+
+        unordered_map<int,int> um; // num vs freq
+
+        for(;i<n;i++){
+
+            um[nums[i]]++;
+
+            for(;um.size()>k;j++){
+                if(um[nums[j]]--==1) um.erase(nums[j]);
+                // else um[nums[j]]--;
+            }
+
+            ans+=i-j+1;
+        }
+
+        return ans;
+    }
+    int subarraysWithKDistinct(vector<int>& nums, int k) {
+        return f(nums,k) - f(nums,k-1);
+    }
+};
+// 2 count number of triangles that can be formed
+	//sum of smaller 2 sides must be greater than largest
+class Solution {
+public:
+    int triangleNumber(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int count = 0;
+        int a,b,c,n=nums.size();
+        for(c=n-1;c>=2;c--){
+            a=0,b=c-1;
+            while(a<b){
+                if(nums[a]+nums[b]>nums[c]){
+                    count+=b-a;
+                    b--;
+                }else{
+                    a++;
+                }
+            }
+        }
+        return count;
+    }
+};
+// 3 longest subarray of Ones with k modifications
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        int i=0,j=0,n=nums.size(),ans=0;
+
+        for(;j<n;j++){
+
+            if(nums[j]==0) k--;
+
+            for(;k<0;i++){
+                if(nums[i]==0) k++;
+            }
+
+            ans=max(ans,j-i+1);
+        }
+        return ans;
+    }
+};
+//a2
+    int longestOnes(vector<int>& A, int K) {
+        int i = 0, j;
+        for (j = 0; j < A.size(); ++j) {
+            if (A[j] == 0) K--;
+            if (K < 0 && A[i++] == 0) K++;
+        }
+        return j - i;
+    }
+// 4 count subarrays whose sum < k
+// 5 
+vector<int> Solution::flip(string A) {
+    int al=-1,ar=-2;
+    
+    int l=0,r=0,n=A.size(),c=0,mc=0;
+    
+    for(;r<n;r++){
+        
+        if(A[r]=='0') c++;
+        else c--;
+        
+        for(;c<0;l++){
+            if(A[l]=='1') c++;
+            else c--;
+        }
+        
+        if(c > mc){
+            ar=r;
+            al=l;
+            mc=c;
+        }
+        
+    }
+    if(al==-1) return {};
+    return {al+1,ar+1};
+}
+
+// 6 container with most water
+	//start from extremes 
+	//if left height is < right u can store with left height & width , width is optimum for this height now move left inwards left++
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int n=height.size();
+        int l=0,r=n-1,mans=0,cans=0;
+
+        while(l<r){
+            if(height[l]<height[r]){
+                cans= height[l]*(r-l);
+                l++;
+            }else{
+                cans= height[r]*(r-l);
+                r--;
+            }
+
+            mans=max(mans,cans);
+        }
+
+        return mans;
+    }
+};
+// 7
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& nums) {
+        int i=0,j=2,ans=0,n=nums.size();
+
+        while(j<n){
+            if(nums[j]-nums[j-1] != nums[i+1]-nums[i]){
+                i++;
+                j++;
+            }
+            else{
+                ans++;//we found one
+                while(j+1<n && nums[j+1]-nums[j]==nums[j]-nums[j-1]){
+                    j++;
+                    ans+=(j-2)-i+1;
+                }
+                i=j;
+                j=j+2;
+                
+            }
+        }
+        return ans;
+    }
+};
+// 8 are 1s k length apart
+class Solution {
+public:
+    bool kLengthApart(vector<int>& nums, int k) {
+        int i=-k-1,j=0,n=nums.size();
+
+        while(j<n){
+            if(nums[j]){
+                if(j-i-1<k) return 0;//or j-i <= k
+                i=j;
+            }
+            j++;
+        }
+        return 1;
+    }
+};
+// 9 kth smallest absolute Diff between all pairs of a[]
+int kthDiff(int a[], int n, int k)
+{
+    priority_queue<int> pq; //max heap
+
+    for(int i=0;i<n-1;i++){
+        for(int j=i+1;j<n;j++){
+            int diff=abs(a[i]-a[j]);
+            pq.push(diff);
+            if(pq.size()>k) pq.pop();
+        }
+    }
+    return pq.top();
+//a2
+
+int f(int a[], int n, int k,int mid){
+    int pairs=0;
+    int i=0,j=1;
+    while(j<n){
+
+        while(a[j]-a[i]>mid) i++;
+
+        pairs+=j-i;
+
+        j++;
+    }
+
+    return pairs;
+}
+
+int kthDiff(int a[], int n, int k)
+{
+    sort(a,a+n);
+    int l=0,r=a[n-1]-a[0],mid=0,ans=0;
+
+    while(l<=r){
+        mid=l+(r-l)/2;
+        //if there are >= k pairs with diff <= mid then mid can be ans . we want smallest
+        if(f(a,n,k,mid) >= k){
+            ans=mid;
+            r=mid-1;
+        }else l=mid+1;
+    }
+}
+}
+// 10 two sum 
+// 11 maximum value obtained by erasing unique subarray
+class Solution {
+public:
+    int maximumUniqueSubarray(vector<int>& nums) {
+        unordered_map<int,int> um;
+        int i=0,j=0,n=nums.size(),csum=0,msum=0;
+
+        for(;j<n;j++){
+            csum+=nums[j];
+            um[nums[j]]++;
+
+            for(;um[nums[j]]>1;i++){
+                csum-=nums[i];
+                um[nums[i]]--;
+            }
+
+            msum=max(msum,csum);
+        }
+
+        return msum;
+    }
+};
+
+//a2
+class Solution {
+public:
+    int maximumUniqueSubarray(vector<int>& nums) {
+        int curr_sum=0, res=0;
+		
+		//set to store the elements
+        unordered_set<int> st;
+        
+        int i=0,j=0;
+        while(j<nums.size()) {
+            while(st.count(nums[j])>0) {
+				//Removing the ith element untill we reach the repeating element
+                st.erase(nums[i]);
+                curr_sum-=nums[i];
+                i++;
+            }
+			//Add the current element to set and curr_sum value
+            curr_sum+=nums[j];
+            st.insert(nums[j++]);
+			
+			//res variable to keep track of largest curr_sum encountered till now...
+            res = max(res, curr_sum);
+        }
+        
+        return res;
+    }
+};
+// 12 find the smallest window length that contains all the characters of the given string at least one time.
+    int findSubString(string str)
+    {
+        // Your code goes here   
+        unordered_set<char> us;
+        for(auto x:str) us.insert(x);
+
+        int ss=us.size();
+        if(ss==1) return 1;
+
+        int n=str.size(),ansmin=n,i=0;
+        unordered_map <char,int> um;
+        
+        for(int j=0;j<n;){
+            while(j<n && um.size()<ss){
+                um[str[j]]++;
+                j++;
+            }
+            
+            while(um.size() == ss){
+                if(um[str[i]]-- == 1) um.erase(str[i]);
+                i++;
+            }
+            
+            // cout<<i<<" "<<j<<endl;
+            ansmin=min(ansmin,j-i+1);
+        }
+        
+        return ansmin;
+        
+    }
+//a2
+        for(int j=0;j<n;j++){
+            um[str[j]]++;
+            
+            if(um.size()==ss){
+                while(um[str[i]]>1){
+                    um[str[i]]--;
+                    i++;
+                }
+                ansmin=min(ansmin,j-i+1);
+            }
+        } 
+// 13
+class Solution {
+public:
+    string removeStars(string s) {
+        string ans;
+        for(auto x:s){
+            if(x=='*'){
+                ans.pop_back();
+            }else{
+                ans.push_back(x);
+            }
+
+        }
+        return ans;
+    }
+};
+//a2
+    string removeStars(string s) {
+        // string ans;
+        int i=0,j=0,n=s.size();
+        while(i<n){
+            if(s[i]=='*') j--;
+            else s[j++]=s[i];
+            i++;
+        }
+        return s.substr(0,j);
+    }
+// 14 maximumRobots 
+class Solution {
+public:
+    int maximumRobots(vector<int>& chargeTimes, vector<int>& runningCosts, long long budget) {
+        deque<int> deq;//we will store indices
+
+         
+        long long i=0,j=0,ansmax=0,n=chargeTimes.size(),sum=0,ourBudget=0;
+
+        for(;j<n;j++){
+            sum+=runningCosts[j];
+            while(deq.size() && chargeTimes[deq.back()]<chargeTimes[j]){
+                deq.pop_back();
+            }
+            deq.push_back(j);
+            //invalid ourbudget > budget
+            ourBudget=(j-i+1)*sum + chargeTimes[ deq.front() ];
+
+
+            for(;ourBudget > budget && i<=j;){
+                if(deq.front()==i) deq.pop_front();
+                sum-=runningCosts[i];
+                i++;
+                if(i<=j)  ourBudget=(j-i+1)*sum + chargeTimes[ deq.front() ];
+
+            }
+            // cout<<i<<" "<<j<<endl;
+            ansmax=max(ansmax,j-i+1);
+        }   
+
+        return ansmax;
+
+    }
+};
+// 15 We call a subarray of nums nice if the bitwise AND of every pair of elements that are in different positions in the subarray is equal to 0.
+class Solution {
+public:
+    int longestNiceSubarray(vector<int>& nums) {
+        long long  a=0,b=0,ansmax=1,n=nums.size(),i=0,j=0;
+
+        for(;j<n;j++){
+            a=(b&nums[j]);
+            if(a){
+                ansmax=max(ansmax,j-i);
+                //j=i; //incorrect we need to start again checking from left +1
+                i++;
+                j=i;
+                a=0;
+                b=nums[j];
+            }else{
+                b=(b|nums[j]);
+            }
+            
+        }
+        ansmax=max(ansmax,j-i);
+        return ansmax;
+    }
+};
+
+//STRIVER 10.1 MED
+//4
+class Solution {
+public: 
+// ABCCAA k=2
+
+    int characterReplacement(string s, int k) {
+        int n = s.size();
+        int i = 0, j = 0, maxi = 0;
+        unordered_map<char,int>mp;
+        // int ans = -1;
+        while(j < n)
+        {
+            mp[s[j]]++;
+            maxi = max(maxi, mp[s[j]]);
+            if((j-i+1) - maxi > k){
+                mp[s[i]]--;
+                i++;
+            }
+            // ans = max(ans, (j-i+1));
+            j++;   
+        }
+        // return ans;
+        return j-i;
+    }
+};
+//5 
+int f(vector<int> &arr, int k){
+    int c=0,i=0,j=0,n=arr.size();
+    for(;j<n;j++){
+        if(arr[j]) k--;
+
+        for(;k<0;i++){
+            if(arr[i]) k++;
+        }
+
+        c+=j-i+1;
+    }
+    return c;
+}
+
+int subarrayWithSum(vector<int> &arr, int k) {
+    // Write your code here.
+    return f(arr,k)-f(arr,k-1);//atmost k ones - atmost (k-1) ones
+}
+//a2 
+int subarrayWithSum(vector<int> &arr, int k) {
+    // Write your code here.
+    
+    int c1=0,n=arr.size(),ans=0;//count 1s
+    // unordered_map<int,int> um;// freq of subarray with k 1s
+    vector<int> um(n+1,0);//switched from map to vector because of collision in map leading O(n^2)
+    um[0]=1;//empty
+    
+    
+
+    for(int i=0;i<n;i++){
+        c1+=arr[i];
+
+        int rem=c1-k;
+        if(c1>=k) ans+=um[rem];
+
+        um[c1]++;
+    }
+    return ans;
+}
+
+//7 Count Substring With abc
+int countSubstring(string s){
+    // Write your code here.
+    int a=-1,b=-1,c=-1,count=0,n=s.size();
+
+    for(int i=0;i<n;i++){
+        if(s[i]=='a') a=i;
+        else if (s[i]=='b') b=i;
+        else c=i;
+
+        count+=min(a,min(b,c) ) + 1;
+    }
+
+    return count;
+}
+//8 maxPoints from cards . we can pick only from either end 
+//a1 we will pick elements such that sum of remaining is min & this remaining will be continous
+int maxPoints(vector<int>&arr , int K){
+    // Write your code here.
+    int n=arr.size(), k=n-K;
+    int tot=accumulate(arr.begin(),arr.end(),0);
+    if(k==0) return tot;
+
+    int csum=0,minsum=INT_MAX;
+    for(int i=0;i<k;i++){
+        csum+=arr[i];
+    }
+    minsum=csum;
+
+    for(int i=k;i<n;i++){
+        csum+=arr[i];
+        csum-=arr[i-k];
+
+        minsum=min(minsum,csum);
+    }
+
+    return tot - minsum;
+}
+//a2 select first k. now delete kth and add last. now delete k-1 & add second last
+
+//STRIVER 10.2 HARD
+//3 check if added char was needed c1++
+	//while removing check if removed char was needed  c1--
+string minSubstring(string &a, string &b)
+{
+    // Write your code here.
+    unordered_map<char,int> um2, um1;
+    for(auto x:b) um2[x]++;
+
+    int i=0,j=0,n=a.size(),minlen=INT_MAX,c1=0,c2=b.size();
+    string ans;
+
+    for(;j<n;j++){
+
+        um1[a[j]]++;
+        if(um1[a[j]] <= um2[a[j]]) c1++;
+
+        if(c1==c2){
+            while(c1==c2){
+                um1[a[i]]--;
+                if(um1[a[i]] < um2[a[i]]) c1--;
+                i++;
+            }
+            if(j-i+2 < minlen){
+                minlen= j-i+2;
+                ans= a.substr(i-1,minlen);
+            }
+        }
+        
+    }
+
+    return ans;
+}
+
+//4 min Window subsequence
+	//to and fro . -> till we get all match of T. <- till we get all match in reverse to avoid redundant in start.
+string minWindow(string S, string T)
+{
+	// Write your Code here
+	int i=0,j=0,k=0,s1=S.size(),s2=T.size();
+
+	string ans;
+	int as=INT_MAX;
+	
+	for(;j<s1;j++){
+		while(k==0 && j<s1 && S[j]!=T[k]){
+			j++;
+			// i++;
+		}
+		if(j==s1) break;
+		if(k<s2 && S[j]==T[k]){
+			// j++;
+			k++;
+		}
+		if(k==s2){
+			int i2=j;
+			k--;
+			while(k>=0){
+				if(T[k]==S[i2--]) k--;
+			}
+			i2++;
+
+			if(j-i2+1 < as){
+				as=j-i2+1;
+				ans=S.substr(i2,as);
+				// cout<<ans<<endl;
+			}
+
+			j=++i2;
+			k=0;
+		}
+	}
+
+	return ans;
+}
+
+71:HEAPS
+72:GREEDY
+73:
+74:
+75:
+76:
+77:
+78:
+79:
+80:
+81:
+82:
+83:
+84:
+85:
+86:
+87:
+88:
+89:
+90:
+91:
+92:
+93:
+94:
+95:
+96:
+97:
+98:
+99:
+100:
